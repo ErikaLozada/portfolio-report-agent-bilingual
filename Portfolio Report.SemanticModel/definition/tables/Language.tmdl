@@ -1,0 +1,34 @@
+table Language
+	lineageTag: 26d5af51-89d0-4237-9cce-d9c829090671
+
+	column Code
+		lineageTag: 1618ba95-ec78-49e8-a2f5-f648d8eab738
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Code]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Label
+		lineageTag: 117dc6dd-f7cb-4cd1-b6de-edbf31d138b8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Label]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Language = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Code", STRING,
+				    "Label", STRING,
+				    {
+				        { "EN", "English" },
+				        { "AR", "العربية" }
+				    }
+				)
+
+	annotation PBI_Id = 9ebe930ffbc9402c83ed43f52a8e3121
+

@@ -1,0 +1,952 @@
+table Portfolio
+	lineageTag: 6ad448ab-76a3-4bd5-8644-73f32c0b5c54
+
+	column #
+		dataType: double
+		lineageTag: 4e0a91ac-47e1-40da-9a5e-535fb5ce2ca6
+		summarizeBy: sum
+		sourceColumn: #
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Strategic Country'
+		dataType: string
+		lineageTag: c430791b-f552-4207-b21e-f3a773cb9f1f
+		summarizeBy: none
+		sourceColumn: Strategic Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Property Type (as per Portfolio Lens)'
+		dataType: string
+		lineageTag: 050e1b21-7dc4-48b3-b0a2-e0beb129c2d8
+		summarizeBy: none
+		sourceColumn: Property Type (as per Portfolio Lens)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Level 1 FA Module - English classification'
+		dataType: string
+		lineageTag: c51da12f-fc28-45f5-bd9c-d744b6cd8a24
+		summarizeBy: none
+		sourceColumn: Level 1 FA Module - English classification
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Level 2 FA Module - English classification'
+		dataType: string
+		lineageTag: f9b3b527-b9ab-4981-b8ab-20e32bb0e5cd
+		summarizeBy: none
+		sourceColumn: Level 2 FA Module - English classification
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Acquisition Type'
+		dataType: string
+		lineageTag: 78d42edc-a2f9-440b-b69a-6be82d79ca2d
+		summarizeBy: none
+		sourceColumn: Acquisition Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Acquisition Method'
+		dataType: string
+		lineageTag: c2a70729-1471-4f82-bfb5-c86c26f2da8c
+		summarizeBy: none
+		sourceColumn: Acquisition Method
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nature Of Use '
+		dataType: string
+		lineageTag: 0b5ab5cc-9e10-4d4e-89ff-0d2f853a39fc
+		summarizeBy: none
+		sourceColumn: "Nature Of Use "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Asset Exploitation '
+		dataType: string
+		lineageTag: d4edee3c-2eff-4376-ab1c-cb5f41375de3
+		summarizeBy: none
+		sourceColumn: "Asset Exploitation "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Building Type '
+		dataType: string
+		lineageTag: 71c6feae-938a-4167-84b5-44ac54a2a54f
+		summarizeBy: none
+		sourceColumn: "Building Type "
+
+		annotation SummarizationSetBy = Automatic
+
+	column Continent
+		dataType: string
+		lineageTag: 05bb211e-514d-43a1-b84b-1757dc2c23a1
+		summarizeBy: none
+		sourceColumn: Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 17c14845-d700-4706-858f-93e6cbd35c52
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mission
+		dataType: string
+		lineageTag: 926eae65-91c3-4603-a93b-202e486db645
+		summarizeBy: none
+		sourceColumn: Mission
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Built-up Area (m²)'
+		dataType: double
+		lineageTag: e54f9a06-900a-4a6e-96f1-8c92cac9857e
+		summarizeBy: sum
+		sourceColumn: Built-up Area (m²)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Building Area (m²)'
+		dataType: double
+		lineageTag: bedbd23d-e6a4-42f2-a775-c1a356541a20
+		summarizeBy: sum
+		sourceColumn: Total Building Area (m²)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Number of Units'
+		dataType: double
+		lineageTag: 250376a8-876e-4076-b866-f5fb0897fb19
+		summarizeBy: sum
+		sourceColumn: Number of Units
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Asset Useful Life'
+		dataType: double
+		lineageTag: 40972003-5a4b-4faf-b0a0-bbb05a599baa
+		summarizeBy: sum
+		sourceColumn: Asset Useful Life
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Remaining Life Span'
+		dataType: string
+		lineageTag: eb1441a4-f100-44fc-a8c9-061d3a56df6a
+		summarizeBy: none
+		sourceColumn: Remaining Life Span
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Asset Condition'
+		dataType: string
+		lineageTag: db71a318-1d10-4c5a-aadc-ed14628ab0d7
+		summarizeBy: none
+		sourceColumn: Asset Condition
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Number of Employees in the Building'
+		dataType: double
+		lineageTag: 27426ca5-2261-4048-9d61-09d82859cfe0
+		summarizeBy: sum
+		sourceColumn: Number of Employees in the Building
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Building Capacity'
+		dataType: double
+		lineageTag: c75fbc98-0063-463a-8001-4ea74742ee00
+		summarizeBy: sum
+		sourceColumn: Building Capacity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Building Utilization Rate'
+		dataType: double
+		lineageTag: 5bd1a075-10f6-4280-9994-389f7a3f11d1
+		summarizeBy: sum
+		sourceColumn: Building Utilization Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Land Area (m²)'
+		dataType: double
+		lineageTag: d2b5a8d8-8764-4242-adc0-d208c63e8491
+		summarizeBy: sum
+		sourceColumn: Land Area (m²)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Area as per Supporting Document'
+		dataType: double
+		lineageTag: 0f0dd24b-fe9d-4a48-8b7f-2415b74bd08f
+		summarizeBy: sum
+		sourceColumn: Area as per Supporting Document
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Unit of Measurement (as per supporting document)'
+		dataType: string
+		lineageTag: 368e0197-5bed-4215-8e4d-24cacfce1c77
+		summarizeBy: none
+		sourceColumn: Unit of Measurement (as per supporting document)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Number of designated parking spaces'
+		dataType: double
+		lineageTag: a12be46a-fdb7-4121-9bb4-1f6baa340cc0
+		summarizeBy: sum
+		sourceColumn: Number of designated parking spaces
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lease Start Date '
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b4875f00-4aa0-4801-9850-b5d988d76201
+		summarizeBy: none
+		sourceColumn: "Lease Start Date "
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Lease End Date '
+		dataType: dateTime
+		formatString: dd MMM yyyy
+		lineageTag: 22facf18-dbad-464a-befb-d6ebc080f7e8
+		summarizeBy: none
+		sourceColumn: "Lease End Date "
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column 'Lease Term'
+		dataType: string
+		lineageTag: b64bdd59-3b13-484b-944e-9ad6c60ad1f0
+		summarizeBy: none
+		sourceColumn: Lease Term
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date of First Lease'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3a2a6840-c45c-4481-9523-d9054afb386c
+		summarizeBy: none
+		sourceColumn: Date of First Lease
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Lease Payment Frequency'
+		dataType: string
+		lineageTag: af44eb7c-c74b-4577-a60e-e9bcd81ffd7c
+		summarizeBy: none
+		sourceColumn: Lease Payment Frequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rent per m²'
+		dataType: double
+		lineageTag: f789c460-8181-4d22-a3db-fb27b92f3cdc
+		summarizeBy: sum
+		sourceColumn: Rent per m²
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Acquisition Date'
+		dataType: dateTime
+		formatString: dd MMM yy
+		lineageTag: cebe573c-ffc5-47d0-b567-3b525776498e
+		summarizeBy: none
+		sourceColumn: Acquisition Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column 'Acquisition Cost per m²'
+		dataType: double
+		lineageTag: 690fecc1-bbbb-42e5-88a5-c717281865d4
+		summarizeBy: sum
+		sourceColumn: Acquisition Cost per m²
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Currency (per Supporting Document)'
+		dataType: string
+		lineageTag: 1e8e9f9a-3703-4889-b0a7-c50a2eee8637
+		summarizeBy: none
+		sourceColumn: Currency (per Supporting Document)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Exchange Rate vs. SAR (per XE.com)'
+		dataType: double
+		lineageTag: e7ecf57e-0472-493b-9901-e20e9658a1fd
+		summarizeBy: sum
+		sourceColumn: Exchange Rate vs. SAR (per XE.com)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Annual Rent SAR'
+		dataType: double
+		lineageTag: 41868a6e-ecac-4821-a529-de0084369107
+		summarizeBy: sum
+		sourceColumn: Annual Rent SAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Acquisition Cost SAR'
+		dataType: double
+		lineageTag: 95a14926-d7ec-49c0-93ef-a423c916d13d
+		summarizeBy: sum
+		sourceColumn: Acquisition Cost SAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rent / Acquisition Cost (SAR)'
+		dataType: double
+		lineageTag: 184b88f9-5ef8-4593-b81b-7f459a3971ec
+		summarizeBy: sum
+		sourceColumn: Rent / Acquisition Cost (SAR)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rent / Acquisition Cost per m² (SAR)'
+		dataType: double
+		lineageTag: 13d88be7-c7bc-426b-a451-e94c06206d1f
+		summarizeBy: sum
+		sourceColumn: Rent / Acquisition Cost per m² (SAR)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rent / Acquisition Cost per m² (USD)'
+		dataType: double
+		lineageTag: 02dacb30-98e3-460c-b511-ddc9e8777978
+		summarizeBy: sum
+		sourceColumn: Rent / Acquisition Cost per m² (USD)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Are there any fees associated with the asset?'
+		dataType: double
+		lineageTag: d080615e-064e-422b-8be5-40566574e23a
+		summarizeBy: sum
+		sourceColumn: Are there any fees associated with the asset?
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fee Value (Fixed Amount / Percentage)'
+		dataType: double
+		lineageTag: 898c55fb-b2d2-410d-94f6-d25ee8fac3d3
+		summarizeBy: sum
+		sourceColumn: Fee Value (Fixed Amount / Percentage)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Currency '
+		dataType: string
+		lineageTag: 1d792a8b-883a-4497-97a2-d6c7dbdaab25
+		summarizeBy: none
+		sourceColumn: "Currency "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Exchange Rate vs. SAR (per XE.com)_1'
+		dataType: double
+		lineageTag: e6996dbb-0172-4b89-a5e3-f91968907a75
+		summarizeBy: sum
+		sourceColumn: Exchange Rate vs. SAR (per XE.com)_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fees Amount in SAR'
+		dataType: double
+		lineageTag: 23ea6e2c-20c3-424f-9600-a166b4ec3431
+		summarizeBy: sum
+		sourceColumn: Fees Amount in SAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fees Type'
+		dataType: string
+		lineageTag: cd58fc9a-da6c-4c04-96ba-ed4cd5038875
+		summarizeBy: none
+		sourceColumn: Fees Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fess Description '
+		dataType: string
+		lineageTag: 5d38b2d4-4854-4279-ba4f-fb27a85ced1a
+		summarizeBy: none
+		sourceColumn: "Fess Description "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Asset Owner'
+		dataType: string
+		lineageTag: a9685458-97db-476d-9114-49448d59b306
+		summarizeBy: none
+		sourceColumn: Asset Owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entities Using the Asset'
+		dataType: string
+		lineageTag: ca82bec8-4af2-471e-8071-62052a2c024c
+		summarizeBy: none
+		sourceColumn: Entities Using the Asset
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Strategic Importance'
+		dataType: string
+		lineageTag: ef98f394-2288-4666-92a2-c4b3dc5d07ed
+		summarizeBy: none
+		sourceColumn: Strategic Importance
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Notes '
+		dataType: string
+		lineageTag: 7e0554ed-1fee-4559-89f6-6a992b1f8d61
+		summarizeBy: none
+		sourceColumn: "Notes "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Consultant Notes '
+		dataType: string
+		lineageTag: afde5042-b242-48d1-a70d-11c234261a66
+		summarizeBy: none
+		sourceColumn: "Consultant Notes "
+
+		annotation SummarizationSetBy = Automatic
+
+	column Notes
+		dataType: string
+		lineageTag: 8ed34f8f-66c3-4a4f-bf37-308af6f4b518
+		summarizeBy: none
+		sourceColumn: Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'وصف الأصل'
+		dataType: string
+		lineageTag: de7d38ad-f4ef-4703-8d40-0d140d6b0101
+		summarizeBy: none
+		sourceColumn: وصف الأصل
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'نوع الأستحواذ'
+		dataType: string
+		lineageTag: d2debc58-10ca-444a-8593-8fa7185d4bdc
+		summarizeBy: none
+		sourceColumn: نوع الأستحواذ
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'آلية الاستحواذ'
+		dataType: string
+		lineageTag: 9ee33fc0-fcdf-4a68-98b4-ad6eddb6d40d
+		summarizeBy: none
+		sourceColumn: آلية الاستحواذ
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'هل صدر أمر سامي بخصوص  أستئجار أو أستملاك الأصل؟ '
+		dataType: string
+		lineageTag: 266687ea-3ed3-46b8-861a-d2b63b28acee
+		summarizeBy: none
+		sourceColumn: "هل صدر أمر سامي بخصوص  أستئجار أو أستملاك الأصل؟ "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'طبيعة أستخدام الأصل'
+		dataType: string
+		lineageTag: 250b343d-25ca-4067-ba36-2763c4ef5df9
+		summarizeBy: none
+		sourceColumn: طبيعة أستخدام الأصل
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'أستغلال الأصل'
+		dataType: string
+		lineageTag: 21b026bb-85cf-4c6d-ab4a-ef3c27a1e907
+		summarizeBy: none
+		sourceColumn: أستغلال الأصل
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'نوع المبنى '
+		dataType: string
+		lineageTag: db85a1fc-4175-4393-a797-178e9cb2d862
+		summarizeBy: none
+		sourceColumn: "نوع المبنى "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'القارة '
+		dataType: string
+		lineageTag: f8a073e3-3cf5-46a0-8421-d7d942d8fec6
+		summarizeBy: none
+		sourceColumn: "القارة "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'الدولة '
+		dataType: string
+		lineageTag: 7de5f127-1169-4f77-b026-a39c6305111c
+		summarizeBy: none
+		sourceColumn: "الدولة "
+
+		annotation SummarizationSetBy = Automatic
+
+	column الممثلية
+		dataType: string
+		lineageTag: 24746f3b-7774-47dd-96df-238108df918a
+		summarizeBy: none
+		sourceColumn: الممثلية
+
+		annotation SummarizationSetBy = Automatic
+
+	column المنطقة
+		dataType: string
+		lineageTag: 542e7489-51cb-4855-96e9-b6f03a63f15a
+		summarizeBy: none
+		sourceColumn: المنطقة
+
+		annotation SummarizationSetBy = Automatic
+
+	column الحي
+		dataType: string
+		lineageTag: 873ef824-39cf-4724-aa16-4579a20be850
+		summarizeBy: none
+		sourceColumn: الحي
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'نوع الحي'
+		dataType: string
+		lineageTag: 8278dff2-6b61-4167-85e3-107cfe0395f0
+		summarizeBy: none
+		sourceColumn: نوع الحي
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'حالة الأصل'
+		dataType: string
+		lineageTag: f7e32d1c-6d90-42b5-b4b4-729ac048e58d
+		summarizeBy: none
+		sourceColumn: حالة الأصل
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'حالة الأرض '
+		dataType: string
+		lineageTag: 10e72fd2-0d61-40dd-9678-71a8e13a38f2
+		summarizeBy: none
+		sourceColumn: "حالة الأرض "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'وحدة قياس المساحة بحسب الوثيقة الداعمة '
+		dataType: string
+		lineageTag: 9637ed89-ee2c-43e9-8515-6a28a3f19146
+		summarizeBy: none
+		sourceColumn: "وحدة قياس المساحة بحسب الوثيقة الداعمة "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'طبيعة تكلفة الإيجار '
+		dataType: string
+		lineageTag: 04eba875-578e-4519-a878-6a8df73e659f
+		summarizeBy: none
+		sourceColumn: "طبيعة تكلفة الإيجار "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'هل يشمل عقد الإيجار أي أثاث أو معدات؟ '
+		dataType: string
+		lineageTag: 0cfa1e36-46f9-47d0-8865-1b2d6f8b61a7
+		summarizeBy: none
+		sourceColumn: "هل يشمل عقد الإيجار أي أثاث أو معدات؟ "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'العملة حسب الوثيقة الداعمة '
+		dataType: string
+		lineageTag: 5a6a4a01-ac50-4eb6-b2bd-5f960b673429
+		summarizeBy: none
+		sourceColumn: "العملة حسب الوثيقة الداعمة "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'هل يوجد أي رسوم على الأصل'
+		dataType: string
+		lineageTag: 8ff687c2-08b5-4142-aeb9-70de895a41f2
+		summarizeBy: none
+		sourceColumn: هل يوجد أي رسوم على الأصل
+
+		annotation SummarizationSetBy = Automatic
+
+	column العملة
+		dataType: string
+		lineageTag: e8a69d57-8336-429b-8bbb-f26ae025a2f1
+		summarizeBy: none
+		sourceColumn: العملة
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'طبيعة الرسوم'
+		dataType: string
+		lineageTag: aea1bb67-b76c-4cd0-9086-b899235ec489
+		summarizeBy: none
+		sourceColumn: طبيعة الرسوم
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'وصف الرسوم'
+		dataType: string
+		lineageTag: e02b7003-dcff-4875-9013-8603ac020a11
+		summarizeBy: none
+		sourceColumn: وصف الرسوم
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'مالك الأصل'
+		dataType: string
+		lineageTag: a93f9368-d43d-4d03-98a6-2e50ed6f5171
+		summarizeBy: none
+		sourceColumn: مالك الأصل
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'الجهة/ القسم/الإدارة أو الشخص المستخدم للأصل'
+		dataType: string
+		lineageTag: 56bdfbb3-eb6f-410f-9630-ed638d9d7a05
+		summarizeBy: none
+		sourceColumn: الجهة/ القسم/الإدارة أو الشخص المستخدم للأصل
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'لغة الوثيقة الداعمة (إن وجد)'
+		dataType: string
+		lineageTag: dc05a183-fb4f-4a33-a2bd-ee820d248260
+		summarizeBy: none
+		sourceColumn: لغة الوثيقة الداعمة (إن وجد)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ترجمة الوثيقة الداعمة '
+		dataType: string
+		lineageTag: c5ec55d8-c096-49c4-9a1e-54e601aa4c5b
+		summarizeBy: none
+		sourceColumn: "ترجمة الوثيقة الداعمة "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'مشاريع حالية (قيد التنفيذ)'
+		dataType: string
+		lineageTag: 3dfe7b12-96a0-4b5c-9122-6a0d1ad14cc5
+		summarizeBy: none
+		sourceColumn: مشاريع حالية (قيد التنفيذ)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'حالة المشروع '
+		dataType: string
+		lineageTag: 9fc59ae5-6014-45f0-86dc-add12e5d1b1b
+		summarizeBy: none
+		sourceColumn: "حالة المشروع "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'مشاريع مستقبلية مخطط لها'
+		dataType: string
+		lineageTag: 96f9f749-855f-4164-b883-7ec1dc884257
+		summarizeBy: none
+		sourceColumn: مشاريع مستقبلية مخطط لها
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'مقياس المخاطر الأمنية'
+		dataType: string
+		lineageTag: e4ab8412-c1f3-4d28-a1e0-74f42856a2f6
+		summarizeBy: none
+		sourceColumn: مقياس المخاطر الأمنية
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'الأهمية الإستراتيجية'
+		dataType: string
+		lineageTag: 0e713019-cf26-4e7f-85e7-1e273cafa41f
+		summarizeBy: none
+		sourceColumn: الأهمية الإستراتيجية
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'التصنيف الدبلوماسي '
+		dataType: string
+		lineageTag: 8ca9fa34-9796-49ae-abc9-96b9b9d76612
+		summarizeBy: none
+		sourceColumn: "التصنيف الدبلوماسي "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'هل تتوفر للأصل وثيقة داعمة قانونية '
+		dataType: string
+		lineageTag: 53a31d36-b7e7-4a5e-9f0e-786da6a7bc9a
+		summarizeBy: none
+		sourceColumn: "هل تتوفر للأصل وثيقة داعمة قانونية "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'نوع الوثائق الداعمة'
+		dataType: string
+		lineageTag: b78890ce-ea72-4a45-bdf8-d6e9a449bab9
+		summarizeBy: none
+		sourceColumn: نوع الوثائق الداعمة
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'عقد الصيانة و التشغيل'
+		dataType: string
+		lineageTag: 3ea02097-fd6b-4342-b4b1-531bc60b4410
+		summarizeBy: none
+		sourceColumn: عقد الصيانة و التشغيل
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'هل يشمل عقد الإيجار الصيانة والتشغيل'
+		dataType: string
+		lineageTag: 4d37f0dc-2dcc-407a-8249-c2181fbd457d
+		summarizeBy: none
+		sourceColumn: هل يشمل عقد الإيجار الصيانة والتشغيل
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'اسم الجهة المسؤولة عن صيانة الأصل؟'
+		dataType: string
+		lineageTag: d0ebabf6-5076-4733-aecb-155f8a5395fb
+		summarizeBy: none
+		sourceColumn: اسم الجهة المسؤولة عن صيانة الأصل؟
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'مدة عقد الصيانة و التشغيل'
+		dataType: string
+		lineageTag: 50d851ec-56e8-459d-88de-491b793cd758
+		summarizeBy: none
+		sourceColumn: مدة عقد الصيانة و التشغيل
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'عملة عقد الصيانة و التشغيل'
+		dataType: string
+		lineageTag: bced4e41-7489-449a-8c59-e8c4e91dab1a
+		summarizeBy: none
+		sourceColumn: عملة عقد الصيانة و التشغيل
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'هل يوجد سجل حالي لصيانة الأصل؟'
+		dataType: string
+		lineageTag: 36375891-d0b8-4a7f-a3dd-e5ea0e51af5a
+		summarizeBy: none
+		sourceColumn: هل يوجد سجل حالي لصيانة الأصل؟
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'هل يوجد كتيب لصيانة الأصل؟'
+		dataType: string
+		lineageTag: d674d679-6125-47c7-937d-ec8aedb60c63
+		summarizeBy: none
+		sourceColumn: هل يوجد كتيب لصيانة الأصل؟
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'هل تم تنفيذ أي أعمال ترميم على الأصل، أو هل هناك مشروع ترميم جاري حاليًا للأصل؟ '
+		dataType: string
+		lineageTag: 5d03f817-6e37-4c7e-9218-75b3026dd840
+		summarizeBy: none
+		sourceColumn: "هل تم تنفيذ أي أعمال ترميم على الأصل، أو هل هناك مشروع ترميم جاري حاليًا للأصل؟ "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'عقد حراسات أمنية '
+		dataType: string
+		lineageTag: 9be18a2b-f1d5-4769-b2f3-660bf966dfc3
+		summarizeBy: none
+		sourceColumn: "عقد حراسات أمنية "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'عقد االنظافة '
+		dataType: string
+		lineageTag: b917a7ec-0bed-45a3-81aa-365282a0555a
+		summarizeBy: none
+		sourceColumn: "عقد االنظافة "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ملاحظات '
+		dataType: string
+		lineageTag: 2feaab54-f614-44cc-b19d-9503de4a4c18
+		summarizeBy: none
+		sourceColumn: "ملاحظات "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ملاحظات الاستشاري '
+		dataType: string
+		lineageTag: 29c0f6e6-5c89-4b25-80a5-4b1c60d5fb38
+		summarizeBy: none
+		sourceColumn: "ملاحظات الاستشاري "
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site
+		dataType: string
+		lineageTag: b04e82ef-7e56-47f4-bc74-33f764c6cfbd
+		summarizeBy: none
+		sourceColumn: Site
+
+		annotation SummarizationSetBy = Automatic
+
+	column upcoming =
+			if(DATEDIFF(TODAY(), [Lease End Date ], MONTH) <= 36 &&
+			            DATEDIFF(TODAY(), [Lease End Date ], MONTH) > 0 , "<= 36 Months", "> 3 years")
+		lineageTag: 80e037fd-3d2c-4cf3-b9eb-3e07928c3db4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lease Cost  '
+		dataType: double
+		lineageTag: 7df343a2-56f8-4bc8-ad0c-26215ee7b5dc
+		summarizeBy: sum
+		sourceColumn: "Lease Cost  "
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'طبيعة أعمال الصيانة و التشغيل حسب العقد'
+		dataType: string
+		lineageTag: c84ed1b3-f2e3-4e8e-865a-d24a9cf6b3c0
+		summarizeBy: none
+		sourceColumn: طبيعة أعمال الصيانة و التشغيل حسب العقد
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Portfolio = m
+		mode: import
+		source = ```
+				let
+				    // Source = Excel.Workbook(Web.Contents("../Shared%20Documents/Transition%20team/06%20Portfolio%20Strategy%20-%20Consulting/02%20Client%20Data/BI_MasterDataSource.xlsx"), null, true),
+				    // DataTable_Raw_Main_Sheet = Source{[Item="DataTable_Raw_Main",Kind="Sheet"]}[Data],
+				    // #"Promoted Headers" = Table.PromoteHeaders(DataTable_Raw_Main_Sheet, [PromoteAllScalars=true]),
+				    Source = Csv.Document(File.Contents("C:\Users\erika.lozada\Desktop\Projects\PortfolioReport\sample_dummy_data.csv"),[Delimiter=",", Columns=103, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				   
+				    TypeReference = Header,
+				    AvailableColumns = Table.ColumnNames(#"Promoted Headers"),
+				    
+				    GetPowerQueryType = (typeText as text) as type =>
+				        let
+				            CleanType = Text.Upper(Text.Trim(typeText))
+				        in
+				            if List.Contains({"TEXT", "STRING", "STR"}, CleanType) then type text
+				            else if List.Contains({"NUMBER", "NUM.", "NUM", "NUMERIC", "DECIMAL","CURRENCY","PERCENTAGE"}, CleanType) then type number
+				            else if List.Contains({"DATE"}, CleanType) then type date
+				            else if List.Contains({"DATETIME", "TIMESTAMP"}, CleanType) then type datetime
+				            else if List.Contains({"TIME"}, CleanType) then type time
+				            else if List.Contains({"LOGICAL", "BOOLEAN", "BOOL"}, CleanType) then type logical
+				            else if List.Contains({"INTEGER", "INT"}, CleanType) then Int64.Type
+				            else type any,
+				    
+				    // Filter TypeReference to only include columns that exist in Source
+				    FilteredTypeReference = Table.SelectRows(TypeReference, each List.Contains(AvailableColumns, [ColumnName])),
+				    
+				    TypeList = Table.ToRows(Table.SelectColumns(FilteredTypeReference, {"ColumnName", "Type"})),
+				    
+				    Result = Table.TransformColumnTypes(#"Promoted Headers",
+				        List.Transform(TypeList, each {_{0}, GetPowerQueryType(_{1})})
+				    ),
+				    #"Inserted Merged Column1" = Table.AddColumn(Result, "UniqueKey", each Text.Combine({Text.From([#"#"], "en-AU"), [Country], [Mission], [#"Nature Of Use "], [#"Asset Exploitation "]}, "-"), type text),
+				    #"Renamed Columns" = Table.RenameColumns(#"Inserted Merged Column1",{{"UniqueKey", "Site"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Lease Cost  ", type number}})
+				in
+				    #"Changed Type"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,112 @@
+table Translations
+	lineageTag: 4cd67607-610d-435b-a31b-cb9df87bad07
+
+	column Key
+		lineageTag: b30b396b-b88f-4788-bacf-2cddaf7fed44
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column EN
+		lineageTag: ef6dc812-7e6f-415d-96bf-86fb198d596b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [EN]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AR
+		lineageTag: d3695a2f-f315-46bd-b19f-d8523d441560
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AR]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Translations = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Key", STRING,
+				    "EN", STRING,
+				    "AR", STRING,
+				    {
+				        // PAGE TITLE
+				        {"PAGETITLE_PORTFOLIO_STRATEGY", "Portfolio Strategy Report", "تقرير استراتيجية المحفظة"},
+				        {"PAGESUBTITLE_OVERVIEW", "Portfolio Overview", "نظرة عامة على المحفظة"},
+				        
+				        // PORTFOLIO KPIs
+				        {"KPI_TOTAL_SITES", "Total Sites", "إجمالي المواقع"},
+				        {"KPI_SITES_BELOW_MARKET", "Sites Below Market Rate", "مواقع أقل من السعر السوقي"},
+				        {"KPI_SITES_ABOVE_MARKET", "Sites Above Market Rate", "مواقع أعلى من السعر السوقي"},
+				        {"KPI_SITES_LEASED", "Sites Leased", "المواقع المؤجرة"},
+				        {"KPI_SITES_OWNED", "Sites Owned", "المواقع المملوكة"},
+				        {"KPI_TOTAL_ANNUAL_RENT_USD", "Total Annual Rent (USD)", "إجمالي الإيجار السنوي (دولار أمريكي)"},
+				        {"KPI_TOTAL_ANNUAL_RENT_SAR", "Total Annual Rent (SAR)", "إجمالي الإيجار السنوي (ريال سعودي)"},
+				        {"KPI_MARKET_ANNUAL_RENT", "Annual Rent at Market Rates (USD)", "الإيجار السنوي بالأسعار السوقية (دولار أمريكي)"},
+				        {"KPI_POTENTIAL_SAVINGS", "Potential Savings", "التوفير المحتمل"},
+				        {"KPI_POTENTIAL_PREMIUM", "Potential Premium", "القسط المحتمل"},
+				        {"KPI_TOTAL_AREA", "Total Area", "إجمالي المساحة"},
+				        {"KPI_NET_RENT_TO_AREA_RATIO", "Net Rent to Area Ratio", "نسبة صافي الإيجار إلى المساحة"},
+				        
+				        // CHART TITLES (Section 3.1 Visualizations)
+				        {"TITLE_OUTLIER_ANALYSIS", "Outlier Analysis - Variance to Market Rent", "تحليل القيم الشاذة - الفرق عن الإيجار السوقي"},
+				        {"TITLE_ANNUAL_RENT_COMPARISON", "Annual Rent Comparison", "مقارنة الإيجار السنوي"},
+				        {"TITLE_RENT_RATES", "Rent Rates per SQM/SQFT", "أسعار الإيجار لكل متر/قدم مربع"},
+				        {"TITLE_ACQUISITION_TYPE_BREAKDOWN", "Acquisition Type Breakdown", "تفصيل نوع الاستحواذ"},
+				        {"TITLE_TOTAL_AREA_DISTRIBUTION", "Total Area Distribution", "توزيع المساحة الإجمالية"},
+				        {"TITLE_NET_RENT_TO_AREA_RATIO", "Net Rent to Area Ratio Analysis", "تحليل نسبة صافي الإيجار إلى المساحة"},
+				        
+				        // ACQUISITION TYPE LABELS
+				        {"ACQ_TYPE_LEASED", "Leased", "مؤجر"},
+				        {"ACQ_TYPE_OWNED", "Owned", "مملوك"},
+				        
+				        // FINANCIAL LABELS
+				        {"LABEL_CURRENT", "Current", "الحالي"},
+				        {"LABEL_MARKET", "Market", "السوق"},
+				        {"LABEL_VARIANCE", "Variance", "الفرق"},
+				        {"LABEL_ANNUAL_RENT", "Annual Rent", "الإيجار السنوي"},
+				        {"LABEL_RENT_PER_SQM", "Rent per SQM", "الإيجار لكل متر مربع"},
+				        {"LABEL_RENT_PER_SQFT", "Rent per SQFT", "الإيجار لكل قدم مربع"},
+				        
+				        // UNITS
+				        {"UNIT_USD", "USD", "دولار أمريكي"},
+				        {"UNIT_SAR", "SAR", "ريال سعودي"},
+				        {"UNIT_SQM", "SQM", "متر مربع"},
+				        {"UNIT_SQFT", "SQFT", "قدم مربع"},
+				        {"UNIT_PERCENT", "%", "%"},
+				        {"UNIT_COUNT", "Count", "عدد"},
+				        
+				        // COMMON TERMS
+				        {"TERM_TOTAL", "Total", "الإجمالي"},
+				        {"TERM_ABOVE", "Above", "أعلى من"},
+				        {"TERM_BELOW", "Below", "أقل من"},
+				        {"TERM_AT", "At", "عند"},
+				        {"TERM_POTENTIAL", "Potential", "المحتمل"},
+				        {"TERM_SAVINGS", "Savings", "التوفير"},
+				        {"TERM_PREMIUM", "Premium", "القسط"},
+				        {"TERM_RATIO", "Ratio", "النسبة"},
+				        {"TERM_AREA", "Area", "المساحة"},
+				        {"TERM_RENT", "Rent", "الإيجار"},
+				        {"TERM_NET", "Net", "صافي"},
+				        
+				        // CHART LEGEND LABELS
+				        {"LEGEND_CURRENT", "Current", "الحالي"},
+				        {"LEGEND_MARKET", "Market", "السوق"},
+				        {"LEGEND_VARIANCE", "Variance", "الفرق"},
+				        
+				        // STATUS INDICATORS
+				        {"STATUS_ABOVE_MARKET", "Above Market", "أعلى من السوق"},
+				        {"STATUS_BELOW_MARKET", "Below Market", "أقل من السوق"},
+				        {"STATUS_AT_MARKET", "At Market", "عند السوق"},
+				        {"BUTTON_INFORMATION","Information","Information"}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 80dd10cf609d47b4a017c51c90e28e04
+

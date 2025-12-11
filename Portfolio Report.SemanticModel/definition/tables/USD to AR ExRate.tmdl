@@ -1,0 +1,28 @@
+table 'USD to AR ExRate'
+	lineageTag: d24441e9-7d58-4cc5-a105-f3ef20781dfc
+
+	measure 'USD to AR ExRate Value' = SELECTEDVALUE('USD to AR ExRate'[USD to AR ExRate], 3.75)
+		lineageTag: 04b01226-7837-4347-8b1a-11b6219346ec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'USD to AR ExRate'
+		lineageTag: 24003878-08a5-49ac-9e87-c5d41a6c9e95
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'USD to AR ExRate' = calculated
+		mode: import
+		source = GENERATESERIES(3, 5, 0.01)
+
+	annotation PBI_Id = 1b0bd7e7b1414f20856687d7c7d69601
+

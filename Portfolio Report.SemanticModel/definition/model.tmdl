@@ -1,0 +1,29 @@
+model Model
+	culture: en-AU
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-AU
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Portfolio","Currency Selection","Distribution Metric","sample_dummy_data","Header"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","MCP-PBIModeling","DevMode"]
+
+ref table Portfolio
+ref table Translations
+ref table _Measures
+ref table 'Currency Selection'
+ref table 'USD to AR ExRate'
+ref table Language
+ref table 'Distribution Metric'
+ref table Date
+ref table prm_dimensions
+ref table Header
+ref table prm_quandrants
+ref table prm_metric
+
+ref cultureInfo en-AU
+

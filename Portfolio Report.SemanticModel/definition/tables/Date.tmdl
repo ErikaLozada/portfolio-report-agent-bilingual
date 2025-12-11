@@ -1,0 +1,57 @@
+table Date
+	lineageTag: 0dda1d8e-e5f7-4746-b90a-f3cd1c99b5c8
+
+	column Date
+		formatString: General Date
+		lineageTag: a0c9e130-b142-4de2-b5dc-b6dffa5daf2e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Calendar Year'
+		formatString: 0
+		lineageTag: 7f3ef2a4-b4fd-41e7-9b3e-5fb6e9c4644a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Calendar Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		lineageTag: aab3c8ac-dd99-427e-ad39-d2a3b71c45b7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 3d047f4f-f24c-44ea-8538-a45dffd49bef
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = calculated
+		mode: import
+		source =
+				
+				VAR MinYear = YEAR ( MIN ( Portfolio[Lease End Date ] ) )
+				VAR MaxYear = YEAR ( MAX ( Portfolio[Lease End Date ] ) )
+				RETURN
+				ADDCOLUMNS (
+				    FILTER (
+				        CALENDARAUTO( ),
+				        AND ( YEAR ( [Date] ) >= MinYear, YEAR ( [Date] ) <= MaxYear )
+				    ),
+				    "Calendar Year",  YEAR ( [Date] ),
+				    "Month Name", FORMAT ( [Date], "mmmm" ),
+				    "Month Number", MONTH ( [Date] )
+				)
+
+	annotation PBI_Id = 9619f8b3da264cab933ad2132ef895a9
+

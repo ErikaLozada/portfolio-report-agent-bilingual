@@ -1,0 +1,535 @@
+DEFINE
+    // ============================================
+    // Portfolio Strategy Report - Basic Measures
+    // ============================================
+    // All measures assigned to _Measures table
+    // Following Power BI Developer Best Practices
+    //
+    // Data Model:
+    // - Portfolio: Properties with leasing, occupancy, location, and property information
+    // - Date: Date table for time intelligence
+    // - Translation: Translation table for bilingual support
+    //
+    // Note: Only columns marked Keep=1 in schema.csv are used
+    // Site replaces Asset ID (which was Keep=0)
+    // ============================================
+
+    // Core Count Measures
+    MEASURE '_Measures'[Total Sites] = 
+        DISTINCTCOUNT('Portfolio'[Site])
+
+    MEASURE '_Measures'[Sites Leased] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            'Portfolio'[Acquisition Type] = "Leased"
+        )
+   MEASURE '_Measures'[Sites Leased with Area Data] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            'Portfolio'[Acquisition Type] = "Leased",
+            NOT(ISBLANK('Portfolio'[Total Building Area (m²)]))
+        )	
+    MEASURE '_Measures'[Sites Owned] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            'Portfolio'[Acquisition Type] = "Owned"
+        )
+
+    MEASURE '_Measures'[Sites Leased %] = 
+        DIVIDE([Sites Leased], [Total Sites], 0)
+
+    MEASURE '_Measures'[Sites Owned %] = 
+        DIVIDE([Sites Owned], [Total Sites], 0)
+
+    // Financial Measures - Annual Rent Calculation
+    // Note: Annualizes lease cost based on payment frequency
+    // Assumes Lease Cost is in original currency, converts to SAR and USD
+
+    MEASURE '_Measures'[Total Annual Rent with Area (SAR)] = 
+        CALCULATE(
+            [Total Annual Rent (SAR)],
+            NOT(ISBLANK('Portfolio'[Total Building Area (m²)]))
+        )
+
+    MEASURE '_Measures'[Total Annual Rent with Area(USD)] = 
+        CALCULATE(
+            [Total Annual Rent (USD)],
+            NOT(ISBLANK('Portfolio'[Total Building Area (m²)]))
+        )
+
+
+
+    // Financial Measures - Annual Rent Calculation
+    // Note: Annualizes lease cost based on payment frequency
+    // Assumes Lease Cost is in original currency, converts to SAR and USD
+    MEASURE '_Measures'[Total Annual Rent (SAR)] = 
+        SUMX(
+            'Portfolio',
+            VAR AnnualMultiplier = 
+                SWITCH(
+                    'Portfolio'[Lease Payment Frequency],
+                    "Semi-Annual ", 2,
+                    "Quarterly", 4,
+                    "Annual", 1,
+                    1  // Default to annual if not specified
+                )
+            RETURN
+                'Portfolio'[ Lease Cost  ] * AnnualMultiplier * 
+                'Portfolio'[Exchange Rate vs. SAR (per XE.com)]
+        )
+
+    MEASURE '_Measures'[Total Annual Rent (USD)] = 
+        // Note: Uses USD/SAR exchange rate from parameter table
+        VAR USDToSARRate = COALESCE(SELECTEDVALUE('USD to AR ExRate'[USD to AR ExRate]), 3.75)
+        RETURN
+            DIVIDE([Total Annual Rent (SAR)], USDToSARRate, 0)
+
+    MEASURE '_Measures'[Total Annual Rent] = 
+        // Currency selection measure - switches between USD and SAR based on disconnected table
+        VAR _selectedCurr = SELECTEDVALUE('Currency Selection'[CurrencyOrder], 1)
+        RETURN 
+            SWITCH(
+                _selectedCurr, 
+                1, [Total Annual Rent (USD)], 
+                2, [Total Annual Rent (SAR)]
+            )
+			
+			
+    MEASURE '_Measures'[Total Annual Rent with area] = 
+        // Currency selection measure for sites with area data
+        VAR _selectedCurr = SELECTEDVALUE('Currency Selection'[CurrencyOrder], 1)
+        RETURN 
+            SWITCH(
+                _selectedCurr, 
+                1, [Total Annual Rent with Area(USD)], 
+                2, [Total Annual Rent with Area (SAR)]
+            )
+
+    // Area Measures
+    MEASURE '_Measures'[Total Area (sqm)] = 
+        SUM('Portfolio'[Total Building Area (m²)])
+
+    // Rent to Area Ratio Measures
+    MEASURE '_Measures'[Net Rent to Area Ratio (USD/sqm)] = 
+        DIVIDE([Total Annual Rent (USD)], [Total Area (sqm)], 0)
+
+    MEASURE '_Measures'[Net Rent to Area Ratio (SAR/sqm)] = 
+        DIVIDE([Total Annual Rent (SAR)], [Total Area (sqm)], 0)
+
+    // Occupancy Measures
+    MEASURE '_Measures'[Total Headcount] = 
+        SUM('Portfolio'[Number of Employees in the Building])
+
+    MEASURE '_Measures'[Total Capacity] = 
+        SUM('Portfolio'[Building Capacity])
+
+    MEASURE '_Measures'[Sharing Ratio] = 
+        DIVIDE([Total Headcount], [Total Capacity], 0)
+
+    MEASURE '_Measures'[Average Utilization Rate] = 
+        AVERAGE('Portfolio'[Building Utilization Rate])
+
+    // Lease Expiration Measures
+    MEASURE '_Measures'[Properties Expiring <=3 Years] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
+            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
+        )
+
+    MEASURE '_Measures'[Total Rent at Risk (USD)] = 
+        CALCULATE(
+            [Total Annual Rent (USD)],
+            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
+            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
+        )
+
+    MEASURE '_Measures'[Total Rent at Risk (SAR)] = 
+        CALCULATE(
+            [Total Annual Rent (SAR)],
+            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
+            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
+        )
+
+    MEASURE '_Measures'[Total Area at Risk (sqm)] = 
+        CALCULATE(
+            [Total Area (sqm)],
+            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
+            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
+        )
+
+    MEASURE '_Measures'[Expired Leases Count] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            'Portfolio'[Lease End Date ] < TODAY()
+        )
+
+    MEASURE '_Measures'[Expired Leases Total Rent (USD)] = 
+        CALCULATE(
+            [Total Annual Rent (USD)],
+            'Portfolio'[Lease End Date ] < TODAY()
+        )
+
+    MEASURE '_Measures'[Expired Leases Total Area (sqm)] = 
+        CALCULATE(
+            [Total Area (sqm)],
+            'Portfolio'[Lease End Date ] < TODAY())
+
+// ============================================
+    // Outlier Analysis Measures
+    // ============================================
+    // Identifies properties with >20% variance from average/median
+    // Can be used for scatter plots and distribution analysis
+
+    MEASURE '_Measures'[Average Rent to Area Ratio] = 
+        AVERAGEX(
+            'Portfolio',
+            CALCULATE([Net Rent to Area Ratio ($/sqm)])
+        )
+
+    MEASURE '_Measures'[Median Rent to Area Ratio] = 
+        MEDIANX(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+                ),
+                [Ratio] > 0
+            ),
+            [Ratio]
+        )
+
+    MEASURE '_Measures'[Q1 Rent to Area Ratio] = 
+        PERCENTILEX.INC(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+                ),
+                [Ratio] > 0
+            ),
+            [Ratio],
+            0.25
+        )
+
+    MEASURE '_Measures'[Q3 Rent to Area Ratio] = 
+        PERCENTILEX.INC(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+                ),
+                [Ratio] > 0
+            ),
+            [Ratio],
+            0.75
+        )
+
+    MEASURE '_Measures'[IQR Rent to Area Ratio] = 
+        [Q3 Rent to Area Ratio] - [Q1 Rent to Area Ratio]
+
+    MEASURE '_Measures'[Min Rent to Area Ratio] = 
+        MINX(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+                ),
+                [Ratio] > 0
+            ),
+            [Ratio]
+        )
+
+    MEASURE '_Measures'[Max Rent to Area Ratio] = 
+        MAXX(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+                ),
+                [Ratio] > 0
+            ),
+            [Ratio]
+        )
+
+    MEASURE '_Measures'[Rent to Area Ratio Std Dev] = 
+        STDEVX.P(
+            'Portfolio',
+            CALCULATE([Net Rent to Area Ratio ($/sqm)])
+        )
+
+    MEASURE '_Measures'[Outlier Threshold High] = 
+        [Average Rent to Area Ratio] + (2 * [Rent to Area Ratio Std Dev])
+
+    MEASURE '_Measures'[Outlier Threshold Low] = 
+        [Average Rent to Area Ratio] - (2 * [Rent to Area Ratio Std Dev])
+
+    MEASURE '_Measures'[Properties Above 20% Variance] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            FILTER(
+                'Portfolio',
+                VAR AvgRatio = [Average Rent to Area Ratio]
+                VAR PropertyRatio = CALCULATE([Net Rent to Area Ratio ($/sqm)])
+                RETURN
+                    PropertyRatio > (AvgRatio * 1.20) || PropertyRatio < (AvgRatio * 0.80)
+            )
+        )
+
+    MEASURE '_Measures'[Outlier Properties Count] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            FILTER(
+                'Portfolio',
+                VAR PropertyRatio = CALCULATE([Net Rent to Area Ratio ($/sqm)])
+                RETURN
+                    PropertyRatio > [Outlier Threshold High] || 
+                    PropertyRatio < [Outlier Threshold Low]
+            )
+        )
+
+    // ============================================
+    // Median Analysis Measures
+    // ============================================
+
+    MEASURE '_Measures'[Median Annual Rent] = 
+        MEDIANX(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+                    "AnnualRent", [Total Annual Rent with area]
+                ),
+                [AnnualRent] > 0
+            ),
+            [AnnualRent]
+        )
+
+    MEASURE '_Measures'[Q1 Annual Rent] = 
+        PERCENTILEX.INC(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+                    "AnnualRent", [Total Annual Rent with area]
+                ),
+                [AnnualRent] > 0
+            ),
+            [AnnualRent],
+            0.25
+        )
+
+    MEASURE '_Measures'[Q3 Annual Rent] = 
+        PERCENTILEX.INC(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+                    "AnnualRent", [Total Annual Rent with area]
+                ),
+                [AnnualRent] > 0
+            ),
+            [AnnualRent],
+            0.75
+        )
+
+    MEASURE '_Measures'[IQR Annual Rent] = 
+        [Q3 Annual Rent] - [Q1 Annual Rent]
+
+    MEASURE '_Measures'[Median Area] = 
+        MEDIANX(
+            FILTER(
+                'Portfolio',
+                NOT(ISBLANK('Portfolio'[Total Building Area (m²)])) &&
+                'Portfolio'[Total Building Area (m²)] > 0
+            ),
+            'Portfolio'[Total Building Area (m²)]
+        )
+
+    MEASURE '_Measures'[Q1 Area] = 
+        PERCENTILEX.INC(
+            FILTER(
+                'Portfolio',
+                NOT(ISBLANK('Portfolio'[Total Building Area (m²)])) &&
+                'Portfolio'[Total Building Area (m²)] > 0
+            ),
+            'Portfolio'[Total Building Area (m²)],
+            0.25
+        )
+
+    MEASURE '_Measures'[Q3 Area] = 
+        PERCENTILEX.INC(
+            FILTER(
+                'Portfolio',
+                NOT(ISBLANK('Portfolio'[Total Building Area (m²)])) &&
+                'Portfolio'[Total Building Area (m²)] > 0
+            ),
+            'Portfolio'[Total Building Area (m²)],
+            0.75
+        )
+
+    MEASURE '_Measures'[IQR Area] = 
+        [Q3 Area] - [Q1 Area]
+
+    MEASURE '_Measures'[Properties Above Median Rent] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            FILTER(
+                'Portfolio',
+                CALCULATE([Total Annual Rent with area]) > [Median Annual Rent]
+            )
+        )
+
+    MEASURE '_Measures'[Properties Above Median Area] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            'Portfolio'[Total Building Area (m²)] > [Median Area]
+        )
+
+    MEASURE '_Measures'[Properties Above Both Medians] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            FILTER(
+                'Portfolio',
+                CALCULATE([Total Annual Rent with area]) > [Median Annual Rent] &&
+                'Portfolio'[Total Building Area (m²)] > [Median Area]
+            )
+        )
+
+    // Regional Median Analysis (using Continent as Region)
+    MEASURE '_Measures'[Properties Above Median Rent by Continent] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            FILTER(
+                'Portfolio',
+                CALCULATE([Total Annual Rent with area]) > [Median Annual Rent]
+            ),
+            VALUES('Portfolio'[Continent])
+        )
+
+    MEASURE '_Measures'[Properties Above Median Area by Continent] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            'Portfolio'[Total Building Area (m²)] > [Median Area],
+            VALUES('Portfolio'[Continent])
+        )
+
+    MEASURE '_Measures'[Properties Above Both Medians by Continent] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            FILTER(
+                'Portfolio',
+                CALCULATE([Total Annual Rent with area]) > [Median Annual Rent] &&
+                'Portfolio'[Total Building Area (m²)] > [Median Area]
+            ),
+            VALUES('Portfolio'[Continent])
+        )
+
+    // ============================================
+    // Net Rent to Area Ratio Analysis Measures
+    // ============================================
+
+    MEASURE '_Measures'[Average Rent to Area Ratio by Continent] = 
+        AVERAGEX(
+            FILTER(
+                'Portfolio',
+                'Portfolio'[Continent] IN VALUES('Portfolio'[Continent])
+            ),
+            CALCULATE([Net Rent to Area Ratio ($/sqm)])
+        )
+
+    MEASURE '_Measures'[Median Rent to Area Ratio by Continent] = 
+        MEDIANX(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site], 'Portfolio'[Continent]),
+                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+                ),
+                [Ratio] > 0 &&
+                'Portfolio'[Continent] IN VALUES('Portfolio'[Continent])
+            ),
+            [Ratio]
+        )
+
+    MEASURE '_Measures'[Q1 Rent to Area Ratio by Continent] = 
+        PERCENTILEX.INC(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site], 'Portfolio'[Continent]),
+                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+                ),
+                [Ratio] > 0 &&
+                'Portfolio'[Continent] IN VALUES('Portfolio'[Continent])
+            ),
+            [Ratio],
+            0.25
+        )
+
+    MEASURE '_Measures'[Q3 Rent to Area Ratio by Continent] = 
+        PERCENTILEX.INC(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site], 'Portfolio'[Continent]),
+                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+                ),
+                [Ratio] > 0 &&
+                'Portfolio'[Continent] IN VALUES('Portfolio'[Continent])
+            ),
+            [Ratio],
+            0.75
+        )
+
+    MEASURE '_Measures'[IQR Rent to Area Ratio by Continent] = 
+        [Q3 Rent to Area Ratio by Continent] - [Q1 Rent to Area Ratio by Continent]
+
+    MEASURE '_Measures'[Min Rent to Area Ratio by Continent] = 
+        MINX(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site], 'Portfolio'[Continent]),
+                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+                ),
+                [Ratio] > 0 &&
+                'Portfolio'[Continent] IN VALUES('Portfolio'[Continent])
+            ),
+            [Ratio]
+        )
+
+    MEASURE '_Measures'[Max Rent to Area Ratio by Continent] = 
+        MAXX(
+            FILTER(
+                ADDCOLUMNS(
+                    SUMMARIZE('Portfolio', 'Portfolio'[Site], 'Portfolio'[Continent]),
+                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+                ),
+                [Ratio] > 0 &&
+                'Portfolio'[Continent] IN VALUES('Portfolio'[Continent])
+            ),
+            [Ratio]
+        )
+
+    MEASURE '_Measures'[Property Count by Continent] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            VALUES('Portfolio'[Continent])
+        )
+
+    // Rent to Area Ratio Buckets for Heatmap Analysis
+    MEASURE '_Measures'[Properties in Low Ratio Bucket] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            FILTER(
+                'Portfolio',
+                CALCULATE([Net Rent to Area Ratio ($/sqm)]) < [Median Rent to Area Ratio]
+            )
+        )
+
+    MEASURE '_Measures'[Properties in High Ratio Bucket] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            FILTER(
+                'Portfolio',
+                CALCULATE([Net Rent to Area Ratio ($/sqm)]) >= [Median Rent to Area Ratio]
+            )
+        )
+
+
+  
+  

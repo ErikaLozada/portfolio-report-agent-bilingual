@@ -1,0 +1,52 @@
+table prm_dimensions
+	lineageTag: 41857601-0664-410f-b724-39600ccd3f8c
+
+	column Parameter
+		lineageTag: 2970390a-4fb8-479a-a686-960cef384bcf
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: 7f2915c3-c42f-4c8f-9c74-075e22f1503e
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: eb86568b-d9f3-48db-91ef-8817c77db871
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition prm_dimensions = calculated
+		mode: import
+		source =
+				{
+				    ("Continent", NAMEOF('Portfolio'[Continent]), 0),
+				    ("Country", NAMEOF('Portfolio'[Country]), 1),
+				    ("Building Type ", NAMEOF('Portfolio'[Building Type ]), 2),
+				    ("Level 2 FA Module", NAMEOF('Portfolio'[Level 2 FA Module - English classification]), 4),
+				    ("Nature Of Use ", NAMEOF('Portfolio'[Nature Of Use ]), 5),
+				    ("Property Type", NAMEOF('Portfolio'[Property Type (as per Portfolio Lens)]), 6)
+				}
+
+	annotation PBI_Id = d2a405525a5747e3a76b942ad9cf369b
+

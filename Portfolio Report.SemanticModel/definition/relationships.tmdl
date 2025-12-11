@@ -1,0 +1,4 @@
+relationship 7ab2b172-3b6d-d78b-04ed-031b93cd6358
+	fromColumn: Portfolio.'Lease End Date '
+	toColumn: Date.Date
+

@@ -1,0 +1,86 @@
+table prm_metric
+	lineageTag: 1d33f966-4064-424f-b0ee-704b50e67be4
+
+	measure 'Dynamic Running Sum' = ```
+			
+			VAR SelectedMeasureName = SELECTEDVALUE(prm_metric[Parameter Order])
+			VAR Result = 
+			    SWITCH(
+			        SelectedMeasureName,
+			        2, CALCULATE(
+			            [Total Annual Rent],            
+			                'Date'[Date] >= MIN('Date'[Date])&& 'Date'[Date] <= MAX('Date'[Date]), ALL('Date')
+			            
+			        ),
+			        1, CALCULATE(
+			            [Total Leased Area (m2)],
+			                  'Date'[Date] >= MIN('Date'[Date])&& 'Date'[Date] <= MAX('Date'[Date]), ALL('Date')
+			            
+			        ),
+			        0, CALCULATE(
+			            [Sites Leased],
+			                  'Date'[Date] >= MIN('Date'[Date])&& 'Date'[Date] <= MAX('Date'[Date]), ALL('Date')
+			            
+			        ),
+			        BLANK() // Default if nothing matches
+			    )
+			RETURN 
+			    Result
+			
+			```
+		lineageTag: 4c7ec256-dfc6-4141-b711-2178d1756f69
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Parameter
+		lineageTag: 45399b7d-e28e-4104-bf1c-eca79062bce5
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: 9a1a76c4-b5db-4cd7-a277-26be95583306
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 312aa731-fc05-429d-abfc-53960d7415e6
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Field = prm_metric[Parameter]
+		lineageTag: 4cc01be2-401d-4613-8136-c42e54bd4045
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition prm_metric = calculated
+		mode: import
+		source =
+				{
+				    ("Sites Leased", NAMEOF('_Measures'[Sites Leased]), 0),
+				    ("Leased Area (m2)", NAMEOF('_Measures'[Total Leased Area (m2)]), 1),
+				    ("Annual Rent", NAMEOF('_Measures'[Total Annual Rent]), 2)
+				}
+
+	annotation PBI_Id = 1ce3013fa69b43d5bf1832af0818971c
+

@@ -1,0 +1,2 @@
+EVALUATE
+SELECTCOLUMNS(FILTER(Portfolio, Portfolio[Annual Rent SAR] > 0 && Portfolio[Total Building Area (m²)] > 0) , Portfolio[#])

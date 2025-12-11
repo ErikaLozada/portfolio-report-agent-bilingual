@@ -1,0 +1,1545 @@
+table _Measures
+	lineageTag: e812d8f4-f8a5-49a9-96c3-0e94ff4787c1
+
+	measure 'Total Sites' = ```
+			
+			        DISTINCTCOUNT('Portfolio'[Site])
+			```
+		formatString: 0
+		lineageTag: 02f3e742-d37d-48ae-bdb0-170e443f8328
+
+	measure 'Sites Leased' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            'Portfolio'[Acquisition Type] = "Leased"
+			        )
+			```
+		formatString: 0
+		lineageTag: 3c20c89d-bf78-4afe-8a07-7d0c211b1edc
+
+	measure 'Sites Owned' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            'Portfolio'[Acquisition Type] = "Owned"
+			        )
+			```
+		formatString: 0
+		lineageTag: ae793239-4748-4cac-aacf-648979e7f3b3
+
+	measure 'Sites Leased %' = ```
+			
+			        DIVIDE([Sites Leased], [Total Sites], 0)
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: 1cea3860-42dd-4a77-bb96-5e426c316957
+
+	measure 'Sites Owned %' = ```
+			
+			        DIVIDE([Sites Owned], [Total Sites], 0)
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: 16da9a9c-902b-4f58-ae2d-ddfe36092c19
+
+	measure 'Total Annual Rent (SAR)' = ```
+			
+			        SUMX(
+			            'Portfolio',
+			            VAR AnnualMultiplier = 
+			                SWITCH(
+			                    'Portfolio'[Lease Payment Frequency],
+			                    "Semi-Annual ", 2,
+			                    "Quarterly", 4,
+			                    "Annual", 1,
+			                    1  // Default to annual if not specified
+			                )
+			            RETURN
+			               // 'Portfolio'[ Lease Cost  ] * AnnualMultiplier * 
+			               'Portfolio'[Lease Cost  ] * AnnualMultiplier * 
+			                'Portfolio'[Exchange Rate vs. SAR (per XE.com)]
+			        )
+			```
+		lineageTag: 59bb7f05-3a1f-48bc-a9e1-5a655241eac4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Annual Rent (USD)' = ```
+			
+			        // Note: Uses USD/SAR exchange rate from parameter table
+			        VAR USDToSARRate = COALESCE(SELECTEDVALUE('USD to AR ExRate'[USD to AR ExRate]), 3.75)
+			        RETURN
+			            DIVIDE([Total Annual Rent (SAR)], USDToSARRate, 0)
+			```
+		lineageTag: b8f5c59d-f997-4eb1-97c9-c4cda8dfc589
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Area (sqm)' = ```
+			
+			        SUM('Portfolio'[Total Building Area (m²)])
+			```
+		lineageTag: 471cc296-ebf6-4e5c-9539-6c52ccfc2fb6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Rent to Area Ratio ($/sqm)' = ```
+			
+			        DIVIDE([Total Annual Rent with area], [Total Leased Area (m2)])
+			```
+		formatString: #,0
+		lineageTag: 0c381b6c-ba97-4a4c-9728-06833399d8e5
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Total Headcount' = ```
+			
+			        SUM('Portfolio'[Number of Employees in the Building])
+			```
+		formatString: #,0
+		lineageTag: 16503190-15f5-48c8-ad4b-5ff970c94b8a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Total Capacity' = ```
+			
+			        SUM('Portfolio'[Building Capacity])
+			```
+		formatString: #,0
+		lineageTag: 6ce37e44-a35f-4c84-a8fb-73cd35540bb5
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Sharing Ratio' = ```
+			
+			        DIVIDE([Total Headcount], [Total Capacity], 0)
+			```
+		lineageTag: 2905de22-96be-4a01-867a-18fd54aa6f31
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Utilization Rate' = ```
+			
+			        CALCULATE(AVERAGE('Portfolio'[Building Utilization Rate]), Portfolio[Building Utilization Rate]>0.0 || not ISBLANK(Portfolio[Building Utilization Rate]))
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: 98418cc1-153c-4ab0-84f1-9a8f0f8961e1
+
+	measure 'Expiring <=36 Months' = ```
+			
+			
+			VAR _count = 
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
+			        )
+			
+			RETURN
+			_count
+			```
+		lineageTag: 30634234-4bb9-4c07-9e82-7cc0c5347cfa
+
+		formatStringDefinition = "#"
+
+	measure 'Upcoming Total Rent Lease Ending < 3 yrs' = ```
+			
+			        CALCULATE(
+			            [Total Annual Rent],
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
+			        )
+			```
+		formatString: #,0
+		lineageTag: 523cec8a-58cc-47ba-be6b-95b9e04b5979
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Total Area at Risk (sqm)' = ```
+			
+			        CALCULATE(
+			            [Total Area (sqm)],
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
+			        )
+			```
+		lineageTag: 1daa5448-f28f-4f46-9fd9-7505838575a3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expired Leases Count' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            'Portfolio'[Lease End Date ] < TODAY()
+			        )
+			```
+		formatString: 0
+		lineageTag: bf434067-653a-4a76-aaf2-0fdcdb6a52f2
+
+	measure 'Expired Leases Total Rent' = ```
+			
+			        CALCULATE(
+			            [Total Annual Rent],
+			            'Portfolio'[Lease End Date ] < TODAY()
+			        )
+			```
+		lineageTag: c31c4508-5c4c-4b95-899a-51cdf75e61cf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expired Leases Total Area (sqm)' = ```
+			
+			        CALCULATE(
+			            [Total Area (sqm)],
+			            'Portfolio'[Lease End Date ] < TODAY())
+			```
+		lineageTag: d274b749-a8f3-4332-8648-6212a58072c3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Annual Rent' = ```
+			
+			        // Currency selection measure - switches between USD and SAR based on disconnected table
+			        VAR _selectedCurr = SELECTEDVALUE('Currency Selection'[CurrencyOrder], 1)
+			        RETURN 
+			            SWITCH(
+			                _selectedCurr, 
+			                1, [Total Annual Rent (USD)], 
+			                2, [Total Annual Rent (SAR)]
+			            )
+			```
+		formatString: #,0
+		lineageTag: 5675ca3d-9fea-4b0b-b4b0-7628ae017475
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Total Leased Area (m2)' = CALCULATE([Total Area (sqm)],  'Portfolio'[Acquisition Type] = "Leased" )
+		formatString: #,0
+		lineageTag: 1519d0eb-6e3f-4199-8196-ff858e5cbd20
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Count of strategic countries' = FORMAT(CALCULATE(DISTINCTCOUNT(Portfolio[Country]), Portfolio[Strategic Country] = "Yes"),"(#)")
+		lineageTag: 220acc3f-03a8-4f36-8ff4-c5f10e9e2c92
+
+	measure 'Net Rent to Area Ratio (USD/sqm)' = ```
+			
+			        DIVIDE([Total Annual Rent (USD)], [Total Area (sqm)], 0)
+			```
+		lineageTag: a1d807b3-4303-4f68-b382-eae6975a1807
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Rent to Area Ratio (SAR/sqm)' = ```
+			
+			        DIVIDE([Total Annual Rent (SAR)], [Total Area (sqm)], 0)
+			```
+		lineageTag: 0322719e-cd39-4edf-89f5-fe570ab179f5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Rent at Risk (USD)' = ```
+			
+			        CALCULATE(
+			            [Total Annual Rent (USD)],
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
+			        )
+			```
+		lineageTag: d280819b-9800-40aa-a486-942679524c4d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Rent at Risk (SAR)' = ```
+			
+			        CALCULATE(
+			            [Total Annual Rent (SAR)],
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
+			        )
+			```
+		lineageTag: dd86301a-dddd-439e-b3d1-471f2928bb3b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expired Leases Total Rent (USD)' = ```
+			
+			        CALCULATE(
+			            [Total Annual Rent (USD)],
+			            'Portfolio'[Lease End Date ] < TODAY()
+			        )
+			```
+		lineageTag: 75c0bf4e-92e8-4ba9-83eb-021c84f3d40c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Rent to Area Ratio' = ```
+			
+			        AVERAGEX(
+			            'Portfolio',
+			            CALCULATE([Net Rent to Area Ratio ($/sqm)] )
+			        )
+			```
+		lineageTag: 8eb9eb3d-3b63-4353-a02c-6bda172d34c2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Median Rent to Area Ratio' = ```
+			
+			        MEDIANX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+			                ),
+			                [Ratio] > 0
+			            ),
+			            [Ratio]
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 9db8f053-210e-4cb0-a7ea-29e5b4d36f48
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rent to Area Ratio Std Dev' = ```
+			
+			        STDEVX.P(
+			            'Portfolio',
+			            CALCULATE([Net Rent to Area Ratio ($/sqm)])
+			        )
+			```
+		lineageTag: 31c38273-a875-4d6c-ace3-62bcecc4fe66
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Outlier Threshold High' = ```
+			
+			        [Average Rent to Area Ratio] + (2 * [Rent to Area Ratio Std Dev])
+			```
+		lineageTag: 85478c57-72fa-4147-a305-10c7bce7c703
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Outlier Threshold Low' = ```
+			
+			        [Average Rent to Area Ratio] - (2 * [Rent to Area Ratio Std Dev])
+			```
+		lineageTag: 0e84c3b0-db87-4513-b9b4-7e7e2466feb1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Properties Above 20% Variance' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            FILTER(
+			                'Portfolio',
+			                VAR AvgRatio = [Average Rent to Area Ratio]
+			                VAR PropertyRatio = CALCULATE([Net Rent to Area Ratio ($/sqm)])
+			                RETURN
+			                    PropertyRatio > (AvgRatio * 1.20) || PropertyRatio < (AvgRatio * 0.80)
+			            )
+			        )
+			```
+		formatString: 0
+		lineageTag: 3eae815e-820f-49e7-8ece-0a8e39b0ab89
+
+	measure 'Outlier Properties Count' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            FILTER(
+			                'Portfolio',
+			                VAR PropertyRatio = CALCULATE([Net Rent to Area Ratio ($/sqm)])
+			                RETURN
+			                    PropertyRatio > [Outlier Threshold High] || 
+			                    PropertyRatio < [Outlier Threshold Low]
+			            )
+			        )
+			```
+		formatString: 0
+		lineageTag: b1612b6b-1d1d-40c5-b4b3-61131c7cc04a
+
+	measure 'Median Annual Rent' = ```
+			
+			        MEDIANX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "AnnualRent", [Total Annual Rent with area]
+			                ),
+			                [AnnualRent] > 0
+			            ),
+			            [AnnualRent]
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 70247dc0-5a5f-4a96-a275-073b65b3f8ac
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Median Area' = ```
+			
+			        MEDIANX(
+			            FILTER(
+			                'Portfolio',
+			                NOT(ISBLANK('Portfolio'[Total Building Area (m²)])) &&
+			                'Portfolio'[Total Building Area (m²)] > 0
+			            ),
+			            'Portfolio'[Total Building Area (m²)]
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 5b5e865e-e838-411b-8e83-daf3e6044af5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Properties Above Median Rent' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            FILTER(
+			                'Portfolio',
+			                CALCULATE([Total Annual Rent with area]) > [Median Annual Rent]
+			            )
+			        )
+			```
+		formatString: 0
+		lineageTag: 3cb56035-1964-4fc1-8192-3630ed1add8d
+
+	measure 'Properties Above Median Area' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            'Portfolio'[Total Building Area (m²)] > [Median Area]
+			        )
+			```
+		lineageTag: e71c7fac-31c0-4e77-ab3a-149305e77586
+
+	measure 'Properties Above Both Medians' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            FILTER(
+			                'Portfolio',
+			                CALCULATE([Total Annual Rent with area]) > [Median Annual Rent] &&
+			                'Portfolio'[Total Building Area (m²)] > [Median Area]
+			            )
+			        )
+			```
+		formatString: 0
+		lineageTag: 71f3adfb-6d37-43ce-b2bb-b29d762a46fe
+
+	measure 'Properties in Low Ratio Bucket' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            FILTER(
+			                'Portfolio',
+			                CALCULATE([Net Rent to Area Ratio ($/sqm)]) < [Median Rent to Area Ratio]
+			            )
+			        )
+			```
+		formatString: 0
+		lineageTag: 48cabb8e-5b6d-4aa2-870e-b66777422752
+
+	measure 'Properties in High Ratio Bucket' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            FILTER(
+			                'Portfolio',
+			                CALCULATE([Net Rent to Area Ratio ($/sqm)]) >= [Median Rent to Area Ratio]
+			            )
+			        )
+			```
+		formatString: 0
+		lineageTag: a02d660b-9da9-45e7-ae0e-f415e546165f
+
+	measure 'Properties Above Median Rent by Continent' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            FILTER(
+			                'Portfolio',
+			                CALCULATE([Total Annual Rent with area]) > [Median Annual Rent]
+			            ),
+			            VALUES('Portfolio'[Continent])
+			        )
+			```
+		formatString: 0
+		lineageTag: 36a0de92-03b3-4ee0-8351-d456ed0c0c83
+
+	measure 'Properties Above Median Area by Continent' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            'Portfolio'[Total Building Area (m²)] > [Median Area],
+			            VALUES('Portfolio'[Continent])
+			        )
+			```
+		lineageTag: ebe1e8b8-aaa1-4e1e-bbd2-e6c4b4f925e9
+
+	measure 'Properties Above Both Medians by Continent' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            FILTER(
+			                'Portfolio',
+			                CALCULATE([Total Annual Rent with area]) > [Median Annual Rent] &&
+			                'Portfolio'[Total Building Area (m²)] > [Median Area]
+			            ),
+			            VALUES('Portfolio'[Continent])
+			        )
+			```
+		formatString: 0
+		lineageTag: becf8b8a-00db-4d34-a63e-7b4aa8ac3823
+
+	measure 'Average Rent to Area Ratio by Continent' = ```
+			
+			        AVERAGEX(
+			            FILTER(
+			                'Portfolio',
+			                'Portfolio'[Continent] IN VALUES('Portfolio'[Continent])
+			            ),
+			            CALCULATE([Net Rent to Area Ratio ($/sqm)])
+			        )
+			```
+		lineageTag: c118cbb5-9758-48e8-afc4-33a56b77b801
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Median Rent to Area Ratio by Continent' = ```
+			
+			        MEDIANX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site], 'Portfolio'[Continent]),
+			                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+			                ),
+			                [Ratio] > 0 &&
+			                'Portfolio'[Continent] IN VALUES('Portfolio'[Continent])
+			            ),
+			            [Ratio]
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 9c670c49-5f26-48db-8f91-2ee32089df27
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Min Rent to Area Ratio by Continent' = ```
+			
+			        MINX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site], 'Portfolio'[Continent]),
+			                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+			                ),
+			                [Ratio] > 0 &&
+			                'Portfolio'[Continent] IN VALUES('Portfolio'[Continent])
+			            ),
+			            [Ratio]
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 26c4e7e8-d136-48f6-b40f-0428e3eee5da
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Max Rent to Area Ratio by Continent' = ```
+			
+			        MAXX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site], 'Portfolio'[Continent]),
+			                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+			                ),
+			                [Ratio] > 0 &&
+			                'Portfolio'[Continent] IN VALUES('Portfolio'[Continent])
+			            ),
+			            [Ratio]
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 3eebb852-f356-4bf8-8431-643ad0fcaab4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Property Count by Continent' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            VALUES('Portfolio'[Continent])
+			        )
+			```
+		formatString: 0
+		lineageTag: 840665c9-3e85-4e6c-9fc9-d19eaee73716
+
+	measure 'Sites Leased with Area Data' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('Portfolio'[Site]),
+			            'Portfolio'[Acquisition Type] = "Leased",
+			            NOT(ISBLANK('Portfolio'[Total Building Area (m²)]))
+			        )
+			```
+		formatString: 0
+		lineageTag: 6e9cdcbd-e0d5-4ace-8866-53f9ba5f7ce1
+
+	measure 'Total Annual Rent with Area (SAR)' = ```
+			
+			        CALCULATE(
+			            [Total Annual Rent (SAR)],
+			            NOT(ISBLANK('Portfolio'[Total Building Area (m²)]))
+			        )
+			```
+		lineageTag: 242a21a8-eb42-4e36-bba0-856efe89aee5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Annual Rent with Area(USD)' = ```
+			
+			        CALCULATE(
+			            [Total Annual Rent (USD)],
+			            NOT(ISBLANK('Portfolio'[Total Building Area (m²)]))
+			        )
+			```
+		lineageTag: 2ec0b64a-572d-4ef0-a61d-e8131dfd37f4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Annual Rent with area' = ```
+			
+			        // Currency selection measure for sites with area data
+			        VAR _selectedCurr = SELECTEDVALUE('Currency Selection'[CurrencyOrder], 1)
+			        RETURN 
+			            SWITCH(
+			                _selectedCurr, 
+			                1, [Total Annual Rent with Area(USD)], 
+			                2, [Total Annual Rent with Area (SAR)]
+			            )
+			```
+		formatString: #,0.00
+		lineageTag: 99303dc4-9822-43b0-86ba-c37ceeaeda7d
+
+	measure 'Button - Info' = ```
+			
+			    // VAR Lang = [Selected Language]
+			    // RETURN
+			    //     IF(Lang = "AR", "معلومات", "Info")
+			
+			VAR lang = '_Measures'[Selected Language]
+			RETURN IF(
+			    lang = "AR",
+			    LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "BUTTON_INFORMATION"),
+			    LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "BUTTON_INFORMATION")
+			)
+			```
+		lineageTag: 1194aa0c-5f8e-4f14-9199-0a2b01d6e61a
+
+	measure 'Selected Language' =
+			
+			VAR Lang = SELECTEDVALUE('Language'[Code], "EN")
+			RETURN Lang
+		lineageTag: ea4fd230-82d5-44e1-92e7-392566d9ac33
+
+	measure 'Q1 Rent to Area Ratio' = ```
+			
+			        PERCENTILEX.INC(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+			                ),
+			                [Ratio] > 0
+			            ),
+			            [Ratio],
+			            0.25
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 872f1f56-49e4-4993-91b2-721a002f3d25
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q3 Rent to Area Ratio' = ```
+			
+			        PERCENTILEX.INC(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+			                ),
+			                [Ratio] > 0
+			            ),
+			            [Ratio],
+			            0.75
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: c8a48f96-f0a5-41d3-967e-0b993fce7577
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IQR Rent to Area Ratio' = ```
+			
+			        [Q3 Rent to Area Ratio] - [Q1 Rent to Area Ratio]
+			```
+		displayFolder: Distribution
+		lineageTag: 343968b0-121a-4193-aeb8-197019618653
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Min Rent to Area Ratio' = ```
+			
+			        MINX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+			                ),
+			                [Ratio] > 0
+			            ),
+			            [Ratio]
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 03976aa3-ebcf-4dba-bfa0-aaa8d17be912
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Max Rent to Area Ratio' = ```
+			
+			        MAXX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+			                ),
+			                [Ratio] > 0
+			            ),
+			            [Ratio]
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: ca114019-ad14-4fc8-a260-58d1aa0b61de
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q1 Annual Rent' = ```
+			
+			        PERCENTILEX.INC(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "AnnualRent", [Total Annual Rent with area]
+			                ),
+			                [AnnualRent] > 0
+			            ),
+			            [AnnualRent],
+			            0.25
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 662e7f21-32fc-429d-8b76-17002d4349fb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q3 Annual Rent' = ```
+			
+			        PERCENTILEX.INC(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "AnnualRent", [Total Annual Rent with area]
+			                ),
+			                [AnnualRent] > 0
+			            ),
+			            [AnnualRent],
+			            0.75
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: fa42cdd6-e1e9-401b-88bd-da64bfe5ddc1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IQR Annual Rent' = ```
+			
+			        [Q3 Annual Rent] - [Q1 Annual Rent]
+			```
+		displayFolder: Distribution
+		lineageTag: b77d2924-8f1a-4d70-9f4f-a4811c8844a4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q1 Area' = ```
+			
+			        PERCENTILEX.INC(
+			            FILTER(
+			                'Portfolio',
+			                NOT(ISBLANK('Portfolio'[Total Building Area (m²)])) &&
+			                'Portfolio'[Total Building Area (m²)] > 0
+			            ),
+			            'Portfolio'[Total Building Area (m²)],
+			            0.25
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 01b7fb91-3f49-4fe5-8c59-7f45015fc6a3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q3 Area' = ```
+			
+			        PERCENTILEX.INC(
+			            FILTER(
+			                'Portfolio',
+			                NOT(ISBLANK('Portfolio'[Total Building Area (m²)])) &&
+			                'Portfolio'[Total Building Area (m²)] > 0
+			            ),
+			            'Portfolio'[Total Building Area (m²)],
+			            0.75
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 9cee0604-4ff4-44f5-84ee-44b4b21b633e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IQR Area' = ```
+			
+			        [Q3 Area] - [Q1 Area]
+			```
+		displayFolder: Distribution
+		lineageTag: af6db026-a4a4-48b0-8cf6-6d72aca53000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q1 Rent to Area Ratio by Continent' = ```
+			
+			        PERCENTILEX.INC(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site], 'Portfolio'[Continent]),
+			                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+			                ),
+			                [Ratio] > 0 &&
+			                'Portfolio'[Continent] IN VALUES('Portfolio'[Continent])
+			            ),
+			            [Ratio],
+			            0.25
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 0c58efbd-e1ba-48a6-a63a-3cded6ebcce8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q3 Rent to Area Ratio by Continent' = ```
+			
+			        PERCENTILEX.INC(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site], 'Portfolio'[Continent]),
+			                    "Ratio", [Net Rent to Area Ratio ($/sqm)]
+			                ),
+			                [Ratio] > 0 &&
+			                'Portfolio'[Continent] IN VALUES('Portfolio'[Continent])
+			            ),
+			            [Ratio],
+			            0.75
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 75c7b049-8d0c-43b6-89cd-428fd4acb527
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IQR Rent to Area Ratio by Continent' = ```
+			
+			        [Q3 Rent to Area Ratio by Continent] - [Q1 Rent to Area Ratio by Continent]
+			```
+		displayFolder: Distribution
+		lineageTag: 6b991c45-69a3-4d10-b0f8-ba1ea9daf8eb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Max Annual Rent' = ```
+			
+			        MAXX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "Ratio", [Total Annual Rent with area]
+			                ),
+			                [Ratio] > 0
+			            ),
+			            [Ratio]
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: d3836bb0-14c8-4582-91cc-be1558edff52
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Max Area' = ```
+			
+			        MAXX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "Ratio", [Total Leased Area (m2)]
+			                ),
+			                [Ratio] > 0
+			            ),
+			            [Ratio]
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: d325cee5-e6be-4dca-962e-a1bccb0f3056
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Min Area' = ```
+			
+			        MINX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "Ratio", [Total Leased Area (m2)]
+			                ),
+			                [Ratio] > 0
+			            ),
+			            [Ratio]
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: 67538f2f-fc39-4520-af2a-e8988ca5a9c4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Min Annual Rent' = ```
+			
+			        MINX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "Ratio", [Total Annual Rent with area]
+			                ),
+			                [Ratio] > 0
+			            ),
+			            [Ratio]
+			        )
+			```
+		displayFolder: Distribution
+		lineageTag: c74a76a4-bf6c-477e-a4aa-e3b8a5e81b87
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Footer =
+			
+			VAR _date = TODAY()
+			VAR _text = "JLL APAC CAI Team | Data Updated "
+			RETURN
+			IF(
+			    NOT ISBLANK(_date),
+			    _text & FORMAT(_date, "dd mmm yy hh:mm AM/PM"),
+			    _text & "N/A"
+			)
+		lineageTag: b560262a-1705-4f32-8d95-7c1593499e9a
+
+	measure 'CF Rent at Risk' = ```
+			
+			        if(CALCULATE(
+			            [Total Annual Rent],
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
+			        )>0,1,0)
+			```
+		formatString: 0
+		lineageTag: 319a86bf-87f9-4269-a096-94c6368abf4a
+
+	measure 'Upcoming End of Leases Total Area (sqm)' = ```
+			
+			        CALCULATE(
+			            [Total Area (sqm)],
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0 )
+			```
+		lineageTag: 5dbf921c-c784-4689-9f4d-8dd75c57ac0b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Owned Area (m2)' = CALCULATE([Total Area (sqm)],  'Portfolio'[Acquisition Type] = "Owned" )
+		formatString: #,0
+		lineageTag: 291bb8ef-46f0-41a9-ae48-505aca5c9181
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Total Acquisition Cost' = ```
+			
+			        // Currency selection measure - switches between USD and SAR based on disconnected table
+			        VAR _selectedCurr = SELECTEDVALUE('Currency Selection'[CurrencyOrder], 1)
+			        RETURN 
+			            SWITCH(
+			                _selectedCurr, 
+			                1, [Total Acquisition Cost (USD)],
+			                2,[Total Adquisition Cost (SAR)]
+			            )
+			```
+		formatString: #,0
+		lineageTag: 250d2f9e-404e-4b4b-b6cf-9618ca5e6495
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Total Adquisition Cost (SAR)' = ```
+			
+			        SUMX(
+			            'Portfolio',
+			            VAR AnnualMultiplier = 
+			                SWITCH(
+			                    'Portfolio'[Lease Payment Frequency],
+			                    "Semi-Annual ", 2,
+			                    "Quarterly", 4,
+			                    "Annual", 1,
+			                    1  // Default to annual if not specified
+			                )
+			            RETURN
+			                'Portfolio'[Acquisition Cost SAR]
+			        )
+			```
+		lineageTag: cd745f14-fd71-437f-882c-e786d8111d17
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Acquisition Cost (USD)' = ```
+			
+			        // Note: Uses USD/SAR exchange rate from parameter table
+			        VAR USDToSARRate = COALESCE(SELECTEDVALUE('USD to AR ExRate'[USD to AR ExRate]), 3.75)
+			        RETURN
+			            DIVIDE([Total Adquisition Cost (SAR)], USDToSARRate, 0)
+			```
+		lineageTag: dc280c44-a8b7-4ccb-9af6-36d1fb40bfbc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Global Median Area' = ```
+			
+			        CALCULATE(
+			            MEDIANX(
+			            FILTER(
+			                'Portfolio',
+			                NOT(ISBLANK('Portfolio'[Total Building Area (m²)])) &&
+			                'Portfolio'[Total Building Area (m²)] > 0
+			            ),
+			            'Portfolio'[Total Building Area (m²)]
+			        ), all(Portfolio))
+			```
+		lineageTag: c161d37f-ddd9-4ce6-90cb-12ef49d9eedf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Global Median Annual Rent' = ```
+			
+			       CALCULATE( MEDIANX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			                    "AnnualRent", [Total Annual Rent with area]
+			                ),
+			                [AnnualRent] > 0
+			            ),
+			            [AnnualRent]
+			        ), ALL(Portfolio))
+			```
+		lineageTag: bba6c202-5706-4aea-b631-52634cf4fa81
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Properties with Area above median and Annual Rent above median
+	measure 'Quadrant 1 - High Area, High Rent' = ```
+			COUNTROWS(
+			FILTER(
+			        ADDCOLUMNS(
+			            SUMMARIZE(
+			                FILTER(
+			                    'Portfolio',
+			                    NOT(ISBLANK('Portfolio'[Total Building Area (m²)])) &&
+			                    'Portfolio'[Total Building Area (m²)] > 0
+			                ),
+			                'Portfolio'[Site]
+			            ),
+			            "Area", [Total Leased Area (m2)],
+			            "AnnualRent", [Total Annual Rent with area],
+						"MedianArea"  ,[Global Median Area],
+			        	"MedianRent" ,[Global Median Annual Rent] 
+			        ),
+					        [Area] > [MedianArea] &&
+			        [AnnualRent] > [MedianRent] &&
+			        NOT(ISBLANK([AnnualRent])) &&
+			        [AnnualRent] > 0
+			    )
+			)
+			```
+		formatString: #,0
+		displayFolder: Quadrant Analysis
+		lineageTag: 36d52cde-01e8-4037-897d-4b45eaeb9815
+
+	/// Properties with Area at or below median and Annual Rent above median
+	measure 'Quadrant 2 - Low Area, High Rent' = ```
+			COUNTROWS(
+			FILTER(
+			        ADDCOLUMNS(
+			            SUMMARIZE(
+			                FILTER(
+			                    'Portfolio',
+			                    NOT(ISBLANK('Portfolio'[Total Building Area (m²)])) &&
+			                    'Portfolio'[Total Building Area (m²)] > 0
+			                ),
+			                'Portfolio'[Site]
+			            ),
+			            "Area", [Total Leased Area (m2)],
+			            "AnnualRent", [Total Annual Rent with area],
+						"MedianArea"  ,[Global Median Area],
+			        	"MedianRent" ,[Global Median Annual Rent] 
+			        ),
+					        [Area] <= [MedianArea] &&
+			        [AnnualRent] > [MedianRent] &&
+			        NOT(ISBLANK([AnnualRent])) &&
+			        [AnnualRent] > 0
+			    )
+			)
+			```
+		formatString: #,0
+		displayFolder: Quadrant Analysis
+		lineageTag: 37d7b716-b3f4-42c6-a7f6-aa92030f4a3f
+
+	/// Properties with Area at or below median and Annual Rent at or below median
+	measure 'Quadrant 3 - Low Area, Low Rent' = ```
+			COUNTROWS(
+			FILTER(
+			        ADDCOLUMNS(
+			            SUMMARIZE(
+			                FILTER(
+			                    'Portfolio',
+			                    NOT(ISBLANK('Portfolio'[Total Building Area (m²)])) &&
+			                    'Portfolio'[Total Building Area (m²)] > 0
+			                ),
+			                'Portfolio'[Site]
+			            ),
+			            "Area", [Total Leased Area (m2)],
+			            "AnnualRent", [Total Annual Rent with area],
+						"MedianArea"  ,[Global Median Area],
+			        	"MedianRent" ,[Global Median Annual Rent] 
+			        ),
+					        [Area] <= [MedianArea] &&
+			        [AnnualRent] <= [MedianRent] &&
+			        NOT(ISBLANK([AnnualRent])) &&
+			        [AnnualRent] > 0
+			    )
+			)
+			```
+		formatString: #,0
+		displayFolder: Quadrant Analysis
+		lineageTag: a8b107b7-9325-4214-9276-841e0a037940
+
+	/// Properties with Area above median and Annual Rent at or below median
+	measure 'Quadrant 4 - High Area, Low Rent' = ```
+			COUNTROWS(
+			FILTER(
+			        ADDCOLUMNS(
+			            SUMMARIZE(
+			                FILTER(
+			                    'Portfolio',
+			                    NOT(ISBLANK('Portfolio'[Total Building Area (m²)])) &&
+			                    'Portfolio'[Total Building Area (m²)] > 0
+			                ),
+			                'Portfolio'[Site]
+			            ),
+			            "Area", [Total Leased Area (m2)],
+			            "AnnualRent", [Total Annual Rent with area],
+						"MedianArea"  ,[Global Median Area],
+			        	"MedianRent" ,[Global Median Annual Rent] 
+			        ),
+					        [Area] > [MedianArea] &&
+			        [AnnualRent] <= [MedianRent] &&
+			        NOT(ISBLANK([AnnualRent])) &&
+			        [AnnualRent] > 0
+			    )
+			)
+			```
+		formatString: #,0
+		displayFolder: Quadrant Analysis
+		lineageTag: e542fc7f-33ac-42a6-9378-62932dca39f2
+
+	/// Total count of properties included in quadrant analysis
+	measure 'Total Properties in Quadrant Analysis' = [Quadrant 1 - High Area, High Rent] + [Quadrant 2 - Low Area, High Rent] + [Quadrant 3 - Low Area, Low Rent] + [Quadrant 4 - High Area, Low Rent]
+		formatString: #,0
+		displayFolder: Quadrant Analysis
+		lineageTag: b327dbb8-e531-4c8d-9df5-14ac44b3b513
+
+	/// Percentage of properties in Quadrant 1 (High Area, High Rent)
+	measure 'Quadrant 1 - % of Total' = DIVIDE([Quadrant 1 - High Area, High Rent], [Total Properties in Quadrant Analysis], 0)
+		formatString: 0.0%
+		displayFolder: Quadrant Analysis
+		lineageTag: 3e07f83f-6ef1-44ce-bc2b-e428c11bd251
+
+	/// Percentage of properties in Quadrant 2 (Low Area, High Rent)
+	measure 'Quadrant 2 - % of Total' = DIVIDE([Quadrant 2 - Low Area, High Rent], [Total Properties in Quadrant Analysis], 0)
+		formatString: 0.0%
+		displayFolder: Quadrant Analysis
+		lineageTag: 5d574693-07cc-458a-a3a7-f4e549c95323
+
+	/// Percentage of properties in Quadrant 3 (Low Area, Low Rent)
+	measure 'Quadrant 3 - % of Total' = DIVIDE([Quadrant 3 - Low Area, Low Rent], [Total Properties in Quadrant Analysis], 0)
+		formatString: 0.0%
+		displayFolder: Quadrant Analysis
+		lineageTag: f90f3893-7953-4d75-b5cf-0b6fc5e0167a
+
+	/// Percentage of properties in Quadrant 4 (High Area, Low Rent)
+	measure 'Quadrant 4 - % of Total' = DIVIDE([Quadrant 4 - High Area, Low Rent], [Total Properties in Quadrant Analysis], 0)
+		formatString: 0.0%
+		displayFolder: Quadrant Analysis
+		lineageTag: 00108700-d69e-472d-81b0-9b3b9f43e4c7
+
+	/// Overall portfolio efficiency combining rent per sqm and utilization
+	measure 'Portfolio Efficiency Score' =
+			DIVIDE(
+			    [Total Annual Rent with area],
+			    [Total Area (sqm)],
+			    0
+			) * [Average Utilization Rate]
+		formatString: #,0.00
+		displayFolder: Portfolio Analysis
+		lineageTag: 6be2cf5d-fb9a-47f7-b49b-aef89d6d0608
+
+	/// Properties with utilization rate below 50%
+	measure 'Underutilized Properties Count' =
+			CALCULATE(
+			    DISTINCTCOUNT('Portfolio'[Site]),
+			    FILTER(
+			        'Portfolio',
+			        'Portfolio'[Building Utilization Rate] < 0.5 &&
+			        NOT(ISBLANK('Portfolio'[Building Utilization Rate]))
+			    )
+			)
+		formatString: #,0
+		displayFolder: Portfolio Analysis
+		lineageTag: 4177ce20-0369-48ea-84f4-5ca67bab358e
+
+	/// Properties missing rent data or with zero rent
+	measure 'Properties with Missing Rent/Acquisition Data' =
+			CALCULATE(
+			    DISTINCTCOUNT('Portfolio'[Site]),
+			    FILTER(
+			        ADDCOLUMNS(
+			            SUMMARIZE('Portfolio', 'Portfolio'[Site]),
+			            "AnnualRent", [Total Annual Rent],
+			            "AcquisitionCost", [Total Acquisition Cost]
+			        ),
+			        (ISBLANK([AnnualRent]) || [AnnualRent] <= 0 ) && (ISBLANK([AcquisitionCost]) || [AcquisitionCost] <= 0 )
+			    ), ALL(Portfolio)
+			)
+		formatString: #,0
+		displayFolder: Portfolio Analysis
+		lineageTag: 4acba55c-dfa0-4549-91a6-c74d9cc3f3a8
+
+	/// Properties missing area data or with zero area
+	measure 'Properties with Missing Area Data' =
+			CALCULATE(
+			    DISTINCTCOUNT('Portfolio'[Site]),
+			    FILTER(
+			        'Portfolio',
+			        ISBLANK('Portfolio'[Total Building Area (m²)]) ||
+			        'Portfolio'[Total Building Area (m²)] <= 0
+			    )
+			)
+		formatString: #,0
+		displayFolder: Portfolio Analysis
+		lineageTag: 044b4cc7-aa02-488b-be58-fb6671235f0a
+
+	/// Average rent per square meter across property types
+	measure 'Average Rent per Sqm by Property Type' =
+			AVERAGEX(
+			    VALUES('Portfolio'[Property Type (as per Portfolio Lens)]),
+			    DIVIDE(
+			        CALCULATE([Total Annual Rent with area]),
+			        CALCULATE([Total Area (sqm)]),
+			        0
+			    )
+			)
+		formatString: #,0.00
+		displayFolder: Portfolio Analysis
+		lineageTag: df2e967b-7daf-4ede-bcc8-5adf901db5e0
+
+	/// Return on investment for owned properties (Annual Rent / Acquisition Cost)
+	measure 'ROI on Owned Properties' =
+			DIVIDE(
+			    CALCULATE(
+			        [Total Annual Rent with area],
+			        'Portfolio'[Acquisition Type] = "Owned"
+			    ),
+			    CALCULATE(
+			        SUM('Portfolio'[Acquisition Cost SAR]),
+			        'Portfolio'[Acquisition Type] = "Owned"
+			    ),
+			    0
+			)
+		formatString: 0.0%
+		displayFolder: Portfolio Analysis
+		lineageTag: 43cb05e5-f886-41c8-911e-2cb3c5851bec
+
+	/// Count of properties in poor condition requiring attention
+	measure 'Properties in Poor Condition' =
+			CALCULATE(
+			    DISTINCTCOUNT('Portfolio'[Site]),
+			    'Portfolio'[Asset Condition] = "Poor"
+			)
+		formatString: #,0
+		displayFolder: Portfolio Analysis
+		lineageTag: b86659ef-47c8-46de-a4f7-0a11db91b7ff
+
+	/// Estimated potential rent recovery if underutilized properties reach 50% utilization
+	measure 'Potential Rent Recovery (Underutilized)' =
+			CALCULATE(
+			    SUM('Portfolio'[Annual Rent SAR]) * 0.5,
+			    FILTER(
+			        'Portfolio',
+			        'Portfolio'[Building Utilization Rate] < 0.5 &&
+			        NOT(ISBLANK('Portfolio'[Building Utilization Rate])) &&
+			        NOT(ISBLANK('Portfolio'[Annual Rent SAR]))
+			    )
+			)
+		formatString: #,0
+		displayFolder: Portfolio Analysis
+		lineageTag: 6386aed0-08c3-47c5-b091-3e1b7f69b729
+
+	/// Overall portfolio health score (0-100) combining data completeness, utilization, and condition
+	measure 'Portfolio Health Score' = ```
+			VAR DataCompleteness = 
+			    DIVIDE(
+			        [Total Sites] - [Properties with Missing Rent/Acquisition Data] - [Properties with Missing Area Data],
+			        [Total Sites],
+			        0
+			    )
+			VAR UtilizationScore = 
+			    IF([Average Utilization Rate] >= 0.8, 1,
+			        IF([Average Utilization Rate] >= 0.5, 0.7, 0.3))
+			VAR ConditionScore = 
+			    DIVIDE(
+			        [Total Sites] - [Properties in Poor Condition],
+			        [Total Sites],
+			        0
+			    )
+			RETURN
+			    (DataCompleteness * 0.4 + UtilizationScore * 0.4 + ConditionScore * 0.2) * 100
+			```
+		formatString: 0.0
+		displayFolder: Portfolio Analysis
+		lineageTag: 8bb6904e-46ed-4672-8147-ca272547e359
+
+	/// Percentage of properties with complete rent and area data
+	measure 'Data Completeness %' = ```
+			
+			 VAR _Missing = COUNTROWS( FILTER(Portfolio, (Portfolio[Rent / Acquisition Cost (SAR)] > 0 && Portfolio[Total Building Area (m²)] > 0)))
+			 
+			VAR _RESULT =  
+			    DIVIDE(
+			    _Missing,
+			    [Total Sites],
+			    0
+			) 
+			
+			
+			RETURN _RESULT
+			```
+		formatString: 0%;-0%;0%
+		displayFolder: Portfolio Analysis
+		lineageTag: ccecab8d-f947-4e55-b20b-800f04e20e3a
+
+	/// Count of properties by country
+	measure 'Properties by Country' =
+			CALCULATE(
+			    DISTINCTCOUNT('Portfolio'[Site]),
+			    ALLSELECTED('Portfolio'[Country])
+			)
+		formatString: #,0
+		displayFolder: Country Analysis
+		lineageTag: c98c1ffc-3e37-4d30-a27c-2bcce6df943d
+
+	/// Total area in square meters by country
+	measure 'Total Area by Country' =
+			CALCULATE(
+			    [Total Area (sqm)],
+			    ALLSELECTED('Portfolio'[Country])
+			)
+		formatString: #,0
+		displayFolder: Country Analysis
+		lineageTag: 3a2c7974-481e-41a4-b2f3-714d7d415b4b
+
+	/// Total annual rent by country
+	measure 'Total Annual Rent by Country' =
+			CALCULATE(
+			    [Total Annual Rent with area],
+			    ALLSELECTED('Portfolio'[Country])
+			)
+		formatString: #,0
+		displayFolder: Country Analysis
+		lineageTag: 832452e1-97c5-462c-bcf2-b5f174a32dcd
+
+	/// Average rent per square meter by country
+	measure 'Avg Rent per Sqm by Country' =
+			DIVIDE(
+			    [Total Annual Rent by Country],
+			    [Total Area by Country],
+			    0
+			)
+		formatString: #,0.00
+		displayFolder: Country Analysis
+		lineageTag: 92ce29c8-3e83-4474-8567-c328cd583f6c
+
+	/// Average utilization rate by country
+	measure 'Avg Utilization by Country' =
+			CALCULATE(
+			    [Average Utilization Rate],
+			    ALLSELECTED('Portfolio'[Country])
+			)
+		formatString: 0.0%
+		displayFolder: Country Analysis
+		lineageTag: 66f6695d-62cd-464e-92bb-4d67c780f5a3
+
+	/// Count of leased properties by country
+	measure 'Leased Properties by Country' =
+			CALCULATE(
+			    DISTINCTCOUNT('Portfolio'[Site]),
+			    'Portfolio'[Acquisition Type] = "Leased",
+			    ALLSELECTED('Portfolio'[Country])
+			)
+		formatString: #,0
+		displayFolder: Country Analysis
+		lineageTag: 64742a4c-388e-445b-9df7-d45b32595f75
+
+	/// Count of owned properties by country
+	measure 'Owned Properties by Country' =
+			CALCULATE(
+			    DISTINCTCOUNT('Portfolio'[Site]),
+			    'Portfolio'[Acquisition Type] = "Owned",
+			    ALLSELECTED('Portfolio'[Country])
+			)
+		formatString: #,0
+		displayFolder: Country Analysis
+		lineageTag: 471dd31b-f005-4b9b-a594-6a09b865b57e
+
+	/// Count of allocated properties by country
+	measure 'Allocated Properties by Country' =
+			CALCULATE(
+			    DISTINCTCOUNT('Portfolio'[Site]),
+			    'Portfolio'[Acquisition Type] = "Allocated",
+			    ALLSELECTED('Portfolio'[Country])
+			)
+		formatString: #,0
+		displayFolder: Country Analysis
+		lineageTag: 60cd7d37-bed5-4430-9905-7bab32d13b5d
+
+	/// Count of properties in poor condition by country
+	measure 'Poor Condition by Country' =
+			CALCULATE(
+			    DISTINCTCOUNT('Portfolio'[Site]),
+			    'Portfolio'[Asset Condition] = "Poor",
+			    ALLSELECTED('Portfolio'[Country])
+			)
+		formatString: #,0
+		displayFolder: Country Analysis
+		lineageTag: 67f5327a-52a7-4735-920a-82d14fde9ab5
+
+	/// Count of underutilized properties by country
+	measure 'Underutilized by Country' =
+			CALCULATE(
+			    [Underutilized Properties Count],
+			    ALLSELECTED('Portfolio'[Country])
+			)
+		formatString: #,0
+		displayFolder: Country Analysis
+		lineageTag: 7eb5df28-eedc-4ecc-ba01-fe26fec695fb
+
+	/// Portfolio health score by country
+	measure 'Portfolio Health Score by Country' =
+			CALCULATE(
+			    [Portfolio Health Score],
+			    ALLSELECTED('Portfolio'[Country])
+			)
+		formatString: 0.0
+		displayFolder: Country Analysis
+		lineageTag: 5e698dbd-2595-4f40-9d4b-a836006401fc
+
+	/// Properties expiring within 3 years by country
+	measure 'Properties Expiring by Country' =
+			CALCULATE(
+			    [Expiring <=36 Months],
+			    ALLSELECTED('Portfolio'[Country])
+			)
+		formatString: #,0
+		displayFolder: Country Analysis
+		lineageTag: e41da63f-6ccf-4fbf-84b0-ff05d94383a2
+
+	measure 'Properties with Area and Cost Data' = COUNTROWS( FILTER(Portfolio, (Portfolio[Rent / Acquisition Cost (SAR)] > 0 && Portfolio[Total Building Area (m²)] > 0)))
+		formatString: 0
+		lineageTag: 0c4fbc7d-4e1f-4a93-89dd-ef810f06301f
+
+	measure 'Total Cost' =
+			SWITCH(
+			                    SELECTEDVALUE(Portfolio[Acquisition Type]),
+			                    "Owned", [Total Acquisition Cost], [Total Annual Rent]
+			
+			)
+		lineageTag: eddc6b83-0e3a-44bb-9686-70102b08a33a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Properties with Missing Area and Cost' = COUNTROWS( FILTER(Portfolio, (Portfolio[Rent / Acquisition Cost (SAR)] <= 0 && Portfolio[Total Building Area (m²)] <= 0)))
+		formatString: 0
+		lineageTag: 71d6515f-1701-445a-9bf8-85043817a40d
+
+	measure 'Upcoming Renewal Sites' = ```
+			
+			       VAR _renewal =  CALCULATE(
+			            COUNTROWS(Portfolio),
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
+			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
+			        )
+			        RETURN _renewal
+			```
+		formatString: 0
+		lineageTag: 9128ef1b-43a7-495b-b592-cc25244f34b9
+
+	measure 'Visual Title - Expiring Metric' =
+			
+			VAR _measure =  SELECTEDVALUE(prm_metric[Field])
+			RETURN _measure & " by End of Lease Date"
+		lineageTag: 5754c260-fd4e-4ce5-9fff-b3253f3cf722
+
+	measure 'Visual Title - Expiring Metric running Total' =
+			
+			VAR _measure =  SELECTEDVALUE(prm_metric[Field])
+			RETURN "Running Total " & _measure & " by End of Lease Date"
+		lineageTag: 2f6dfa28-3fe5-479d-921f-b1da1e8b080c
+
+	column Value
+		formatString: 0
+		lineageTag: 2e5f387c-7245-4df5-937a-292930740fa9
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = {1}
+
+	annotation PBI_Id = f087ae3e31fc4fa695e8b94b3d4ebe6e
+

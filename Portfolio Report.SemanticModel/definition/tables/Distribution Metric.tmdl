@@ -1,0 +1,102 @@
+table 'Distribution Metric'
+	lineageTag: 856617e5-4812-45e3-9460-fc5756bf7f8e
+
+	measure 'Median Distribution' =
+			
+			
+			VAR _selected = SELECTEDVALUE('Distribution Metric'[Metric_order])
+			RETURN SWITCH(_selected,
+			            1, [Median Rent to Area Ratio],
+			            2, [Median Area],
+			            3, [Median Annual Rent])
+		lineageTag: fb6619df-2541-46c0-a6c1-9e8112a942d0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IQR Distribution' =
+			
+			
+			VAR _selected = SELECTEDVALUE('Distribution Metric'[Metric_order])
+			RETURN SWITCH(_selected,
+			            1, [IQR Rent to Area Ratio],
+			            2, [IQR Area],
+			            3, [IQR Annual Rent])
+		lineageTag: 6c1f6c29-0ab6-44d2-821d-6de1c63d9e32
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q1 Distribution' =
+			
+			
+			VAR _selected = SELECTEDVALUE('Distribution Metric'[Metric_order])
+			RETURN SWITCH(_selected,
+			            1, [Q1 Rent to Area Ratio],
+			            2, [Q1 Area],
+			            3, [Q1 Annual Rent])
+		lineageTag: fe0eae8d-5c32-4295-91ba-01b16e40d87b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q3 Distribution' =
+			
+			
+			VAR _selected = SELECTEDVALUE('Distribution Metric'[Metric_order])
+			RETURN SWITCH(_selected,
+			            1, [Q3 Rent to Area Ratio],
+			            2, [Q3 Area],
+			            3, [Q3 Annual Rent])
+		lineageTag: f91a60b1-47b8-4323-bbeb-169548e437c3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Min Distribution' =
+			
+			
+			VAR _selected = SELECTEDVALUE('Distribution Metric'[Metric_order])
+			RETURN SWITCH(_selected,
+			            1, [Min Rent to Area Ratio],
+			            2, [Min area],
+			            3, [Min Annual Rent])
+		lineageTag: e6216ac8-9506-4c0b-aa2c-bfd7bc58ed35
+
+	measure 'Max Distribution' =
+			
+			
+			VAR _selected = SELECTEDVALUE('Distribution Metric'[Metric_order])
+			RETURN SWITCH(_selected,
+			            1, [Max Rent to Area Ratio],
+			            2, [Max Area],
+			            3, [Max Annual Rent])
+		lineageTag: cb5908c7-8e1b-409d-9f6c-d730c4085a21
+
+	column Metric
+		dataType: string
+		lineageTag: bfce2ce4-a5dd-4718-9641-72f2df050800
+		summarizeBy: none
+		sourceColumn: Metric
+		sortByColumn: Metric_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Metric_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 1419953f-b01e-4fd2-8440-838b15e2ef34
+		summarizeBy: sum
+		sourceColumn: Metric_order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Distribution Metric' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCkosycxX0lEyVIrViVZyKs3MScnMS1dwLEpNVNAoLszVBMoZgeUc8/JKE3MUglLzSoBixkqxsQA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Metric = _t, Metric_order = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Metric", type text}, {"Metric_order", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

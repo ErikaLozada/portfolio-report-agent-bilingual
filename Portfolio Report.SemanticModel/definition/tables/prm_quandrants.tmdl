@@ -1,0 +1,50 @@
+table prm_quandrants
+	lineageTag: 2a16c8cd-b2c8-4fc7-8a84-b7c9af9f672f
+
+	column Parameter
+		lineageTag: 5d10bee7-5ad8-4a1b-b8cd-62498b89c058
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: 85cc3a47-edc8-4b03-bb11-43a0e543e3f5
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 7549a074-6d5f-465c-b317-94a0b98c08a0
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition prm_quandrants = calculated
+		mode: import
+		source =
+				{
+				    ("Quadrant 1 - High Area, High Rent", NAMEOF('_Measures'[Quadrant 1 - High Area, High Rent]), 0),
+				    ("Quadrant 2 - Low Area, High Rent", NAMEOF('_Measures'[Quadrant 2 - Low Area, High Rent]), 1),
+				    ("Quadrant 3 - Low Area, Low Rent", NAMEOF('_Measures'[Quadrant 3 - Low Area, Low Rent]), 2),
+				    ("Quadrant 4 - High Area, Low Rent", NAMEOF('_Measures'[Quadrant 4 - High Area, Low Rent]), 3)
+				}
+
+	annotation PBI_Id = 47b3c742adbe44cfaeaa708e1eac2306
+
