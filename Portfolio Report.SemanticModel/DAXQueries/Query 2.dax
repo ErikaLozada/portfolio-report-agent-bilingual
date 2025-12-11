@@ -1,2 +1,21 @@
 EVALUATE
 SELECTCOLUMNS(FILTER(Portfolio, Portfolio[Annual Rent SAR] > 0 && Portfolio[Total Building Area (m²)] > 0) , Portfolio[#])
+  MEASURE '_Measures'[Sites Leased with Area Data] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            'Portfolio'[Acquisition Type] = "Leased",
+            NOT(ISBLANK('Portfolio'[Total Building Area (m²)]))
+        )	
+    MEASURE '_Measures'[Sites Owned] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            'Portfolio'[Acquisition Type] = "Owned"
+        )
+        MEASURE '_Measures'[Total Sites] = 
+        DISTINCTCOUNT('Portfolio'[Site])
+
+    MEASURE '_Measures'[Sites Leased] = 
+        CALCULATE(
+            DISTINCTCOUNT('Portfolio'[Site]),
+            'Portfolio'[Acquisition Type] = "Leased"
+        )
