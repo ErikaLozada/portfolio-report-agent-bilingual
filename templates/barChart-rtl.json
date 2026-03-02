@@ -1,97 +1,48 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "522b12db3888604917ec",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "{{visual_id}}",
   "position": {
-    "x": 0,
-    "y": 670,
-    "z": 14000,
-    "height": 380,
-    "width": 587.14285714285722,
-    "tabOrder": 14000
+    "x": "{{position.x}}",
+    "y": "{{position.y}}",
+    "z": "{{position.z}}",
+    "height": "{{position.height}}",
+    "width": "{{position.width}}",
+    "tabOrder": "{{position.tabOrder}}"
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "barChart",
     "query": {
       "queryState": {
         "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio"
-                    }
-                  },
-                  "Property": "Property Type (as per Portfolio Lens)"
-                }
-              },
-              "queryRef": "Portfolio.Property Type (as per Portfolio Lens)",
-              "nativeQueryRef": "Property Type (as per Portfolio Lens)",
-              "active": true
-            }
-          ]
+          "projections": []
         },
         "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Sites Owned"
-                }
-              },
-              "queryRef": "_Measures.Sites Owned",
-              "nativeQueryRef": "Sites Owned"
-            }
-          ]
+          "projections": []
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "_Measures"
-                  }
-                },
-                "Property": "Sites Owned"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
-      "categoryAxis": [
+      "legend": [
         {
           "properties": {
-            "axisType": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'Categorical'"
+                  "Value": "false"
                 }
               }
             },
-            "maxMarginFactor": {
+            "showTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "50L"
+                  "Value": "false"
                 }
               }
             },
-            "innerPadding": {
+            "showGradientLegend": {
               "expr": {
                 "Literal": {
-                  "Value": "56L"
+                  "Value": "false"
                 }
               }
             },
@@ -102,10 +53,49 @@
                 }
               }
             },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "innerPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "47L"
+                }
+              }
+            },
             "fontSize": {
               "expr": {
                 "Literal": {
                   "Value": "10D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
                 }
               }
             },
@@ -121,23 +111,10 @@
                 }
               }
             },
-            "showAxisTitle": {
+            "switchAxisPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "general": [
-        {
-          "properties": {
-            "responsive": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -147,10 +124,17 @@
       "valueAxis": [
         {
           "properties": {
-            "fontFamily": {
+            "showAxisTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                  "Value": "false"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             },
@@ -161,26 +145,26 @@
                 }
               }
             },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                }
+              }
+            },
             "labelColor": {
               "solid": {
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 1,
+                      "ColorId": 0,
                       "Percent": 0
                     }
                   }
                 }
               }
             },
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "show": {
+            "invertAxis": {
               "expr": {
                 "Literal": {
                   "Value": "true"
@@ -203,28 +187,7 @@
             "labelPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'Auto'"
-                }
-              }
-            },
-            "labelOverflow": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "enableValueDataLabel": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                  "Value": "'OutsideEnd'"
                 }
               }
             },
@@ -235,6 +198,44 @@
                 }
               }
             },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "totals": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
             "color": {
               "solid": {
                 "color": {
@@ -249,44 +250,8 @@
             }
           }
         }
-      ]
-    },
-    "visualContainerObjects": {
-      "padding": [
-        {
-          "properties": {
-            "top": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "bottom": {
-              "expr": {
-                "Literal": {
-                  "Value": "20D"
-                }
-              }
-            },
-            "left": {
-              "expr": {
-                "Literal": {
-                  "Value": "20D"
-                }
-              }
-            },
-            "right": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            }
-          }
-        }
       ],
-      "title": [
+      "y1AxisReferenceLine": [
         {
           "properties": {
             "show": {
@@ -296,13 +261,57 @@
                 }
               }
             },
-            "titleWrap": {
+            "displayName": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "'X-Axis Constant Line 1'"
                 }
               }
             },
+            "lineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "style": {
+              "expr": {
+                "Literal": {
+                  "Value": "'solid'"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "1"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
             "fontFamily": {
               "expr": {
                 "Literal": {
@@ -326,7 +335,14 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
                 }
               }
             },
@@ -339,13 +355,6 @@
                       "Percent": 0
                     }
                   }
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
                 }
               }
             },
@@ -365,72 +374,20 @@
             "show": {
               "expr": {
                 "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "showSmartNarrativeButton": {
+              "expr": {
+                "Literal": {
                   "Value": "true"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "width": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "visualTooltip": [
-        {
-          "properties": {
-            "themedTitleFontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#7D7C7C'"
-                    }
-                  }
-                }
-              }
-            },
-            "themedValueFontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#000000'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "visualHeaderTooltip": [
-        {
-          "properties": {
-            "themedTitleFontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#7D7C7C'"
-                    }
-                  }
                 }
               }
             }

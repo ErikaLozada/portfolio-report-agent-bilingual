@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "64382bb6b8b8911b047b",
   "position": {
     "x": 7,
@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Total Sites",
-              "nativeQueryRef": "Total Sites"
+              "nativeQueryRef": "إجمالي المواقع"
             },
             {
               "field": {
@@ -41,7 +41,7 @@
                 }
               },
               "queryRef": "_Measures.Sites Leased",
-              "nativeQueryRef": "Sites Leased"
+              "nativeQueryRef": "مواقع مؤجرة"
             },
             {
               "field": {
@@ -55,7 +55,7 @@
                 }
               },
               "queryRef": "_Measures.Total Leased Area (Sqm)",
-              "nativeQueryRef": "Total Leased Area (Sqm)"
+              "nativeQueryRef": "إجمالي المساحة المؤجرة (م²)"
             },
             {
               "field": {
@@ -69,7 +69,7 @@
                 }
               },
               "queryRef": "_Measures.Total Annual Rate",
-              "nativeQueryRef": "Total Annual Rent"
+              "nativeQueryRef": "إجمالي الإيجار السنوي"
             },
             {
               "field": {
@@ -83,7 +83,7 @@
                 }
               },
               "queryRef": "_Measures.Net Rent to Area Ratio ($/sqm)",
-              "nativeQueryRef": "Net Rent to Area Ratio ($/sqm)"
+              "nativeQueryRef": "صافي نسبة الإيجار إلى المساحة (دولار/م²)"
             }
           ]
         }
@@ -191,6 +191,13 @@
                   }
                 }
               }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
             }
           },
           "selector": {
@@ -205,6 +212,13 @@
               "expr": {
                 "Literal": {
                   "Value": "26D"
+                }
+              }
+            },
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'right'"
                 }
               }
             }
@@ -260,7 +274,7 @@
             "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'left'"
+                  "Value": "'right'"
                 }
               }
             }
@@ -629,8 +643,13 @@
             },
             "titleText": {
               "expr": {
-                "Literal": {
-                  "Value": "'with Area (sqm)'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - With Area SQM"
                 }
               }
             },
@@ -679,8 +698,13 @@
             },
             "titleText": {
               "expr": {
-                "Literal": {
-                  "Value": "' with area (sqm)'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - With Area SQM"
                 }
               }
             }
@@ -829,6 +853,22 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "referenceLabelLayout": [
+        {
+          "properties": {
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'right'"
                 }
               }
             }

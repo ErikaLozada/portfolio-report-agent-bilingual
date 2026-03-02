@@ -167,7 +167,29 @@ table Translations
 				        {"INFO_DESCRIPTION", "Description | MoFA portfolio", "الوصف | محفظة وزارة الخارجية"},
 				        {"INFO_DATA_SOURCE", "Data Source(s) and Data Refresh Schedules(s) | Dummy data (csv)", "مصادر البيانات وجداول التحديث | بيانات تجريبية (csv)"},
 				        {"INFO_VERSION_BY", "Current Version Create By | Erika Lozada", "النسخة الحالية من إعداد | إريكا لوزادا"},
-				        {"INFO_OWNER", "Dashboard Business Owner |", "مالك لوحة المعلومات |"}
+				        {"INFO_OWNER", "Dashboard Business Owner |", "مالك لوحة المعلومات |"},
+				
+				        // KPI CARD LABELS
+				        {"KPI_TOTAL_SITES", "Total Sites", "إجمالي المواقع"},
+				        {"KPI_SITES_LEASED", "Sites Leased", "مواقع مؤجرة"},
+				        {"KPI_SITES_OWNED", "Sites Owned", "مواقع مملوكة"},
+				        {"KPI_TOTAL_AREA_SQM", "Total Area (sqm)", "إجمالي المساحة (م²)"},
+				        {"KPI_TOTAL_LEASED_AREA_SQM", "Total Leased Area (Sqm)", "إجمالي المساحة المؤجرة (م²)"},
+				        {"KPI_TOTAL_ANNUAL_RENT", "Total Annual Rent", "إجمالي الإيجار السنوي"},
+				        {"KPI_TOTAL_ACQUISITION_COST", "Total Acquisition Cost", "إجمالي تكلفة الاستحواذ"},
+				        {"KPI_TOTAL_HEADCOUNT", "Total Headcount", "إجمالي عدد الموظفين"},
+				        {"KPI_TOTAL_CAPACITY", "Total Capacity", "إجمالي السعة"},
+				        {"KPI_AVG_UTILIZATION_RATE", "Average Utilization Rate", "متوسط معدل الاستخدام"},
+				        {"KPI_EXPIRING_36_MONTHS", "Expiring <=36 Months", "تنتهي خلال ≤36 شهراً"},
+				        {"KPI_NET_RENT_AREA_RATIO", "Net Rent to Area Ratio ($/sqm)", "صافي نسبة الإيجار إلى المساحة (دولار/م²)"},
+				        {"KPI_UPCOMING_RENT_ENDING_3YRS", "Upcoming Total Rent Lease Ending < 3 yrs", "إجمالي الإيجار القادم لعقود تنتهي < 3 سنوات"},
+				        {"KPI_UPCOMING_AREA_ENDING", "Upcoming End of Leases Total Area (sqm)", "إجمالي مساحة العقود المنتهية القادمة (م²)"},
+				        {"KPI_UNDERUTILIZED_COUNT", "Underutilized Properties Count", "عدد العقارات غير المستغلة"},
+				        {"KPI_MISSING_RENT_ACQ", "Properties with Missing Rent/Acquisition Data", "عقارات بدون بيانات إيجار/استحواذ"},
+				        {"KPI_MISSING_AREA", "Properties with Missing Area Data", "عقارات بدون بيانات مساحة"},
+				        {"KPI_DATA_COMPLETENESS", "Data Completeness %", "نسبة اكتمال البيانات %"},
+				        {"KPI_WITH_AREA_COST", "Properties with Area and Cost Data", "عقارات ببيانات مساحة وتكلفة"},
+				        {"KPI_MISSING_AREA_COST", "Properties with Missing Area and Cost", "عقارات بدون بيانات مساحة وتكلفة"}
 				    }
 				)
 					

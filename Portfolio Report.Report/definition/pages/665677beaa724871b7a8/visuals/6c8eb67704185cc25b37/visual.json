@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "6c8eb67704185cc25b37",
   "position": {
     "x": 1496.0051118210863,
@@ -22,11 +22,11 @@
                     "value": "استراتيجية المحفظة | انتهاء الإيجار",
                     "textStyle": {
                       "fontFamily": "Segoe UI Light",
-                      "fontSize": "18pt",
-                      "textAlignment": "right"
+                      "fontSize": "18pt"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "right"
               }
             ]
           }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "1f984d07519625da0060",
   "position": {
     "x": 0,
@@ -588,7 +588,7 @@
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "20D"
                 }
               }
             },
@@ -600,6 +600,13 @@
               }
             },
             "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "bottom": {
               "expr": {
                 "Literal": {
                   "Value": "10D"

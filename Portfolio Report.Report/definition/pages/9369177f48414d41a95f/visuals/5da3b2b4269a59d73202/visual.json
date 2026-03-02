@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "5da3b2b4269a59d73202",
   "position": {
     "x": 0,
@@ -344,13 +344,6 @@
               "expr": {
                 "Literal": {
                   "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "switchAxisPosition": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }
@@ -906,7 +899,7 @@
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "10D"
                 }
               }
             }

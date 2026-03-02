@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Properties with Missing Rent Data",
-              "nativeQueryRef": "Properties with Missing Rent/Acquisition Data"
+              "nativeQueryRef": "عقارات بدون بيانات إيجار/استحواذ"
             },
             {
               "field": {
@@ -41,7 +41,7 @@
                 }
               },
               "queryRef": "_Measures.Properties with Missing Area Data",
-              "nativeQueryRef": "Properties with Missing Area Data"
+              "nativeQueryRef": "عقارات بدون بيانات مساحة"
             },
             {
               "field": {
@@ -55,7 +55,7 @@
                 }
               },
               "queryRef": "_Measures.Data Completeness %",
-              "nativeQueryRef": "Data Completeness %"
+              "nativeQueryRef": "نسبة اكتمال البيانات %"
             },
             {
               "field": {
@@ -69,7 +69,7 @@
                 }
               },
               "queryRef": "_Measures.Total Sites",
-              "nativeQueryRef": "Total Sites"
+              "nativeQueryRef": "إجمالي المواقع"
             },
             {
               "field": {
@@ -83,7 +83,7 @@
                 }
               },
               "queryRef": "_Measures.Properties with Area and Cost Data",
-              "nativeQueryRef": "Properties with Area and Cost Data"
+              "nativeQueryRef": "عقارات ببيانات مساحة وتكلفة"
             },
             {
               "field": {
@@ -97,7 +97,7 @@
                 }
               },
               "queryRef": "_Measures.Properties with Missing Area and Cost",
-              "nativeQueryRef": "Properties with Missing Area and Cost"
+              "nativeQueryRef": "عقارات بدون بيانات مساحة وتكلفة"
             }
           ]
         }

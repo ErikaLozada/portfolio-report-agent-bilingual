@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "c14dd9c76ad2a42db123",
   "position": {
-    "x": 688,
-    "y": 23,
+    "x": 843.42855398995584,
+    "y": 19.571437290736611,
     "z": 15000,
     "height": 33,
     "width": 137,
@@ -21,8 +21,7 @@
                   {
                     "value": "نطاق سنة الانتهاء:",
                     "textStyle": {
-                      "fontFamily": "Segoe UI Light",
-                      "textAlignment": "right"
+                      "fontFamily": "Segoe UI Light"
                     }
                   }
                 ]

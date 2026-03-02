@@ -1,19 +1,29 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "ed8e0d553a0c4948a68e",
   "position": {
-    "x": 20,
-    "y": 10,
+    "x": 358.57142857142861,
+    "y": 11.428571428571429,
     "z": 20000,
-    "height": 35,
-    "width": 150,
+    "height": 40,
+    "width": 154.28571428571431,
     "tabOrder": 99000
   },
   "visual": {
     "visualType": "actionButton",
-    "drillFilterOtherVisuals": true,
     "objects": {
       "icon": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        },
         {
           "properties": {
             "shapeType": {
@@ -23,23 +33,51 @@
                 }
               }
             }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ],
       "outline": [
         {
           "properties": {
-            "weight": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "false"
                 }
               }
             }
           }
+        },
+        {
+          "properties": {
+            "weight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
         }
       ],
       "fill": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
         {
           "properties": {
             "fillColor": {
@@ -47,7 +85,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E8E8E8'"
+                      "Value": "'#F0EEEE'"
                     }
                   }
                 }
@@ -56,10 +94,13 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "0D"
                 }
               }
             }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ],
@@ -73,6 +114,17 @@
                 }
               }
             },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
             "fontFamily": {
               "expr": {
                 "Literal": {
@@ -80,13 +132,28 @@
                 }
               }
             },
-            "fontSize": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "'English'"
                 }
               }
             }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ]
@@ -95,10 +162,10 @@
       "title": [
         {
           "properties": {
-            "show": {
+            "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -106,6 +173,20 @@
               "expr": {
                 "Literal": {
                   "Value": "'right'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'English'"
                 }
               }
             }
@@ -119,6 +200,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -151,7 +239,79 @@
             }
           }
         }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "themedTitleFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7D7C7C'"
+                    }
+                  }
+                }
+              }
+            },
+            "themedValueFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeaderTooltip": [
+        {
+          "properties": {
+            "themedTitleFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7D7C7C'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

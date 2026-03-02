@@ -1904,6 +1904,166 @@ table _Measures
 		displayFolder: Labels
 		lineageTag: a0000001-0001-0001-0001-000000000047
 
+	measure 'Label - KPI Total Sites' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_TOTAL_SITES")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_TOTAL_SITES")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000048
+
+	measure 'Label - KPI Sites Leased' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_SITES_LEASED")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_SITES_LEASED")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000049
+
+	measure 'Label - KPI Sites Owned' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_SITES_OWNED")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_SITES_OWNED")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000050
+
+	measure 'Label - KPI Total Area SQM' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_TOTAL_AREA_SQM")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_TOTAL_AREA_SQM")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000051
+
+	measure 'Label - KPI Total Leased Area SQM' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_TOTAL_LEASED_AREA_SQM")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_TOTAL_LEASED_AREA_SQM")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000052
+
+	measure 'Label - KPI Total Annual Rent' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_TOTAL_ANNUAL_RENT")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_TOTAL_ANNUAL_RENT")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000053
+
+	measure 'Label - KPI Total Acquisition Cost' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_TOTAL_ACQUISITION_COST")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_TOTAL_ACQUISITION_COST")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000054
+
+	measure 'Label - KPI Total Headcount' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_TOTAL_HEADCOUNT")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_TOTAL_HEADCOUNT")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000055
+
+	measure 'Label - KPI Total Capacity' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_TOTAL_CAPACITY")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_TOTAL_CAPACITY")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000056
+
+	measure 'Label - KPI Avg Utilization Rate' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_AVG_UTILIZATION_RATE")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_AVG_UTILIZATION_RATE")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000057
+
+	measure 'Label - KPI Expiring 36 Months' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_EXPIRING_36_MONTHS")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_EXPIRING_36_MONTHS")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000058
+
+	measure 'Label - KPI Net Rent Area Ratio' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_NET_RENT_AREA_RATIO")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_NET_RENT_AREA_RATIO")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000059
+
+	measure 'Label - KPI Upcoming Rent Ending 3yrs' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_UPCOMING_RENT_ENDING_3YRS")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_UPCOMING_RENT_ENDING_3YRS")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000060
+
+	measure 'Label - KPI Upcoming Area Ending' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_UPCOMING_AREA_ENDING")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_UPCOMING_AREA_ENDING")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000061
+
+	measure 'Label - KPI Underutilized Count' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_UNDERUTILIZED_COUNT")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_UNDERUTILIZED_COUNT")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000062
+
+	measure 'Label - KPI Missing Rent Acq' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_MISSING_RENT_ACQ")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_MISSING_RENT_ACQ")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000063
+
+	measure 'Label - KPI Missing Area' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_MISSING_AREA")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_MISSING_AREA")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000064
+
+	measure 'Label - KPI Data Completeness' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_DATA_COMPLETENESS")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_DATA_COMPLETENESS")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000065
+
+	measure 'Label - KPI With Area Cost' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_WITH_AREA_COST")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_WITH_AREA_COST")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000066
+
+	measure 'Label - KPI Missing Area Cost' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_MISSING_AREA_COST")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_MISSING_AREA_COST")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000067
+
 	column Value
 		formatString: 0
 		lineageTag: 2e5f387c-7245-4df5-937a-292930740fa9

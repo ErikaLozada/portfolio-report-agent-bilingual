@@ -1,0 +1,65 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "{{visual_id}}",
+  "position": {
+    "x": "{{position.x}}",
+    "y": "{{position.y}}",
+    "z": "{{position.z}}",
+    "height": "{{position.height}}",
+    "width": "{{position.width}}",
+    "tabOrder": "{{position.tabOrder}}"
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "{{text}}",
+                    "textStyle": {
+                      "fontWeight": "{{font_weight}}",
+                      "fontFamily": "Segoe UI Light",
+                      "textAlignment": "right"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

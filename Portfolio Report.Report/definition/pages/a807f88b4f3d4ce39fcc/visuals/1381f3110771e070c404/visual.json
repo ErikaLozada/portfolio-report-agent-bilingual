@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "1381f3110771e070c404",
   "position": {
     "x": 0,
@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Sites Owned",
-              "nativeQueryRef": "Sites Owned"
+              "nativeQueryRef": "مواقع مملوكة"
             },
             {
               "field": {
@@ -41,7 +41,7 @@
                 }
               },
               "queryRef": "_Measures.Total Acquisition Cost",
-              "nativeQueryRef": "Total Acquisition Cost"
+              "nativeQueryRef": "إجمالي تكلفة الاستحواذ"
             },
             {
               "field": {
@@ -55,7 +55,7 @@
                 }
               },
               "queryRef": "_Measures.Total Headcount",
-              "nativeQueryRef": "Total Headcount"
+              "nativeQueryRef": "إجمالي عدد الموظفين"
             },
             {
               "field": {
@@ -69,7 +69,7 @@
                 }
               },
               "queryRef": "_Measures.Total Capacity",
-              "nativeQueryRef": "Total Capacity"
+              "nativeQueryRef": "إجمالي السعة"
             },
             {
               "field": {
@@ -83,7 +83,7 @@
                 }
               },
               "queryRef": "_Measures.Total Area (sqm)",
-              "nativeQueryRef": "Total Area (sqm)"
+              "nativeQueryRef": "إجمالي المساحة (م²)"
             }
           ]
         }
@@ -111,17 +111,17 @@
       "layout": [
         {
           "properties": {
-            "maxTiles": {
-              "expr": {
-                "Literal": {
-                  "Value": "6L"
-                }
-              }
-            },
             "alignment": {
               "expr": {
                 "Literal": {
                   "Value": "'top'"
+                }
+              }
+            },
+            "maxTiles": {
+              "expr": {
+                "Literal": {
+                  "Value": "6L"
                 }
               }
             },
@@ -174,10 +174,10 @@
                 }
               }
             },
-            "width": {
+            "position": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "'Right'"
                 }
               }
             },
@@ -190,6 +190,13 @@
                       "Percent": -0.1
                     }
                   }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }
@@ -208,6 +215,13 @@
                   "Value": "26D"
                 }
               }
+            },
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'right'"
+                }
+              }
             }
           },
           "selector": {
@@ -218,18 +232,6 @@
       "label": [
         {
           "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            },
             "fontFamily": {
               "expr": {
                 "Literal": {
@@ -244,10 +246,15 @@
                 }
               }
             },
-            "matchValueAlignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             },
@@ -258,10 +265,17 @@
                 }
               }
             },
+            "matchValueAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
             "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'left'"
+                  "Value": "'right'"
                 }
               }
             }
@@ -329,6 +343,76 @@
             "id": "field-815244a8-7a55-5934-ae65-937b3e7115d7",
             "order": 0
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Sites Leased with Area Data"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "_Measures.Sites Leased",
+            "id": "field-06c8cbad-9cbf-a108-0cc6-32ae9068000c",
+            "order": 0
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Sites Leased %"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "_Measures.Sites Leased",
+            "id": "field-3beae926-af9d-7138-972c-70fc3e1ce9de",
+            "order": 1
+          }
+        },
+        {
+          "properties": {
+            "backgroundShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Sites Leased"
+          }
         }
       ],
       "divider": [
@@ -351,6 +435,20 @@
           },
           "selector": {
             "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Sites Leased"
           }
         }
       ],
@@ -404,6 +502,99 @@
             "metadata": "_Measures.Total Annual Rate",
             "id": "field-815244a8-7a55-5934-ae65-937b3e7115d7"
           }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "valueFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "valueFontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "valueBold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Sites Leased",
+            "id": "field-06c8cbad-9cbf-a108-0cc6-32ae9068000c"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "valueFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "valueFontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "valueBold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Sites Leased",
+            "id": "field-3beae926-af9d-7138-972c-70fc3e1ce9de"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "valueFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Sites Leased"
+          }
         }
       ],
       "referenceLabelTitle": [
@@ -430,6 +621,18 @@
                 }
               }
             },
+            "titleText": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - With Area SQM"
+                }
+              }
+            },
             "titleFontSize": {
               "expr": {
                 "Literal": {
@@ -450,18 +653,137 @@
                   "Value": "'custom'"
                 }
               }
-            },
-            "titleText": {
-              "expr": {
-                "Literal": {
-                  "Value": "' with area (sqm)'"
-                }
-              }
             }
           },
           "selector": {
             "metadata": "_Measures.Total Annual Rate",
             "id": "field-815244a8-7a55-5934-ae65-937b3e7115d7"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - With Area SQM"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleFontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "titleBold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Sites Leased",
+            "id": "field-06c8cbad-9cbf-a108-0cc6-32ae9068000c"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleFontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "titleBold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Sites Leased",
+            "id": "field-3beae926-af9d-7138-972c-70fc3e1ce9de"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleFontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "titleBold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Sites Leased"
           }
         }
       ],
@@ -494,6 +816,35 @@
           "selector": {
             "id": "default"
           }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Sites Leased",
+            "id": "field-06c8cbad-9cbf-a108-0cc6-32ae9068000c"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Sites Leased"
+          }
         }
       ],
       "border": [
@@ -503,6 +854,22 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "referenceLabelLayout": [
+        {
+          "properties": {
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'right'"
                 }
               }
             }
@@ -531,14 +898,14 @@
                 }
               }
             },
-            "right": {
+            "left": {
               "expr": {
                 "Literal": {
                   "Value": "20D"
                 }
               }
             },
-            "left": {
+            "right": {
               "expr": {
                 "Literal": {
                   "Value": "20D"
@@ -551,13 +918,6 @@
       "title": [
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
             "text": {
               "expr": {
                 "Measure": {
@@ -570,10 +930,17 @@
                 }
               }
             },
-            "fontFamily": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                  "Value": "true"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             },
@@ -581,6 +948,91 @@
               "expr": {
                 "Literal": {
                   "Value": "'right'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "themedTitleFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7D7C7C'"
+                    }
+                  }
+                }
+              }
+            },
+            "themedValueFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeaderTooltip": [
+        {
+          "properties": {
+            "themedTitleFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7D7C7C'"
+                    }
+                  }
                 }
               }
             }
