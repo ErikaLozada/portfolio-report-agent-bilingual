@@ -663,8 +663,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Rent and Area Detail'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Rent and Area Detail"
                 }
               }
             },
@@ -690,8 +695,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'All properties with no area or rent information are excluded in this report.'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Cost Area Exclusion"
                 }
               }
             }

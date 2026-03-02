@@ -1,0 +1,54 @@
+---
+description: Power BI JSON theme file conventions. Applied when editing registered theme files or creating new themes.
+globs: "**/RegisteredResources/**/*.json"
+alwaysApply: false
+---
+
+# Power BI Theme JSON Standards
+
+## Theme File Location
+
+Custom themes live at:
+`<Report>/StaticResources/RegisteredResources/<ThemeName>.json`
+
+They are registered in `definition/report.json` under `themeCollection.customTheme`.
+
+## Color Referencing in Visuals
+
+Visuals reference theme colors by index, not by hex value:
+
+```json
+{
+  "ThemeDataColor": {
+    "ColorId": 0,
+    "Percent": -0.1
+  }
+}
+```
+
+- `ColorId` 0 = first dataColors entry (primary)
+- `Percent` adjusts lightness (-1 to 1, negative = darker)
+
+## Standard Palette Structure
+
+```json
+{
+  "name": "MyTheme",
+  "dataColors": ["#D1B9A7", "#40798D", "#95C6D5", "#CB5E24", "#8FB397"],
+  "background": "#FFFFFF",
+  "foreground": "#000000",
+  "tableAccent": "#D1B9A7"
+}
+```
+
+## Visual Styles in Theme
+
+Use `visualStyles` to set defaults per visual type globally rather than per-visual overrides. This keeps individual `visual.json` files clean.
+
+## Color Usage Guidelines
+
+- Use `ColorId: 0` for primary accent bars and data series
+- Use `ColorId: 1` for secondary data or label text
+- Use `ColorId: 2` and `ColorId: 3` for sub-detail colors (owned vs leased)
+- Use `Percent: -0.25` for subtle darkening on secondary labels
+- Check `config/global_defaults.yaml` for the project color palette

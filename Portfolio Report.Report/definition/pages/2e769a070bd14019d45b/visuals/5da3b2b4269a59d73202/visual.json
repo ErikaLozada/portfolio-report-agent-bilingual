@@ -781,8 +781,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Rent v Area by Region '"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Rent v Area by Region"
                 }
               }
             }
@@ -801,8 +806,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Excludes properties with missing area m2. Each bubble represent a property. Hover for more details.'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Rent Area Excludes M2"
                 }
               }
             },

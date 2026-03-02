@@ -1,0 +1,67 @@
+---
+description: PBIR visual JSON creation standards. Applied when creating or editing visual.json files in the report pages directory.
+globs: "**/visuals/**/visual.json"
+alwaysApply: false
+---
+
+# PBIR Visual JSON Standards
+
+## File Location
+
+Each visual is a folder: `pages/<page_id>/visuals/<visual_id>/visual.json`
+- `page_id`: 20-character hex string
+- `visual_id`: 16-character hex string
+
+## Projection Structure
+
+Every data-bound visual needs query projections. Measures use this shape:
+
+```json
+{
+  "field": {
+    "Measure": {
+      "Expression": { "SourceRef": { "Entity": "_Measures" } },
+      "Property": "Measure Name"
+    }
+  },
+  "queryRef": "_Measures.Measure Name",
+  "nativeQueryRef": "Measure Name"
+}
+```
+
+Columns use `"Column"` instead of `"Measure"`.
+
+## Query Roles by Visual Type
+
+| visualType | Query roles |
+|-----------|------------|
+| cardVisual | `Data` |
+| clusteredBarChart | `Category`, `Y` |
+| clusteredColumnChart | `Category`, `Y` |
+| tableEx | `Values` |
+| slicer | `Values` |
+| lineChart | `Category`, `Y` |
+| scatterChart | `X`, `Y`, `Size` |
+
+## Literal Value Suffixes
+
+- Integer: `"5L"`
+- Double: `"10D"`
+- Boolean: `"true"` / `"false"`
+- String: `"'Cards'"` (single-quoted inside double quotes)
+
+## Required Schema
+
+Always include: `"$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json"`
+
+## Styling Defaults
+
+Use JLL Azara theme conventions unless project specifies otherwise:
+- Font: Segoe UI Light
+- Value font size: 26D (for cards), 10D (for labels)
+- Accent bar: show true, width 1D, ThemeDataColor ColorId 0
+- Padding: top 10D, bottom 10D, left 20D, right 20D
+
+## Use Templates
+
+Always start from an existing template in `templates/` rather than writing JSON from scratch. Fill in the `{{placeholders}}` and add projections to the empty `projections: []` array.

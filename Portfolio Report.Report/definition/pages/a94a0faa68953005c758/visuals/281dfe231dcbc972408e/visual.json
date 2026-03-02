@@ -855,8 +855,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Upcoming Lease Renewals (< 3 years)'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Upcoming Lease Renewals"
                 }
               }
             }
@@ -875,8 +880,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'(Number of Sites)'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Number of Sites"
                 }
               }
             },

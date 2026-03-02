@@ -843,8 +843,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Total Annual Rent '"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Total Annual Rent Title"
                 }
               }
             }
@@ -863,8 +868,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'(Number of strategic countries)'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Strategic Countries"
                 }
               }
             },

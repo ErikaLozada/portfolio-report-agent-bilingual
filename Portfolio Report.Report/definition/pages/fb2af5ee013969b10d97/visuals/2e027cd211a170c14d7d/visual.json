@@ -418,8 +418,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Total Area for Upcoming Lease End Date '"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Area for Upcoming End"
                 }
               }
             },
@@ -464,8 +469,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Total Annual Rent for Upcoming Lease End Date '"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Rent by Upcoming End"
                 }
               }
             }

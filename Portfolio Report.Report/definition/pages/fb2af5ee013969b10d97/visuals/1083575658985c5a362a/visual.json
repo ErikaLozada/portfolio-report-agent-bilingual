@@ -460,8 +460,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Total Annual Rent by Upcoming End Date  (<=36 months)'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Rent by Upcoming End Subtitle"
                 }
               }
             }

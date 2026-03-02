@@ -615,8 +615,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Rent to Area Ratio Distribution'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Rent to Area Distribution"
                 }
               }
             }
@@ -635,8 +640,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Each bubble represent a property. Hover for more details.'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Bubble Property Hover"
                 }
               }
             },

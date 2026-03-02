@@ -1,0 +1,80 @@
+---
+description: DAX measure creation and formatting best practices for TMDL files. Applied when editing .tmdl files containing measures, or creating new DAX measures via MCP.
+globs: "**/*.tmdl"
+alwaysApply: false
+---
+
+# DAX Measure Best Practices
+
+## VAR / RETURN Pattern
+
+Always use VAR to name intermediate calculations. Never nest more than one function deep without a VAR.
+
+```dax
+// BAD - nested and unreadable
+DIVIDE(CALCULATE(DISTINCTCOUNT('Table'[Col]), 'Table'[Type] = "A"), DISTINCTCOUNT('Table'[Col]), 0)
+
+// GOOD
+VAR _filtered = CALCULATE(DISTINCTCOUNT('Table'[Col]), 'Table'[Type] = "A")
+VAR _total = DISTINCTCOUNT('Table'[Col])
+RETURN DIVIDE(_filtered, _total, 0)
+```
+
+## VAR Naming
+
+- Prefix with underscore: `_totalRent`, `_filteredSites`
+- Use camelCase after the underscore
+- Name should describe the business meaning, not the function
+
+## DIVIDE Over Division Operator
+
+Always use `DIVIDE(numerator, denominator, 0)` instead of `/`. The third argument handles divide-by-zero.
+
+## CALCULATE Filters
+
+Place each filter on its own line. Use variables for complex filter expressions.
+
+```dax
+VAR _result =
+    CALCULATE(
+        [Base Measure],
+        'Table'[Column1] = "Value",
+        'Table'[Column2] > 0
+    )
+RETURN _result
+```
+
+## Format Strings
+
+| Type | formatString |
+|------|-------------|
+| Integer / count | `#,0` |
+| Currency | `$#,0` or `#,0.00` |
+| Percentage | `0%;-0%;0%` |
+| Decimal | `#,0.00` |
+| General number | omit (use `PBI_FormatHint` annotation) |
+
+## TMDL Measure Structure
+
+```
+    measure 'Measure Name' = <expression>
+        formatString: #,0
+        description: What this measure calculates
+        lineageTag: <uuid>
+```
+
+- Always include `formatString`
+- Always include `lineageTag` (generate a UUID)
+- Add `description` for non-obvious measures
+- Use triple backticks for multi-line DAX expressions
+- Indent with tabs matching the surrounding TMDL context
+
+## MCP BatchCreate
+
+When creating measures via MCP, always include:
+- `tableName`: usually `"_Measures"`
+- `expression`: the DAX
+- `formatString`: appropriate format
+- `description`: what it calculates
+
+After MCP create, also write the measure to the `.tmdl` file since offline mode does not auto-persist.

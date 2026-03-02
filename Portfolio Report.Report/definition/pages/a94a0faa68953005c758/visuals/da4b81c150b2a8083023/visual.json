@@ -145,8 +145,13 @@
           "properties": {
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'info'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Button - Info"
                 }
               }
             }

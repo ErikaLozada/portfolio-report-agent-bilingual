@@ -1528,6 +1528,382 @@ table _Measures
 			RETURN "Running Total " & _measure & " by End of Lease Date"
 		lineageTag: 2f6dfa28-3fe5-479d-921f-b1da1e8b080c
 
+	measure 'Label - Page Overview' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_PAGE_OVERVIEW")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_PAGE_OVERVIEW")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000001
+
+	measure 'Label - Page Expiring' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_PAGE_EXPIRING")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_PAGE_EXPIRING")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000002
+
+	measure 'Label - Page Owned' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_PAGE_OWNED")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_PAGE_OWNED")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000003
+
+	measure 'Label - Page Distribution' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_PAGE_DISTRIBUTION")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_PAGE_DISTRIBUTION")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000004
+
+	measure 'Label - Page Property Info' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_PAGE_PROPERTY_INFO")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_PAGE_PROPERTY_INFO")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000005
+
+	measure 'Label - KPIs' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_KPIS")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_KPIS")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000006
+
+	measure 'Label - Filter Panel' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_FILTER_PANEL")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_FILTER_PANEL")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000007
+
+	measure 'Label - Cost and Area Detail' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_COST_AND_AREA_DETAIL")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_COST_AND_AREA_DETAIL")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000008
+
+	measure 'Label - Upcoming Lease Renewals' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_UPCOMING_LEASE_RENEWALS")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_UPCOMING_LEASE_RENEWALS")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000009
+
+	measure 'Label - Rent to Area Distribution' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_RENT_TO_AREA_DISTRIBUTION")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_RENT_TO_AREA_DISTRIBUTION")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000010
+
+	measure 'Label - Rent v Area by Region' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_RENT_V_AREA_BY_REGION")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_RENT_V_AREA_BY_REGION")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000011
+
+	measure 'Label - Rent to Area by Region' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_RENT_TO_AREA_BY_REGION")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_RENT_TO_AREA_BY_REGION")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000012
+
+	measure 'Label - Rent to Area Ratio SQM' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_RENT_TO_AREA_RATIO_SQM")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_RENT_TO_AREA_RATIO_SQM")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000013
+
+	measure 'Label - Number of Sites' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "SUBTITLE_NUMBER_OF_SITES")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "SUBTITLE_NUMBER_OF_SITES")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000014
+
+	measure 'Label - Bubble Property Hover' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "SUBTITLE_BUBBLE_PROPERTY_HOVER")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "SUBTITLE_BUBBLE_PROPERTY_HOVER")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000015
+
+	measure 'Label - Rent Area Excludes M2' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "SUBTITLE_RENT_AREA_EXCLUDES_M2")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "SUBTITLE_RENT_AREA_EXCLUDES_M2")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000016
+
+	measure 'Label - Strategic Countries' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "SUBTITLE_STRATEGIC_COUNTRIES")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "SUBTITLE_STRATEGIC_COUNTRIES")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000017
+
+	measure 'Label - Cost Area Exclusion' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "SUBTITLE_COST_AREA_EXCLUSION")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "SUBTITLE_COST_AREA_EXCLUSION")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000018
+
+	measure 'Label - Filters' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "HEADER_FILTERS")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "HEADER_FILTERS")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000019
+
+	measure 'Label - Expiring Year Range' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "LABEL_EXPIRING_YEAR_RANGE")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "LABEL_EXPIRING_YEAR_RANGE")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000020
+
+	measure 'Label - Dimension Filter' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "LABEL_DIMENSION_FILTER")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "LABEL_DIMENSION_FILTER")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000021
+
+	measure 'Label - Metric Filter' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "LABEL_METRIC_FILTER")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "LABEL_METRIC_FILTER")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000022
+
+	measure 'Label - With Area SQM' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "LABEL_WITH_AREA_SQM")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "LABEL_WITH_AREA_SQM")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000023
+
+	measure 'Label - Button Filters' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "BUTTON_FILTERS")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "BUTTON_FILTERS")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000024
+
+	measure 'Label - Filters ON' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "BUTTON_FILTERS_ON")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "BUTTON_FILTERS_ON")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000025
+
+	measure 'Label - Filters OFF' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "BUTTON_FILTERS_OFF")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "BUTTON_FILTERS_OFF")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000026
+
+	measure 'Label - Median Rent' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "LEGEND_MEDIAN_RENT")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "LEGEND_MEDIAN_RENT")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000027
+
+	measure 'Label - Global Rent' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "LEGEND_GLOBAL_RENT")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "LEGEND_GLOBAL_RENT")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000028
+
+	measure 'Label - Global Area' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "LEGEND_GLOBAL_AREA")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "LEGEND_GLOBAL_AREA")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000029
+
+	measure 'Label - Median Area' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "LEGEND_MEDIAN_AREA")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "LEGEND_MEDIAN_AREA")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000030
+
+	measure 'Label - Info Description' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "INFO_DESCRIPTION")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "INFO_DESCRIPTION")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000031
+
+	measure 'Label - Info Data Source' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "INFO_DATA_SOURCE")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "INFO_DATA_SOURCE")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000032
+
+	measure 'Label - Info Version By' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "INFO_VERSION_BY")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "INFO_VERSION_BY")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000033
+
+	measure 'Label - Info Owner' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "INFO_OWNER")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "INFO_OWNER")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000034
+
+	measure 'Label - Portfolio Strategy Report' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "PAGETITLE_PORTFOLIO_STRATEGY")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "PAGETITLE_PORTFOLIO_STRATEGY")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000035
+
+	measure 'Label - Total Head Count' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_TOTAL_HEAD_COUNT")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_TOTAL_HEAD_COUNT")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000036
+
+	measure 'Label - Total Capacity' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_TOTAL_CAPACITY")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_TOTAL_CAPACITY")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000037
+
+	measure 'Label - Total Area Title' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_TOTAL_AREA")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_TOTAL_AREA")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000038
+
+	measure 'Label - Total Area M2' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_TOTAL_AREA_M2")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_TOTAL_AREA_M2")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000039
+
+	measure 'Label - Total Annual Rent Title' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_TOTAL_ANNUAL_RENT")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_TOTAL_ANNUAL_RENT")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000040
+
+	measure 'Label - Total Building Capacity' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_TOTAL_BUILDING_CAPACITY")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_TOTAL_BUILDING_CAPACITY")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000041
+
+	measure 'Label - Total Acquisition Cost' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_TOTAL_ACQUISITION_COST")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_TOTAL_ACQUISITION_COST")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000042
+
+	measure 'Label - Number of Sites Title' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_NUMBER_OF_SITES")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_NUMBER_OF_SITES")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000043
+
+	measure 'Label - Rent by Upcoming End' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_RENT_BY_UPCOMING_END")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_RENT_BY_UPCOMING_END")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000044
+
+	measure 'Label - Area for Upcoming End' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_AREA_FOR_UPCOMING_END")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_AREA_FOR_UPCOMING_END")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000045
+
+	measure 'Label - Rent by Upcoming End Subtitle' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "SUBTITLE_RENT_BY_UPCOMING_END")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "SUBTITLE_RENT_BY_UPCOMING_END")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000046
+
+	measure 'Label - Rent and Area Detail' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_RENT_AND_AREA_DETAIL")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_RENT_AND_AREA_DETAIL")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000047
+
 	column Value
 		formatString: 0
 		lineageTag: 2e5f387c-7245-4df5-937a-292930740fa9

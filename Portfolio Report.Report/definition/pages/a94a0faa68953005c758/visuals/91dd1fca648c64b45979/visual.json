@@ -947,8 +947,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Total Area (m2)'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Total Area M2"
                 }
               }
             }
@@ -967,8 +972,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'(Number of strategic countries)'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Strategic Countries"
                 }
               }
             },

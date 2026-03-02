@@ -902,8 +902,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Total Building Capacity'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Total Building Capacity"
                 }
               }
             }
@@ -922,8 +927,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'(Number of strategic countries)'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Strategic Countries"
                 }
               }
             },

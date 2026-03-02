@@ -972,8 +972,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Number of Sites'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Number of Sites Title"
                 }
               }
             }
@@ -992,8 +997,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'(Number of strategic countries)'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Strategic Countries"
                 }
               }
             },

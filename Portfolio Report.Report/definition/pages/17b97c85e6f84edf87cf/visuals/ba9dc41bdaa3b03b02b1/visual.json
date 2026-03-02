@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ba9dc41bdaa3b03b02b1",
+  "position": {
+    "x": 1630,
+    "y": 0,
+    "z": 0,
+    "height": 220,
+    "width": 280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "تقرير استراتيجية المحفظة",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textAlignment": "right"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "textAlignment": "right"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "الوصف | محفظة وزارة الخارجية",
+                    "textStyle": {
+                      "textAlignment": "right"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "textAlignment": "right"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "مصادر البيانات وجداول التحديث | بيانات تجريبية (csv)",
+                    "textStyle": {
+                      "textAlignment": "right"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "textAlignment": "right"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "النسخة الحالية من إعداد | إريكا لوزادا",
+                    "textStyle": {
+                      "textAlignment": "right"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "مالك لوحة المعلومات |",
+                    "textStyle": {
+                      "textAlignment": "right"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

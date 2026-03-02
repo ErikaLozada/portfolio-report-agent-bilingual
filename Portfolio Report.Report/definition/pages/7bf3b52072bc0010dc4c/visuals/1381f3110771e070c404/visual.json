@@ -560,8 +560,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'KPIs'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - KPIs"
                 }
               }
             },

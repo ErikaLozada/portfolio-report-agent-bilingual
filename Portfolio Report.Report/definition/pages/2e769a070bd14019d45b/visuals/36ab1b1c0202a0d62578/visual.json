@@ -731,8 +731,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Rent to Area Ratio by Region'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Rent to Area by Region"
                 }
               }
             }
@@ -751,8 +756,13 @@
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'(Number of strategic countries)'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Strategic Countries"
                 }
               }
             },
