@@ -28,7 +28,7 @@ table Translations
 	partition Translations = calculated
 		mode: import
 		source = ```
-					
+				
 					DATATABLE(
 					    "Key", STRING,
 					    "EN", STRING,

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "30108a90da700babe061",
   "position": {
     "x": 0,
@@ -98,20 +98,6 @@
               },
               "queryRef": "Portfolio.Asset Exploitation ",
               "nativeQueryRef": "Asset Exploitation "
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Portfolio"
-                    }
-                  },
-                  "Property": "Building Type "
-                }
-              },
-              "queryRef": "Portfolio.Building Type ",
-              "nativeQueryRef": "Building Type "
             },
             {
               "field": {
@@ -227,23 +213,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Portfolio"
-                  }
-                },
-                "Property": "Building Type "
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "objects": {
@@ -330,20 +299,6 @@
           },
           "selector": {
             "metadata": "Portfolio.Country"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "134D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Portfolio.Building Type "
           }
         },
         {
@@ -449,7 +404,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "75D"
+                  "Value": "96.28196289771113D"
                 }
               }
             }
@@ -479,7 +434,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "4D"
                 }
               }
             }
@@ -715,6 +670,27 @@
               "expr": {
                 "Literal": {
                   "Value": "2D"
+                }
+              }
+            },
+            "customizeSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "spaceBelowTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            },
+            "spaceBelowSubTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
                 }
               }
             }

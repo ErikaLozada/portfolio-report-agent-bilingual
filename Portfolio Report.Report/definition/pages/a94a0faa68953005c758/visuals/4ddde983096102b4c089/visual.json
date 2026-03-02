@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "4ddde983096102b4c089",
   "position": {
     "x": 0,
@@ -238,7 +238,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Net Rent to Area Ratio ($/sqm)"
+                "Property": "Total Leased Area (m2)"
               }
             },
             "direction": "Descending"
@@ -253,7 +253,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "393.1798310711624D"
+                  "Value": "375.68748322897795D"
                 }
               }
             }
@@ -465,7 +465,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "4D"
                 }
               }
             }
@@ -779,7 +779,7 @@
             "verticalSpacing": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "5D"
                 }
               }
             }

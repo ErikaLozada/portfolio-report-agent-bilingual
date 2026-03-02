@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "e07f2d4bb31613a70a5a",
   "position": {
     "x": 1565.8243644387728,
@@ -97,7 +97,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#EEEFF0'"
+                      "Value": "'#F0EEEE'"
                     }
                   }
                 }

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "839b9991bce3a78490d8",
   "position": {
-    "x": 1013,
-    "y": 297,
+    "x": 1158.75,
+    "y": 306.25,
     "z": 10000,
     "height": 40,
-    "width": 128,
+    "width": 128.75,
     "tabOrder": 10000
   },
   "visual": {
@@ -143,7 +143,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Ratio'"
+                                "Value": "'Annual Rent'"
                               }
                             }
                           ]

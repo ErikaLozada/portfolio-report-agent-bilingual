@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "7dfccee870e700210aec",
   "position": {
-    "x": 1776.3636363636365,
-    "y": 276.36363636363632,
+    "x": 1776.25,
+    "y": 276.25,
     "z": 16000,
-    "height": 31.818181818181817,
-    "width": 137.27272727272725,
+    "height": 32.5,
+    "width": 133.75,
     "tabOrder": 15000
   },
   "visual": {
@@ -19,11 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "  تصفية البعد:",
+                    "value": "  :تصفية البعد",
                     "textStyle": {
                       "fontFamily": "Segoe UI Light",
-                      "fontSize": "12pt",
-                      "textAlignment": "right"
+                      "fontSize": "12pt"
                     }
                   }
                 ],

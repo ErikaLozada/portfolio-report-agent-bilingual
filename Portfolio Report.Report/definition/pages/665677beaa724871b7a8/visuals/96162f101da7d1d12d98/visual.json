@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "96162f101da7d1d12d98",
   "position": {
     "x": 12.66862619808316,
     "y": 12.851757188498402,
     "z": 12000,
     "height": 40.043961661341854,
-    "width": 168.02760383386581,
+    "width": 168,
     "tabOrder": 4000
   },
   "visual": {
@@ -120,8 +120,13 @@
           "properties": {
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Filters'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - Button Filters"
                 }
               }
             },

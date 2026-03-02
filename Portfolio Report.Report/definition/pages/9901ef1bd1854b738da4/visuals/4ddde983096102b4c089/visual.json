@@ -253,7 +253,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "393.1798310711624D"
+                  "Value": "380.68529689817353D"
                 }
               }
             }
@@ -465,7 +465,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "4D"
                 }
               }
             }
@@ -793,7 +793,7 @@
             "verticalSpacing": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "5D"
                 }
               }
             }

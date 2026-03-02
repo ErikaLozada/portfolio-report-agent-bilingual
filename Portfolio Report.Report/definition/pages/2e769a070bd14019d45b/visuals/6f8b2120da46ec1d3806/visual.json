@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "6f8b2120da46ec1d3806",
   "position": {
-    "x": 2.8571428571428572,
-    "y": 670,
+    "x": 2.5,
+    "y": 652.5,
     "z": 12000,
-    "height": 380,
-    "width": 717.14285714285722,
+    "height": 397.5,
+    "width": 717.5,
     "tabOrder": 12000
   },
   "visual": {
@@ -83,7 +83,7 @@
             "maxMarginFactor": {
               "expr": {
                 "Literal": {
-                  "Value": "50L"
+                  "Value": "35L"
                 }
               }
             },
@@ -241,6 +241,62 @@
             }
           }
         }
+      ],
+      "y1AxisReferenceLine": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "displayName": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Y-Axis Constant Line 1'"
+                }
+              }
+            },
+            "lineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.4
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "style": {
+              "expr": {
+                "Literal": {
+                  "Value": "'solid'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "1"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -264,7 +320,7 @@
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "20D"
                 }
               }
             },

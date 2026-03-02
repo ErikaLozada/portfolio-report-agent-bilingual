@@ -2064,6 +2064,14 @@ table _Measures
 		displayFolder: Labels\KPI
 		lineageTag: a0000001-0001-0001-0001-000000000067
 
+	measure 'detail Rank' =
+			
+			
+			RANKX( ALL(Portfolio),
+			        [Total Headcount])
+		formatString: 0
+		lineageTag: 9ab24f3e-21d4-4d15-ad44-4bc345e46ec4
+
 	column Value
 		formatString: 0
 		lineageTag: 2e5f387c-7245-4df5-937a-292930740fa9

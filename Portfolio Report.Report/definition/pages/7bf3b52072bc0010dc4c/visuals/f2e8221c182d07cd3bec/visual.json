@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "f2e8221c182d07cd3bec",
   "position": {
     "x": 0,
@@ -238,7 +238,7 @@
                     "Entity": "Portfolio"
                   }
                 },
-                "Property": "Nature Of Use "
+                "Property": "Site"
               }
             },
             "direction": "Ascending"
@@ -253,7 +253,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "343.9957430758856D"
+                  "Value": "376.49722294639736D"
                 }
               }
             }
@@ -281,7 +281,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "101.43900392652723D"
+                  "Value": "128.8204087661698D"
                 }
               }
             }
@@ -421,7 +421,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "174D"
+                  "Value": "92.75003405086912D"
                 }
               }
             }
@@ -449,7 +449,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "130D"
+                  "Value": "106.25D"
                 }
               }
             }
@@ -479,7 +479,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "4D"
                 }
               }
             }
@@ -636,7 +636,7 @@
             "verticalSpacing": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "5D"
                 }
               }
             }

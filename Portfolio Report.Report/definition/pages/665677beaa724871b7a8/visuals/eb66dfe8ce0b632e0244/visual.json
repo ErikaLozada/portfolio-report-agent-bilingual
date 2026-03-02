@@ -23,13 +23,13 @@
                       "Entity": "Portfolio"
                     }
                   },
-                  "Property": "Building Type "
+                  "Property": "Country"
                 }
               },
-              "queryRef": "Portfolio.Building Type ",
-              "nativeQueryRef": "Building Type ",
+              "queryRef": "Portfolio.Country",
+              "nativeQueryRef": "Country",
               "active": true,
-              "displayName": "Building Type "
+              "displayName": "Country"
             }
           ],
           "fieldParameters": [

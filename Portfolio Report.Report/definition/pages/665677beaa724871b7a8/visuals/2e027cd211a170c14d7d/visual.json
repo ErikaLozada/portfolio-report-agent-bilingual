@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "2e027cd211a170c14d7d",
   "position": {
     "x": 1100,
@@ -23,13 +23,13 @@
                       "Entity": "Portfolio"
                     }
                   },
-                  "Property": "Building Type "
+                  "Property": "Country"
                 }
               },
-              "queryRef": "Portfolio.Building Type ",
-              "nativeQueryRef": "Building Type ",
+              "queryRef": "Portfolio.Country",
+              "nativeQueryRef": "Country",
               "active": true,
-              "displayName": "Building Type "
+              "displayName": "Country"
             }
           ],
           "fieldParameters": [

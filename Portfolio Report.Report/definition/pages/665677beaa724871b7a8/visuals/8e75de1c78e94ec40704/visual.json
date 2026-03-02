@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "8e75de1c78e94ec40704",
   "position": {
     "x": 974.54545454545462,
@@ -19,11 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "  تصفية المقياس:",
+                    "value": "  :تصفية المقياس",
                     "textStyle": {
                       "fontFamily": "Segoe UI Light",
-                      "fontSize": "12pt",
-                      "textAlignment": "right"
+                      "fontSize": "12pt"
                     }
                   }
                 ],

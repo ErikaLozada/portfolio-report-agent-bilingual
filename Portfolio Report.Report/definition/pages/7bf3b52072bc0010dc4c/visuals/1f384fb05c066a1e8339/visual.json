@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "1f384fb05c066a1e8339",
   "position": {
     "x": 1570.4909904153353,
@@ -92,17 +92,6 @@
       "background": [
         {
           "properties": {
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#EEEFF0'"
-                    }
-                  }
-                }
-              }
-            },
             "transparency": {
               "expr": {
                 "Literal": {
@@ -114,6 +103,17 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F0EEEE'"
+                    }
+                  }
                 }
               }
             }
