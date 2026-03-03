@@ -169,10 +169,7 @@ table Translations
 				        {"INFO_VERSION_BY", "Current Version Create By | Erika Lozada", "النسخة الحالية من إعداد | إريكا لوزادا"},
 				        {"INFO_OWNER", "Dashboard Business Owner |", "مالك لوحة المعلومات |"},
 				
-				        // KPI CARD LABELS
-				        {"KPI_TOTAL_SITES", "Total Sites", "إجمالي المواقع"},
-				        {"KPI_SITES_LEASED", "Sites Leased", "مواقع مؤجرة"},
-				        {"KPI_SITES_OWNED", "Sites Owned", "مواقع مملوكة"},
+				        // KPI CARD LABELS (KPI_TOTAL_SITES, KPI_SITES_LEASED, KPI_SITES_OWNED already defined above)
 				        {"KPI_TOTAL_AREA_SQM", "Total Area (sqm)", "إجمالي المساحة (م²)"},
 				        {"KPI_TOTAL_LEASED_AREA_SQM", "Total Leased Area (Sqm)", "إجمالي المساحة المؤجرة (م²)"},
 				        {"KPI_TOTAL_ANNUAL_RENT", "Total Annual Rent", "إجمالي الإيجار السنوي"},

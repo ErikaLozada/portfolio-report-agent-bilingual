@@ -366,6 +366,18 @@
                 }
               }
             },
+            "text": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Label - KPI Sites Owned"
+                }
+              }
+            },
             "fontFamily": {
               "expr": {
                 "Literal": {

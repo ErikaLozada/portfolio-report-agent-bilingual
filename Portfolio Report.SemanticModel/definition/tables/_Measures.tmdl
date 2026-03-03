@@ -6,6 +6,7 @@ table _Measures
 			        DISTINCTCOUNT('Portfolio'[Site])
 			```
 		formatString: 0
+		displayFolder: Core KPIs
 		lineageTag: 02f3e742-d37d-48ae-bdb0-170e443f8328
 
 	measure 'Sites Leased' = ```
@@ -16,6 +17,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: Core KPIs
 		lineageTag: 3c20c89d-bf78-4afe-8a07-7d0c211b1edc
 
 	measure 'Sites Owned' = ```
@@ -26,6 +28,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: Core KPIs
 		lineageTag: ae793239-4748-4cac-aacf-648979e7f3b3
 
 	measure 'Sites Leased %' = ```
@@ -33,6 +36,7 @@ table _Measures
 			        DIVIDE([Sites Leased], [Total Sites], 0)
 			```
 		formatString: 0%;-0%;0%
+		displayFolder: Core KPIs
 		lineageTag: 1cea3860-42dd-4a77-bb96-5e426c316957
 
 	measure 'Sites Owned %' = ```
@@ -40,6 +44,7 @@ table _Measures
 			        DIVIDE([Sites Owned], [Total Sites], 0)
 			```
 		formatString: 0%;-0%;0%
+		displayFolder: Core KPIs
 		lineageTag: 16da9a9c-902b-4f58-ae2d-ddfe36092c19
 
 	measure 'Total Annual Rent (SAR)' = ```
@@ -60,6 +65,7 @@ table _Measures
 			                'Portfolio'[Exchange Rate vs. SAR (per XE.com)]
 			        )
 			```
+		displayFolder: Currency & Cost
 		lineageTag: 59bb7f05-3a1f-48bc-a9e1-5a655241eac4
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -71,6 +77,7 @@ table _Measures
 			        RETURN
 			            DIVIDE([Total Annual Rent (SAR)], USDToSARRate, 0)
 			```
+		displayFolder: Currency & Cost
 		lineageTag: b8f5c59d-f997-4eb1-97c9-c4cda8dfc589
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -79,6 +86,7 @@ table _Measures
 			
 			        SUM('Portfolio'[Total Building Area (m²)])
 			```
+		displayFolder: Core KPIs
 		lineageTag: 471cc296-ebf6-4e5c-9539-6c52ccfc2fb6
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -88,6 +96,7 @@ table _Measures
 			        DIVIDE([Total Annual Rent with area], [Total Leased Area (m2)])
 			```
 		formatString: #,0
+		displayFolder: Currency & Cost
 		lineageTag: 0c381b6c-ba97-4a4c-9728-06833399d8e5
 
 		annotation PBI_FormatHint = {"isDecimal":true}
@@ -97,6 +106,7 @@ table _Measures
 			        SUM('Portfolio'[Number of Employees in the Building])
 			```
 		formatString: #,0
+		displayFolder: Core KPIs
 		lineageTag: 16503190-15f5-48c8-ad4b-5ff970c94b8a
 
 		annotation PBI_FormatHint = {"isDecimal":true}
@@ -106,6 +116,7 @@ table _Measures
 			        SUM('Portfolio'[Building Capacity])
 			```
 		formatString: #,0
+		displayFolder: Core KPIs
 		lineageTag: 6ce37e44-a35f-4c84-a8fb-73cd35540bb5
 
 		annotation PBI_FormatHint = {"isDecimal":true}
@@ -114,6 +125,7 @@ table _Measures
 			
 			        DIVIDE([Total Headcount], [Total Capacity], 0)
 			```
+		displayFolder: saveForDeletion
 		lineageTag: 2905de22-96be-4a01-867a-18fd54aa6f31
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -123,6 +135,7 @@ table _Measures
 			        CALCULATE(AVERAGE('Portfolio'[Building Utilization Rate]), Portfolio[Building Utilization Rate]>0.0 || not ISBLANK(Portfolio[Building Utilization Rate]))
 			```
 		formatString: 0%;-0%;0%
+		displayFolder: Core KPIs
 		lineageTag: 98418cc1-153c-4ab0-84f1-9a8f0f8961e1
 
 	measure 'Expiring <=36 Months' = ```
@@ -138,6 +151,7 @@ table _Measures
 			RETURN
 			_count
 			```
+		displayFolder: Core KPIs
 		lineageTag: 30634234-4bb9-4c07-9e82-7cc0c5347cfa
 
 		formatStringDefinition = "#"
@@ -151,6 +165,7 @@ table _Measures
 			        )
 			```
 		formatString: #,0
+		displayFolder: Expiring & Lease
 		lineageTag: 523cec8a-58cc-47ba-be6b-95b9e04b5979
 
 		annotation PBI_FormatHint = {"isDecimal":true}
@@ -163,6 +178,7 @@ table _Measures
 			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
 			        )
 			```
+		displayFolder: saveForDeletion
 		lineageTag: 1daa5448-f28f-4f46-9fd9-7505838575a3
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -175,6 +191,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: bf434067-653a-4a76-aaf2-0fdcdb6a52f2
 
 	measure 'Expired Leases Total Rent' = ```
@@ -184,6 +201,7 @@ table _Measures
 			            'Portfolio'[Lease End Date ] < TODAY()
 			        )
 			```
+		displayFolder: saveForDeletion
 		lineageTag: c31c4508-5c4c-4b95-899a-51cdf75e61cf
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -194,6 +212,7 @@ table _Measures
 			            [Total Area (sqm)],
 			            'Portfolio'[Lease End Date ] < TODAY())
 			```
+		displayFolder: saveForDeletion
 		lineageTag: d274b749-a8f3-4332-8648-6212a58072c3
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -210,23 +229,27 @@ table _Measures
 			            )
 			```
 		formatString: #,0
+		displayFolder: Currency & Cost
 		lineageTag: 5675ca3d-9fea-4b0b-b4b0-7628ae017475
 
 		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Total Leased Area (m2)' = CALCULATE([Total Area (sqm)],  'Portfolio'[Acquisition Type] = "Leased" )
 		formatString: #,0
+		displayFolder: Currency & Cost
 		lineageTag: 1519d0eb-6e3f-4199-8196-ff858e5cbd20
 
 		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Count of strategic countries' = FORMAT(CALCULATE(DISTINCTCOUNT(Portfolio[Country]), Portfolio[Strategic Country] = "Yes"),"(#)")
+		displayFolder: Core KPIs
 		lineageTag: 220acc3f-03a8-4f36-8ff4-c5f10e9e2c92
 
 	measure 'Net Rent to Area Ratio (USD/sqm)' = ```
 			
 			        DIVIDE([Total Annual Rent (USD)], [Total Area (sqm)], 0)
 			```
+		displayFolder: saveForDeletion
 		lineageTag: a1d807b3-4303-4f68-b382-eae6975a1807
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -235,6 +258,7 @@ table _Measures
 			
 			        DIVIDE([Total Annual Rent (SAR)], [Total Area (sqm)], 0)
 			```
+		displayFolder: saveForDeletion
 		lineageTag: 0322719e-cd39-4edf-89f5-fe570ab179f5
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -247,6 +271,7 @@ table _Measures
 			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
 			        )
 			```
+		displayFolder: saveForDeletion
 		lineageTag: d280819b-9800-40aa-a486-942679524c4d
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -259,6 +284,7 @@ table _Measures
 			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0
 			        )
 			```
+		displayFolder: saveForDeletion
 		lineageTag: dd86301a-dddd-439e-b3d1-471f2928bb3b
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -270,6 +296,7 @@ table _Measures
 			            'Portfolio'[Lease End Date ] < TODAY()
 			        )
 			```
+		displayFolder: saveForDeletion
 		lineageTag: 75c0bf4e-92e8-4ba9-83eb-021c84f3d40c
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -281,6 +308,7 @@ table _Measures
 			            CALCULATE([Net Rent to Area Ratio ($/sqm)] )
 			        )
 			```
+		displayFolder: saveForDeletion
 		lineageTag: 8eb9eb3d-3b63-4353-a02c-6bda172d34c2
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -310,6 +338,7 @@ table _Measures
 			            CALCULATE([Net Rent to Area Ratio ($/sqm)])
 			        )
 			```
+		displayFolder: saveForDeletion
 		lineageTag: 31c38273-a875-4d6c-ace3-62bcecc4fe66
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -318,6 +347,7 @@ table _Measures
 			
 			        [Average Rent to Area Ratio] + (2 * [Rent to Area Ratio Std Dev])
 			```
+		displayFolder: saveForDeletion
 		lineageTag: 85478c57-72fa-4147-a305-10c7bce7c703
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -326,6 +356,7 @@ table _Measures
 			
 			        [Average Rent to Area Ratio] - (2 * [Rent to Area Ratio Std Dev])
 			```
+		displayFolder: saveForDeletion
 		lineageTag: 0e84c3b0-db87-4513-b9b4-7e7e2466feb1
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -344,6 +375,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: 3eae815e-820f-49e7-8ece-0a8e39b0ab89
 
 	measure 'Outlier Properties Count' = ```
@@ -360,6 +392,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: b1612b6b-1d1d-40c5-b4b3-61131c7cc04a
 
 	measure 'Median Annual Rent' = ```
@@ -407,6 +440,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: 3cb56035-1964-4fc1-8192-3630ed1add8d
 
 	measure 'Properties Above Median Area' = ```
@@ -416,6 +450,7 @@ table _Measures
 			            'Portfolio'[Total Building Area (m²)] > [Median Area]
 			        )
 			```
+		displayFolder: saveForDeletion
 		lineageTag: e71c7fac-31c0-4e77-ab3a-149305e77586
 
 	measure 'Properties Above Both Medians' = ```
@@ -430,6 +465,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: 71f3adfb-6d37-43ce-b2bb-b29d762a46fe
 
 	measure 'Properties in Low Ratio Bucket' = ```
@@ -443,6 +479,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: 48cabb8e-5b6d-4aa2-870e-b66777422752
 
 	measure 'Properties in High Ratio Bucket' = ```
@@ -456,6 +493,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: a02d660b-9da9-45e7-ae0e-f415e546165f
 
 	measure 'Properties Above Median Rent by Continent' = ```
@@ -470,6 +508,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: 36a0de92-03b3-4ee0-8351-d456ed0c0c83
 
 	measure 'Properties Above Median Area by Continent' = ```
@@ -480,6 +519,7 @@ table _Measures
 			            VALUES('Portfolio'[Continent])
 			        )
 			```
+		displayFolder: saveForDeletion
 		lineageTag: ebe1e8b8-aaa1-4e1e-bbd2-e6c4b4f925e9
 
 	measure 'Properties Above Both Medians by Continent' = ```
@@ -495,6 +535,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: becf8b8a-00db-4d34-a63e-7b4aa8ac3823
 
 	measure 'Average Rent to Area Ratio by Continent' = ```
@@ -507,6 +548,7 @@ table _Measures
 			            CALCULATE([Net Rent to Area Ratio ($/sqm)])
 			        )
 			```
+		displayFolder: saveForDeletion
 		lineageTag: c118cbb5-9758-48e8-afc4-33a56b77b801
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -525,7 +567,7 @@ table _Measures
 			            [Ratio]
 			        )
 			```
-		displayFolder: Distribution
+		displayFolder: saveForDeletion
 		lineageTag: 9c670c49-5f26-48db-8f91-2ee32089df27
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -544,7 +586,7 @@ table _Measures
 			            [Ratio]
 			        )
 			```
-		displayFolder: Distribution
+		displayFolder: saveForDeletion
 		lineageTag: 26c4e7e8-d136-48f6-b40f-0428e3eee5da
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -563,7 +605,7 @@ table _Measures
 			            [Ratio]
 			        )
 			```
-		displayFolder: Distribution
+		displayFolder: saveForDeletion
 		lineageTag: 3eebb852-f356-4bf8-8431-643ad0fcaab4
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -576,6 +618,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: 840665c9-3e85-4e6c-9fc9-d19eaee73716
 
 	measure 'Sites Leased with Area Data' = ```
@@ -587,6 +630,7 @@ table _Measures
 			        )
 			```
 		formatString: 0
+		displayFolder: Core KPIs
 		lineageTag: 6e9cdcbd-e0d5-4ace-8866-53f9ba5f7ce1
 
 	measure 'Total Annual Rent with Area (SAR)' = ```
@@ -596,6 +640,7 @@ table _Measures
 			            NOT(ISBLANK('Portfolio'[Total Building Area (m²)]))
 			        )
 			```
+		displayFolder: Currency & Cost
 		lineageTag: 242a21a8-eb42-4e36-bba0-856efe89aee5
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -607,6 +652,7 @@ table _Measures
 			            NOT(ISBLANK('Portfolio'[Total Building Area (m²)]))
 			        )
 			```
+		displayFolder: Currency & Cost
 		lineageTag: 2ec0b64a-572d-4ef0-a61d-e8131dfd37f4
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -623,6 +669,7 @@ table _Measures
 			            )
 			```
 		formatString: #,0.00
+		displayFolder: Currency & Cost
 		lineageTag: 99303dc4-9822-43b0-86ba-c37ceeaeda7d
 
 	measure 'Button - Info' = ```
@@ -638,12 +685,14 @@ table _Measures
 			    LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "BUTTON_INFORMATION")
 			)
 			```
+		displayFolder: Visual Titles
 		lineageTag: 1194aa0c-5f8e-4f14-9199-0a2b01d6e61a
 
 	measure 'Selected Language' =
 			
 			VAR Lang = SELECTEDVALUE('Language'[Code], "EN")
 			RETURN Lang
+		displayFolder: Bilingual
 		lineageTag: ea4fd230-82d5-44e1-92e7-392566d9ac33
 
 	measure 'Q1 Rent to Area Ratio' = ```
@@ -834,7 +883,7 @@ table _Measures
 			            0.25
 			        )
 			```
-		displayFolder: Distribution
+		displayFolder: saveForDeletion
 		lineageTag: 0c58efbd-e1ba-48a6-a63a-3cded6ebcce8
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -854,7 +903,7 @@ table _Measures
 			            0.75
 			        )
 			```
-		displayFolder: Distribution
+		displayFolder: saveForDeletion
 		lineageTag: 75c7b049-8d0c-43b6-89cd-428fd4acb527
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -863,7 +912,7 @@ table _Measures
 			
 			        [Q3 Rent to Area Ratio by Continent] - [Q1 Rent to Area Ratio by Continent]
 			```
-		displayFolder: Distribution
+		displayFolder: saveForDeletion
 		lineageTag: 6b991c45-69a3-4d10-b0f8-ba1ea9daf8eb
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -950,6 +999,7 @@ table _Measures
 			    _text & FORMAT(_date, "dd mmm yy hh:mm AM/PM"),
 			    _text & "N/A"
 			)
+		displayFolder: Visual Titles
 		lineageTag: b560262a-1705-4f32-8d95-7c1593499e9a
 
 	measure 'CF Rent at Risk' = ```
@@ -961,6 +1011,7 @@ table _Measures
 			        )>0,1,0)
 			```
 		formatString: 0
+		displayFolder: Expiring & Lease
 		lineageTag: 319a86bf-87f9-4269-a096-94c6368abf4a
 
 	measure 'Upcoming End of Leases Total Area (sqm)' = ```
@@ -970,12 +1021,14 @@ table _Measures
 			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) <= 36 &&
 			            DATEDIFF(TODAY(), 'Portfolio'[Lease End Date ], MONTH) > 0 )
 			```
+		displayFolder: Expiring & Lease
 		lineageTag: 5dbf921c-c784-4689-9f4d-8dd75c57ac0b
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Total Owned Area (m2)' = CALCULATE([Total Area (sqm)],  'Portfolio'[Acquisition Type] = "Owned" )
 		formatString: #,0
+		displayFolder: Currency & Cost
 		lineageTag: 291bb8ef-46f0-41a9-ae48-505aca5c9181
 
 		annotation PBI_FormatHint = {"isDecimal":true}
@@ -992,6 +1045,7 @@ table _Measures
 			            )
 			```
 		formatString: #,0
+		displayFolder: Currency & Cost
 		lineageTag: 250d2f9e-404e-4b4b-b6cf-9618ca5e6495
 
 		annotation PBI_FormatHint = {"isDecimal":true}
@@ -1012,6 +1066,7 @@ table _Measures
 			                'Portfolio'[Acquisition Cost SAR]
 			        )
 			```
+		displayFolder: Currency & Cost
 		lineageTag: cd745f14-fd71-437f-882c-e786d8111d17
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1023,6 +1078,7 @@ table _Measures
 			        RETURN
 			            DIVIDE([Total Adquisition Cost (SAR)], USDToSARRate, 0)
 			```
+		displayFolder: Currency & Cost
 		lineageTag: dc280c44-a8b7-4ccb-9af6-36d1fb40bfbc
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1039,6 +1095,7 @@ table _Measures
 			            'Portfolio'[Total Building Area (m²)]
 			        ), all(Portfolio))
 			```
+		displayFolder: Quadrant Analysis
 		lineageTag: c161d37f-ddd9-4ce6-90cb-12ef49d9eedf
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1056,6 +1113,7 @@ table _Measures
 			            [AnnualRent]
 			        ), ALL(Portfolio))
 			```
+		displayFolder: Quadrant Analysis
 		lineageTag: bba6c202-5706-4aea-b631-52634cf4fa81
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1115,7 +1173,7 @@ table _Measures
 			)
 			```
 		formatString: #,0
-		displayFolder: Quadrant Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 37d7b716-b3f4-42c6-a7f6-aa92030f4a3f
 
 	/// Properties with Area at or below median and Annual Rent at or below median
@@ -1144,7 +1202,7 @@ table _Measures
 			)
 			```
 		formatString: #,0
-		displayFolder: Quadrant Analysis
+		displayFolder: saveForDeletion
 		lineageTag: a8b107b7-9325-4214-9276-841e0a037940
 
 	/// Properties with Area above median and Annual Rent at or below median
@@ -1173,37 +1231,37 @@ table _Measures
 			)
 			```
 		formatString: #,0
-		displayFolder: Quadrant Analysis
+		displayFolder: saveForDeletion
 		lineageTag: e542fc7f-33ac-42a6-9378-62932dca39f2
 
 	/// Total count of properties included in quadrant analysis
 	measure 'Total Properties in Quadrant Analysis' = [Quadrant 1 - High Area, High Rent] + [Quadrant 2 - Low Area, High Rent] + [Quadrant 3 - Low Area, Low Rent] + [Quadrant 4 - High Area, Low Rent]
 		formatString: #,0
-		displayFolder: Quadrant Analysis
+		displayFolder: saveForDeletion
 		lineageTag: b327dbb8-e531-4c8d-9df5-14ac44b3b513
 
 	/// Percentage of properties in Quadrant 1 (High Area, High Rent)
 	measure 'Quadrant 1 - % of Total' = DIVIDE([Quadrant 1 - High Area, High Rent], [Total Properties in Quadrant Analysis], 0)
 		formatString: 0.0%
-		displayFolder: Quadrant Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 3e07f83f-6ef1-44ce-bc2b-e428c11bd251
 
 	/// Percentage of properties in Quadrant 2 (Low Area, High Rent)
 	measure 'Quadrant 2 - % of Total' = DIVIDE([Quadrant 2 - Low Area, High Rent], [Total Properties in Quadrant Analysis], 0)
 		formatString: 0.0%
-		displayFolder: Quadrant Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 5d574693-07cc-458a-a3a7-f4e549c95323
 
 	/// Percentage of properties in Quadrant 3 (Low Area, Low Rent)
 	measure 'Quadrant 3 - % of Total' = DIVIDE([Quadrant 3 - Low Area, Low Rent], [Total Properties in Quadrant Analysis], 0)
 		formatString: 0.0%
-		displayFolder: Quadrant Analysis
+		displayFolder: saveForDeletion
 		lineageTag: f90f3893-7953-4d75-b5cf-0b6fc5e0167a
 
 	/// Percentage of properties in Quadrant 4 (High Area, Low Rent)
 	measure 'Quadrant 4 - % of Total' = DIVIDE([Quadrant 4 - High Area, Low Rent], [Total Properties in Quadrant Analysis], 0)
 		formatString: 0.0%
-		displayFolder: Quadrant Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 00108700-d69e-472d-81b0-9b3b9f43e4c7
 
 	/// Overall portfolio efficiency combining rent per sqm and utilization
@@ -1214,7 +1272,7 @@ table _Measures
 			    0
 			) * [Average Utilization Rate]
 		formatString: #,0.00
-		displayFolder: Portfolio Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 6be2cf5d-fb9a-47f7-b49b-aef89d6d0608
 
 	/// Properties with utilization rate below 50%
@@ -1228,7 +1286,7 @@ table _Measures
 			    )
 			)
 		formatString: #,0
-		displayFolder: Portfolio Analysis
+		displayFolder: Core KPIs
 		lineageTag: 4177ce20-0369-48ea-84f4-5ca67bab358e
 
 	/// Properties missing rent data or with zero rent
@@ -1245,7 +1303,7 @@ table _Measures
 			    ), ALL(Portfolio)
 			)
 		formatString: #,0
-		displayFolder: Portfolio Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 4acba55c-dfa0-4549-91a6-c74d9cc3f3a8
 
 	/// Properties missing area data or with zero area
@@ -1259,7 +1317,7 @@ table _Measures
 			    )
 			)
 		formatString: #,0
-		displayFolder: Portfolio Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 044b4cc7-aa02-488b-be58-fb6671235f0a
 
 	/// Average rent per square meter across property types
@@ -1273,7 +1331,7 @@ table _Measures
 			    )
 			)
 		formatString: #,0.00
-		displayFolder: Portfolio Analysis
+		displayFolder: saveForDeletion
 		lineageTag: df2e967b-7daf-4ede-bcc8-5adf901db5e0
 
 	/// Return on investment for owned properties (Annual Rent / Acquisition Cost)
@@ -1290,7 +1348,7 @@ table _Measures
 			    0
 			)
 		formatString: 0.0%
-		displayFolder: Portfolio Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 43cb05e5-f886-41c8-911e-2cb3c5851bec
 
 	/// Count of properties in poor condition requiring attention
@@ -1300,7 +1358,7 @@ table _Measures
 			    'Portfolio'[Asset Condition] = "Poor"
 			)
 		formatString: #,0
-		displayFolder: Portfolio Analysis
+		displayFolder: saveForDeletion
 		lineageTag: b86659ef-47c8-46de-a4f7-0a11db91b7ff
 
 	/// Estimated potential rent recovery if underutilized properties reach 50% utilization
@@ -1315,7 +1373,7 @@ table _Measures
 			    )
 			)
 		formatString: #,0
-		displayFolder: Portfolio Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 6386aed0-08c3-47c5-b091-3e1b7f69b729
 
 	/// Overall portfolio health score (0-100) combining data completeness, utilization, and condition
@@ -1339,7 +1397,7 @@ table _Measures
 			    (DataCompleteness * 0.4 + UtilizationScore * 0.4 + ConditionScore * 0.2) * 100
 			```
 		formatString: 0.0
-		displayFolder: Portfolio Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 8bb6904e-46ed-4672-8147-ca272547e359
 
 	/// Percentage of properties with complete rent and area data
@@ -1358,7 +1416,7 @@ table _Measures
 			RETURN _RESULT
 			```
 		formatString: 0%;-0%;0%
-		displayFolder: Portfolio Analysis
+		displayFolder: saveForDeletion
 		lineageTag: ccecab8d-f947-4e55-b20b-800f04e20e3a
 
 	/// Count of properties by country
@@ -1368,7 +1426,7 @@ table _Measures
 			    ALLSELECTED('Portfolio'[Country])
 			)
 		formatString: #,0
-		displayFolder: Country Analysis
+		displayFolder: saveForDeletion
 		lineageTag: c98c1ffc-3e37-4d30-a27c-2bcce6df943d
 
 	/// Total area in square meters by country
@@ -1378,7 +1436,7 @@ table _Measures
 			    ALLSELECTED('Portfolio'[Country])
 			)
 		formatString: #,0
-		displayFolder: Country Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 3a2c7974-481e-41a4-b2f3-714d7d415b4b
 
 	/// Total annual rent by country
@@ -1388,7 +1446,7 @@ table _Measures
 			    ALLSELECTED('Portfolio'[Country])
 			)
 		formatString: #,0
-		displayFolder: Country Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 832452e1-97c5-462c-bcf2-b5f174a32dcd
 
 	/// Average rent per square meter by country
@@ -1399,7 +1457,7 @@ table _Measures
 			    0
 			)
 		formatString: #,0.00
-		displayFolder: Country Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 92ce29c8-3e83-4474-8567-c328cd583f6c
 
 	/// Average utilization rate by country
@@ -1409,7 +1467,7 @@ table _Measures
 			    ALLSELECTED('Portfolio'[Country])
 			)
 		formatString: 0.0%
-		displayFolder: Country Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 66f6695d-62cd-464e-92bb-4d67c780f5a3
 
 	/// Count of leased properties by country
@@ -1420,7 +1478,7 @@ table _Measures
 			    ALLSELECTED('Portfolio'[Country])
 			)
 		formatString: #,0
-		displayFolder: Country Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 64742a4c-388e-445b-9df7-d45b32595f75
 
 	/// Count of owned properties by country
@@ -1431,7 +1489,7 @@ table _Measures
 			    ALLSELECTED('Portfolio'[Country])
 			)
 		formatString: #,0
-		displayFolder: Country Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 471dd31b-f005-4b9b-a594-6a09b865b57e
 
 	/// Count of allocated properties by country
@@ -1442,7 +1500,7 @@ table _Measures
 			    ALLSELECTED('Portfolio'[Country])
 			)
 		formatString: #,0
-		displayFolder: Country Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 60cd7d37-bed5-4430-9905-7bab32d13b5d
 
 	/// Count of properties in poor condition by country
@@ -1453,7 +1511,7 @@ table _Measures
 			    ALLSELECTED('Portfolio'[Country])
 			)
 		formatString: #,0
-		displayFolder: Country Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 67f5327a-52a7-4735-920a-82d14fde9ab5
 
 	/// Count of underutilized properties by country
@@ -1463,7 +1521,7 @@ table _Measures
 			    ALLSELECTED('Portfolio'[Country])
 			)
 		formatString: #,0
-		displayFolder: Country Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 7eb5df28-eedc-4ecc-ba01-fe26fec695fb
 
 	/// Portfolio health score by country
@@ -1473,7 +1531,7 @@ table _Measures
 			    ALLSELECTED('Portfolio'[Country])
 			)
 		formatString: 0.0
-		displayFolder: Country Analysis
+		displayFolder: saveForDeletion
 		lineageTag: 5e698dbd-2595-4f40-9d4b-a836006401fc
 
 	/// Properties expiring within 3 years by country
@@ -1483,11 +1541,12 @@ table _Measures
 			    ALLSELECTED('Portfolio'[Country])
 			)
 		formatString: #,0
-		displayFolder: Country Analysis
+		displayFolder: saveForDeletion
 		lineageTag: e41da63f-6ccf-4fbf-84b0-ff05d94383a2
 
 	measure 'Properties with Area and Cost Data' = COUNTROWS( FILTER(Portfolio, (Portfolio[Rent / Acquisition Cost (SAR)] > 0 && Portfolio[Total Building Area (m²)] > 0)))
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: 0c4fbc7d-4e1f-4a93-89dd-ef810f06301f
 
 	measure 'Total Cost' =
@@ -1496,12 +1555,14 @@ table _Measures
 			                    "Owned", [Total Acquisition Cost], [Total Annual Rent]
 			
 			)
+		displayFolder: Currency & Cost
 		lineageTag: eddc6b83-0e3a-44bb-9686-70102b08a33a
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Properties with Missing Area and Cost' = COUNTROWS( FILTER(Portfolio, (Portfolio[Rent / Acquisition Cost (SAR)] <= 0 && Portfolio[Total Building Area (m²)] <= 0)))
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: 71d6515f-1701-445a-9bf8-85043817a40d
 
 	measure 'Upcoming Renewal Sites' = ```
@@ -1514,18 +1575,21 @@ table _Measures
 			        RETURN _renewal
 			```
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: 9128ef1b-43a7-495b-b592-cc25244f34b9
 
 	measure 'Visual Title - Expiring Metric' =
 			
 			VAR _measure =  SELECTEDVALUE(prm_metric[Field])
 			RETURN _measure & " by End of Lease Date"
+		displayFolder: Visual Titles
 		lineageTag: 5754c260-fd4e-4ce5-9fff-b3253f3cf722
 
 	measure 'Visual Title - Expiring Metric running Total' =
 			
 			VAR _measure =  SELECTEDVALUE(prm_metric[Field])
 			RETURN "Running Total " & _measure & " by End of Lease Date"
+		displayFolder: Visual Titles
 		lineageTag: 2f6dfa28-3fe5-479d-921f-b1da1e8b080c
 
 	measure 'Label - Page Overview' =
@@ -2074,6 +2138,7 @@ table _Measures
 
 	column Value
 		formatString: 0
+		displayFolder: saveForDeletion
 		lineageTag: 2e5f387c-7245-4df5-937a-292930740fa9
 		summarizeBy: sum
 		isNameInferred

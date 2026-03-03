@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "aae2003eb0361e02cab4",
   "position": {
-    "x": 391.818181818182,
-    "y": 272.72727272727269,
+    "x": 342,
+    "y": 273,
     "z": 18000,
     "height": 40,
-    "width": 582.72727272727263,
+    "width": 633,
     "tabOrder": 17000
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "prm_metric"
                     }
                   },
-                  "Property": "Parameter"
+                  "Property": "Field"
                 }
               },
-              "queryRef": "Parameter.Parameter",
-              "nativeQueryRef": "Parameter"
+              "queryRef": "prm_metric.Field",
+              "nativeQueryRef": "Field"
             }
           ]
         }
@@ -59,7 +59,7 @@
                                   "Source": "p"
                                 }
                               },
-                              "Property": "Parameter Fields"
+                              "Property": "Field"
                             }
                           }
                         ],
@@ -67,60 +67,10 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''_Measures''[Total Leased Area (m2)]'"
+                                "Value": "'Leased Area (m2)'"
                               }
                             }
                           ]
-                        ]
-                      }
-                    },
-                    "Annotations": {
-                      "filterExpressionMetadata": {
-                        "expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Entity": "prm_metric"
-                                }
-                              },
-                              "Property": "Parameter"
-                            }
-                          }
-                        ],
-                        "decomposedIdentities": {
-                          "values": [
-                            [
-                              {
-                                "0": [
-                                  {
-                                    "Literal": {
-                                      "Value": "'''_Measures''[Total Leased Area (m2)]'"
-                                    }
-                                  }
-                                ]
-                              }
-                            ]
-                          ],
-                          "columns": [
-                            {
-                              "value": {
-                                "Column": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Entity": "prm_metric"
-                                    }
-                                  },
-                                  "Property": "Parameter Fields"
-                                }
-                              }
-                            }
-                          ]
-                        },
-                        "valueMap": [
-                          {
-                            "0": "Leased Area (m2)"
-                          }
                         ]
                       }
                     }
@@ -224,6 +174,17 @@
           },
           "selector": {
             "id": "selection:selected"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
           }
         }
       ],
@@ -364,6 +325,29 @@
             "id": "selection:selected"
           }
         }
+      ],
+      "label": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelSource": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -494,5 +478,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9830ec5a800b566850e0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "prm_metric"
+              }
+            },
+            "Property": "Field"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }
