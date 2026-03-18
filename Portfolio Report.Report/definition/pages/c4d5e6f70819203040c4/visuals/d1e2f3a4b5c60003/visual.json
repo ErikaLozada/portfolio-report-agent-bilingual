@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "d1e2f3a4b5c60003",
+  "position": {
+    "x": 1320,
+    "y": 0,
+    "z": 10000,
+    "height": 48,
+    "width": 600,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "تفاصيل المبادرة",
+                    "textStyle": {
+                      "fontFamily": "'Segoe UI Light', wf_segoe-ui_light, helvetica, arial, sans-serif",
+                      "fontSize": "16px",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "right"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

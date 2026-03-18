@@ -186,7 +186,25 @@ table Translations
 				        {"KPI_MISSING_AREA", "Properties with Missing Area Data", "عقارات بدون بيانات مساحة"},
 				        {"KPI_DATA_COMPLETENESS", "Data Completeness %", "نسبة اكتمال البيانات %"},
 				        {"KPI_WITH_AREA_COST", "Properties with Area and Cost Data", "عقارات ببيانات مساحة وتكلفة"},
-				        {"KPI_MISSING_AREA_COST", "Properties with Missing Area and Cost", "عقارات بدون بيانات مساحة وتكلفة"}
+				        {"KPI_MISSING_AREA_COST", "Properties with Missing Area and Cost", "عقارات بدون بيانات مساحة وتكلفة"},
+				
+				        // INITIATIVES PAGE
+				        {"TITLE_PAGE_INITIATIVES_OVERVIEW", "Portfolio Strategy | Initiatives Overview", "استراتيجية المحفظة | نظرة عامة على المبادرات"},
+				        {"TITLE_PAGE_INITIATIVE_DETAIL", "Portfolio Strategy | Initiative Detail", "استراتيجية المحفظة | تفاصيل المبادرة"},
+				        {"KPI_TOTAL_INITIATIVES", "Total Initiatives", "إجمالي المبادرات"},
+				        {"KPI_PIPELINE_VALUE_SAR", "Pipeline Value (SAR)", "قيمة خط الأنابيب (ريال)"},
+				        {"KPI_CLOSED_WON_VALUE_SAR", "Closed Won Value (SAR)", "قيمة الصفقات المغلقة (ريال)"},
+				        {"KPI_WIN_RATE", "Win Rate", "معدل الفوز"},
+				        {"KPI_OPEN_PIPELINE_COUNT", "Open Pipeline", "خط الأنابيب المفتوح"},
+				        {"LABEL_STATUS", "Status", "الحالة"},
+				        {"LABEL_INITIATIVE_TYPE", "Initiative Type", "نوع المبادرة"},
+				        {"LABEL_PRIORITY", "Priority", "الأولوية"},
+				        {"LABEL_EXPECTED_CLOSE_DATE", "Expected Close Date", "تاريخ الإغلاق المتوقع"},
+				        {"NAV_INITIATIVES", "Initiatives", "المبادرات"},
+				        {"TITLE_PIPELINE_BY_STATUS", "Pipeline by Status", "خط الأنابيب حسب الحالة"},
+				        {"TITLE_VALUE_BY_TYPE", "Value by Initiative Type", "القيمة حسب نوع المبادرة"},
+				        {"SUBTITLE_INITIATIVES_COUNT", "Count of Initiatives", "عدد المبادرات"},
+				        {"LABEL_BACK_TO_OVERVIEW", "Back to Overview", "العودة إلى النظرة العامة"}
 				    }
 				)
 					

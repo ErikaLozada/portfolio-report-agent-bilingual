@@ -1,0 +1,301 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "c1d2e3f4a5b60004",
+  "position": {
+    "x": 20,
+    "y": 80,
+    "z": 1000,
+    "height": 960,
+    "width": 1880,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "initiative_id"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.initiative_id",
+              "nativeQueryRef": "initiative_id",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "initiative_name_en"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.initiative_name_en",
+              "nativeQueryRef": "initiative_name_en",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "initiative_name_ar"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.initiative_name_ar",
+              "nativeQueryRef": "initiative_name_ar",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "initiative_type"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.initiative_type",
+              "nativeQueryRef": "initiative_type",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "status"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.status",
+              "nativeQueryRef": "status",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "priority"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.priority",
+              "nativeQueryRef": "priority",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "country"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.country",
+              "nativeQueryRef": "country",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "continent"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.continent",
+              "nativeQueryRef": "continent",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "expected_value_sar"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.expected_value_sar",
+              "nativeQueryRef": "expected_value_sar",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "expected_value_usd"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.expected_value_usd",
+              "nativeQueryRef": "expected_value_usd",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "expected_area_sqm"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.expected_area_sqm",
+              "nativeQueryRef": "expected_area_sqm",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "expected_close_date"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.expected_close_date",
+              "nativeQueryRef": "expected_close_date",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "start_date"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.start_date",
+              "nativeQueryRef": "start_date",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "owner"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.owner",
+              "nativeQueryRef": "owner",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "property_type"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.property_type",
+              "nativeQueryRef": "property_type",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real Estate Initiatives"
+                    }
+                  },
+                  "Property": "notes"
+                }
+              },
+              "queryRef": "Real Estate Initiatives.notes",
+              "nativeQueryRef": "notes",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Light'', wf_segoe-ui_light, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

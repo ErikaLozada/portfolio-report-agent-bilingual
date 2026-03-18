@@ -1,0 +1,174 @@
+table 'Real Estate Initiatives'
+	lineageTag: d1a2b3c4-e5f6-7081-9203-a1b2c3d4e5f6
+
+	column initiative_id
+		dataType: string
+		lineageTag: d1a20001-0001-0001-0001-000000000001
+		summarizeBy: none
+		sourceColumn: initiative_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column initiative_name_en
+		dataType: string
+		lineageTag: d1a20001-0001-0001-0001-000000000002
+		summarizeBy: none
+		sourceColumn: initiative_name_en
+
+		annotation SummarizationSetBy = Automatic
+
+	column initiative_name_ar
+		dataType: string
+		lineageTag: d1a20001-0001-0001-0001-000000000003
+		summarizeBy: none
+		sourceColumn: initiative_name_ar
+
+		annotation SummarizationSetBy = Automatic
+
+	column initiative_type
+		dataType: string
+		lineageTag: d1a20001-0001-0001-0001-000000000004
+		summarizeBy: none
+		sourceColumn: initiative_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: d1a20001-0001-0001-0001-000000000005
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority
+		dataType: string
+		lineageTag: d1a20001-0001-0001-0001-000000000006
+		summarizeBy: none
+		sourceColumn: priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: d1a20001-0001-0001-0001-000000000007
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column continent
+		dataType: string
+		lineageTag: d1a20001-0001-0001-0001-000000000008
+		summarizeBy: none
+		sourceColumn: continent
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_value_sar
+		dataType: double
+		lineageTag: d1a20001-0001-0001-0001-000000000009
+		summarizeBy: sum
+		sourceColumn: expected_value_sar
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_value_usd
+		dataType: double
+		lineageTag: d1a20001-0001-0001-0001-00000000000a
+		summarizeBy: sum
+		sourceColumn: expected_value_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_area_sqm
+		dataType: double
+		lineageTag: d1a20001-0001-0001-0001-00000000000b
+		summarizeBy: sum
+		sourceColumn: expected_area_sqm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_close_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: d1a20001-0001-0001-0001-00000000000c
+		summarizeBy: none
+		sourceColumn: expected_close_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column start_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: d1a20001-0001-0001-0001-00000000000d
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column owner
+		dataType: string
+		lineageTag: d1a20001-0001-0001-0001-00000000000e
+		summarizeBy: none
+		sourceColumn: owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column property_type
+		dataType: string
+		lineageTag: d1a20001-0001-0001-0001-00000000000f
+		summarizeBy: none
+		sourceColumn: property_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column notes
+		dataType: string
+		lineageTag: d1a20001-0001-0001-0001-000000000010
+		summarizeBy: none
+		sourceColumn: notes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Real Estate Initiatives' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\erika.lozada\OneDrive - JLL\Documents\KSA\Porfolio\PBIP-PortfolioReport\data\real_estate_initiatives.csv"),[Delimiter=",", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{
+				        {"initiative_id", type text},
+				        {"initiative_name_en", type text},
+				        {"initiative_name_ar", type text},
+				        {"initiative_type", type text},
+				        {"status", type text},
+				        {"priority", type text},
+				        {"country", type text},
+				        {"continent", type text},
+				        {"expected_value_sar", type number},
+				        {"expected_value_usd", type number},
+				        {"expected_area_sqm", type number},
+				        {"expected_close_date", type date},
+				        {"start_date", type date},
+				        {"owner", type text},
+				        {"property_type", type text},
+				        {"notes", type text}
+				    })
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

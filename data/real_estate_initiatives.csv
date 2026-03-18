@@ -1,0 +1,16 @@
+initiative_id,initiative_name_en,initiative_name_ar,initiative_type,status,priority,country,continent,expected_value_sar,expected_value_usd,expected_area_sqm,expected_close_date,start_date,owner,property_type,notes
+INI-001,Riyadh Office Tower Acquisition,استحواذ برج المكاتب الرياض,Acquisition,Negotiation,High,Saudi Arabia,Asia,45000000,12000000,12500,2026-06-30,2025-09-01,Asset Management,Office,Prime district
+INI-002,Jeddah Warehouse Disposition,التخلص من مستودع جدة,Disposition,Due Diligence,Medium,Saudi Arabia,Asia,22000000,5866667,8000,2026-03-15,2025-07-01,Disposals Team,Warehouse,
+INI-003,Dammam Lease Renewal - Block A,تجديد إيجار الدمام - المبنى أ,Lease Renewal,Qualified,High,Saudi Arabia,Asia,8500000,2266667,3200,2026-09-01,2025-11-01,Leasing,Office,Current tenant extension
+INI-004,Dubai Logistics Hub New Lease,عقد إيجار جديد مركز دبي اللوجستي,New Lease,Pipeline,Medium,United Arab Emirates,Asia,12000000,3200000,5500,2026-12-31,2026-01-15,,Industrial,
+INI-005,Cairo Office Expansion,توسعة المكاتب القاهرة,Expansion,Negotiation,High,Egypt,Africa,6500000,1733333,2100,2026-04-30,2025-10-01,Portfolio Strategy,Office,Additional floor
+INI-006,Riyadh Retail Refurbishment,تجديد التجزئة الرياض,Refurbishment,Qualified,Medium,Saudi Arabia,Asia,3100000,826667,1500,2026-08-31,2026-02-01,CapEx,Retail,Common area upgrade
+INI-007,Khobar Warehouse Acquisition,استحواذ مستودع الخبر,Acquisition,Pipeline,Low,Saudi Arabia,Asia,18500000,4933333,9200,2027-01-31,2026-03-01,Asset Management,Warehouse,
+INI-008,Abu Dhabi Disposition - Plot 12,التخلص من أبوظبي - القطعة 12,Disposition,Closed Won,High,United Arab Emirates,Asia,78000000,20800000,,2025-11-30,2025-04-01,Disposals Team,Land,Completed Q4
+INI-009,Jeddah New Lease - Retail Unit 5,عقد إيجار جديد جدة - وحدة التجزئة 5,New Lease,Due Diligence,Medium,Saudi Arabia,Asia,4200000,1120000,850,2026-05-15,2025-12-01,Leasing,Retail,
+INI-010,Cairo Lease Renewal - HQ Building,تجديد إيجار المقر الرئيسي القاهرة,Lease Renewal,Negotiation,High,Egypt,Africa,11000000,2933333,4500,2026-07-01,2025-08-15,Leasing,Office,Headquarters
+INI-011,Riyadh Industrial Expansion Phase 2,توسعة صناعية الرياض المرحلة 2,Expansion,Pipeline,Medium,Saudi Arabia,Asia,9500000,2533333,4000,2027-06-30,2026-06-01,,Industrial,
+INI-012,Dammam Disposition - Aged Asset,التخلص من أصل قديم الدمام,Disposition,Closed Lost,Low,Saudi Arabia,Asia,8000000,2133333,2800,,2025-06-01,Disposals Team,Office,Withdrawn
+INI-013,Dubai Office Acquisition,استحواذ مكاتب دبي,Acquisition,Qualified,High,United Arab Emirates,Asia,62000000,16533333,9800,2026-11-30,2026-01-01,Asset Management,Office,
+INI-014,Kuwait City New Lease,عقد إيجار جديد مدينة الكويت,New Lease,On Hold,Low,Kuwait,Asia,5500000,1466667,1900,,2025-09-01,,Office,Deferred by client
+INI-015,Riyadh Data Center Refurbishment,تجديد مركز البيانات الرياض,Refurbishment,Negotiation,High,Saudi Arabia,Asia,15000000,4000000,2200,2026-10-31,2026-01-15,CapEx,Data Center,MEP upgrade

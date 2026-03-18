@@ -17,6 +17,8 @@ LTR_PAGES = [
     "bbd89d7022b1b0b40b43",
     "a355a9de5d8b8a070096",
     "6b069f6587ebdd241049",
+    "f1a2b3c4d5e6f7081920",
+    "a2b3c4d5e6f70819202a",
 ]
 
 def check_pages_json():
@@ -24,7 +26,7 @@ def check_pages_json():
         data = json.load(f)
     order = data["pageOrder"]
     print(f"pages.json has {len(order)} pages")
-    assert len(order) == 14, f"Expected 14 pages, got {len(order)}"
+    assert len(order) == 18, f"Expected 18 pages, got {len(order)}"
     for pid in LTR_PAGES:
         assert pid in order, f"LTR page {pid} missing from pageOrder"
     rtl_pages = [p for p in order if p not in LTR_PAGES]

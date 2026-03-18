@@ -30,7 +30,7 @@ This is a Power BI PBIP project (`.pbip` format) with two main artefacts:
 | `scripts/` | Python automation scripts used during bilingual setup |
 | `templates/` | Reusable JSON visual templates (LTR + RTL) |
 
-### Report Pages (14 total)
+### Report Pages (18 total)
 
 | LTR (English) | Page ID | RTL (Arabic) | Page ID |
 |---|---|---|---|
@@ -40,6 +40,8 @@ This is a Power BI PBIP project (`.pbip` format) with two main artefacts:
 | Distribution | `2e769a070bd14019d45b` | التوزيع | `9369177f48414d41a95f` |
 | Property Info | `bbd89d7022b1b0b40b43` | معلومات العقار | `01808cd02ce34c308d6c` |
 | info | `a355a9de5d8b8a070096` | معلومات | `17b97c85e6f84edf87cf` |
+| Initiatives Overview | `f1a2b3c4d5e6f7081920` | نظرة عامة على المبادرات | `b3c4d5e6f7081920303b` |
+| Initiative Detail *(hidden drill-through)* | `a2b3c4d5e6f70819202a` | تفاصيل المبادرة *(hidden drill-through)* | `c4d5e6f70819203040c4` |
 
 Page order is defined in `Portfolio Report.Report/definition/pages/pages.json`.
 
@@ -112,6 +114,25 @@ erDiagram
         string Dictionary
         int Keep
     }
+    RealEstateInitiatives["Real Estate Initiatives"] {
+        string initiative_id PK
+        string initiative_name_en
+        string initiative_name_ar
+        string initiative_type
+        string status
+        string priority
+        string country
+        string continent
+        number expected_value_sar
+        number expected_value_usd
+        number expected_area_sqm
+        date expected_close_date
+        date start_date
+        string owner
+        string property_type
+        string notes
+    }
+    RealEstateInitiatives --|{ RealEstateInitiatives : "standalone (no relationship)"
 ```
 
 ### 2.2 Core Tables
@@ -130,6 +151,13 @@ erDiagram
 
 **Relationship** (single): `Portfolio[Lease End Date ]` -> `Date[Date]`.
 Defined in `Portfolio Report.SemanticModel/definition/relationships.tmdl`.
+
+**Real Estate Initiatives** -- Initiatives / sales-plan fact table.
+- File: `Portfolio Report.SemanticModel/definition/tables/Real Estate Initiatives.tmdl`
+- Source: M partition reads from `data/real_estate_initiatives.csv`.
+- Columns: `initiative_id`, `initiative_name_en`, `initiative_name_ar`, `initiative_type`, `status`, `priority`, `country`, `continent`, `expected_value_sar`, `expected_value_usd`, `expected_area_sqm`, `expected_close_date`, `start_date`, `owner`, `property_type`, `notes`.
+- No relationship to Portfolio (Portfolio[Country] has duplicates, preventing a many-to-one join). Use TREATAS or LOOKUPVALUE if cross-table filtering is needed.
+- Schema documented in `docs/REAL_ESTATE_INITIATIVES_SCHEMA.md`.
 
 ### 2.3 Disconnected / Parameter Tables
 
@@ -290,6 +318,7 @@ Every measure in `_Measures.tmdl` is assigned to a display folder. The folder st
 | **Bilingual** | 1 | `[Selected Language]` measure |
 | **Labels** | 37 | Dynamic bilingual label measures for titles/subtitles |
 | **Labels\KPI** | 20 | Dynamic bilingual label measures for KPI card reference labels |
+| **Initiatives** | 7 | Real Estate Initiatives pipeline/sales KPIs (Initiative Count, Pipeline Value SAR, Closed Won Value SAR, Win Rate %, Open Pipeline Count, Total Expected Area SQM, Initiative Name) |
 | **saveForDeletion** | 65 | Measures not referenced in any visual, filter, label, or DAX chain -- see next section |
 
 ### Folder Contents (active measures)
@@ -322,6 +351,10 @@ Every measure in `_Measures.tmdl` is assigned to a display folder. The folder st
 **Quadrant Analysis**
 - `Global Median Area`, `Global Median Annual Rent`
 - `Quadrant 1 - High Area, High Rent`
+
+**Initiatives**
+- `Initiative Count`, `Open Pipeline Count`, `Pipeline Value SAR`, `Closed Won Value SAR`
+- `Win Rate %`, `Total Expected Area SQM`, `Initiative Name`
 
 **Visual Titles**
 - `Visual Title - Expiring Metric`, `Visual Title - Expiring Metric running Total`
@@ -644,6 +677,9 @@ Common maintenance tasks and where to make changes:
 | Add a new language | `Language.tmdl` row + `Translations.tmdl` column + extend all 67 Label measures |
 | Rename/reorder a page | `pages.json` + page `page.json` displayName + navigation button visual JSONs |
 | Delete an unused measure | Verify with grep, remove from `_Measures.tmdl`, check no visual references remain |
+| Add/change Initiatives data | `data/real_estate_initiatives.csv`, then refresh in Power BI |
+| Change Initiatives visuals | Visual JSONs under `pages/f1a2b3c4d5e6f7081920/visuals/` (LTR Overview), `pages/a2b3c4d5e6f70819202a/visuals/` (LTR Detail) + RTL mirrors |
+| Add an Initiative measure | `_Measures.tmdl` (displayFolder Initiatives) + add Label measure + Translations row + visual binding |
 
 ---
 

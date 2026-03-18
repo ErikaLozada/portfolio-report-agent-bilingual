@@ -2136,6 +2136,155 @@ table _Measures
 		formatString: 0
 		lineageTag: 9ab24f3e-21d4-4d15-ad44-4bc345e46ec4
 
+	measure 'Label - Page Initiatives Overview' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_PAGE_INITIATIVES_OVERVIEW")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_PAGE_INITIATIVES_OVERVIEW")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000101
+
+	measure 'Label - Page Initiative Detail' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_PAGE_INITIATIVE_DETAIL")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_PAGE_INITIATIVE_DETAIL")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000102
+
+	measure 'Label - KPI Total Initiatives' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_TOTAL_INITIATIVES")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_TOTAL_INITIATIVES")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000103
+
+	measure 'Label - KPI Pipeline Value SAR' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_PIPELINE_VALUE_SAR")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_PIPELINE_VALUE_SAR")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000104
+
+	measure 'Label - KPI Closed Won Value SAR' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_CLOSED_WON_VALUE_SAR")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_CLOSED_WON_VALUE_SAR")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000105
+
+	measure 'Label - KPI Win Rate' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_WIN_RATE")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_WIN_RATE")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000106
+
+	measure 'Label - KPI Open Pipeline Count' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "KPI_OPEN_PIPELINE_COUNT")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "KPI_OPEN_PIPELINE_COUNT")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels\KPI
+		lineageTag: a0000001-0001-0001-0001-000000000107
+
+	measure 'Label - Initiatives Nav' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "NAV_INITIATIVES")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "NAV_INITIATIVES")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000108
+
+	measure 'Label - Pipeline by Status' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_PIPELINE_BY_STATUS")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_PIPELINE_BY_STATUS")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000109
+
+	measure 'Label - Value by Type' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "TITLE_VALUE_BY_TYPE")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "TITLE_VALUE_BY_TYPE")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000110
+
+	measure 'Label - Back to Overview' =
+			VAR _lang = [Selected Language]
+			VAR _en = LOOKUPVALUE('Translations'[EN], 'Translations'[Key], "LABEL_BACK_TO_OVERVIEW")
+			VAR _ar = LOOKUPVALUE('Translations'[AR], 'Translations'[Key], "LABEL_BACK_TO_OVERVIEW")
+			RETURN SWITCH(_lang, "AR", _ar, _en)
+		displayFolder: Labels
+		lineageTag: a0000001-0001-0001-0001-000000000111
+
+	measure 'Initiative Count' = COUNTROWS('Real Estate Initiatives')
+		formatString: 0
+		displayFolder: Initiatives
+		lineageTag: d1a30001-0001-0001-0001-000000000001
+
+	measure 'Open Pipeline Count' =
+			CALCULATE(
+			    COUNTROWS('Real Estate Initiatives'),
+			    FILTER(
+			        ALL('Real Estate Initiatives'[status]),
+			        'Real Estate Initiatives'[status] <> "Closed Won" &&
+			        'Real Estate Initiatives'[status] <> "Closed Lost"
+			    )
+			)
+		formatString: 0
+		displayFolder: Initiatives
+		lineageTag: d1a30001-0001-0001-0001-000000000002
+
+	measure 'Pipeline Value SAR' =
+			CALCULATE(
+			    SUM('Real Estate Initiatives'[expected_value_sar]),
+			    FILTER(
+			        ALL('Real Estate Initiatives'[status]),
+			        'Real Estate Initiatives'[status] <> "Closed Won" &&
+			        'Real Estate Initiatives'[status] <> "Closed Lost"
+			    )
+			)
+		formatString: #,0
+		displayFolder: Initiatives
+		lineageTag: d1a30001-0001-0001-0001-000000000003
+
+	measure 'Closed Won Value SAR' =
+			CALCULATE(
+			    SUM('Real Estate Initiatives'[expected_value_sar]),
+			    'Real Estate Initiatives'[status] = "Closed Won"
+			)
+		formatString: #,0
+		displayFolder: Initiatives
+		lineageTag: d1a30001-0001-0001-0001-000000000004
+
+	measure 'Win Rate %' =
+			VAR _won = CALCULATE(COUNTROWS('Real Estate Initiatives'), 'Real Estate Initiatives'[status] = "Closed Won")
+			VAR _lost = CALCULATE(COUNTROWS('Real Estate Initiatives'), 'Real Estate Initiatives'[status] = "Closed Lost")
+			RETURN DIVIDE(_won, _won + _lost, 0)
+		formatString: 0%;-0%;0%
+		displayFolder: Initiatives
+		lineageTag: d1a30001-0001-0001-0001-000000000005
+
+	measure 'Total Expected Area SQM' = SUM('Real Estate Initiatives'[expected_area_sqm])
+		formatString: #,0
+		displayFolder: Initiatives
+		lineageTag: d1a30001-0001-0001-0001-000000000006
+
+	measure 'Initiative Name' =
+			VAR _lang = [Selected Language]
+			VAR _en = SELECTEDVALUE('Real Estate Initiatives'[initiative_name_en])
+			VAR _ar = SELECTEDVALUE('Real Estate Initiatives'[initiative_name_ar])
+			RETURN IF(_lang = "AR", _ar, _en)
+		displayFolder: Initiatives
+		lineageTag: d1a30001-0001-0001-0001-000000000007
+
 	column Value
 		formatString: 0
 		displayFolder: saveForDeletion

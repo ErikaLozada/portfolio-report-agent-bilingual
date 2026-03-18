@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "ini_rtl_fp_group",
+  "position": {
+    "x": -0.29553955273127031,
+    "y": 81.139830560166232,
+    "z": 8000,
+    "height": 858.982236421725,
+    "width": 240.26376996805109,
+    "tabOrder": 11000
+  },
+  "visualGroup": {
+    "displayName": "Filter Pane",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

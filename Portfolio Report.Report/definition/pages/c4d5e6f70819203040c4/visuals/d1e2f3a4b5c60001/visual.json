@@ -1,17 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "30232ab294e94fc490eb",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "d1e2f3a4b5c60001",
   "position": {
-    "x": 1750,
-    "y": 10,
+    "x": 358,
+    "y": 13,
     "z": 20000,
-    "height": 35,
-    "width": 150,
-    "tabOrder": 99000
+    "height": 40,
+    "width": 168,
+    "tabOrder": 20000
   },
   "visual": {
     "visualType": "actionButton",
-    "drillFilterOtherVisuals": true,
     "objects": {
       "icon": [
         {
@@ -20,6 +19,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'blank'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -33,6 +39,13 @@
               "expr": {
                 "Literal": {
                   "Value": "0D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -69,7 +82,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'العربية'"
+                  "Value": "'العودة إلى النظرة العامة ←'"
                 }
               }
             },
@@ -86,6 +99,13 @@
                   "Value": "10D"
                 }
               }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -95,10 +115,10 @@
       "title": [
         {
           "properties": {
-            "show": {
+            "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -111,7 +131,25 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F0EEEE'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -138,13 +176,27 @@
             "navigationSection": {
               "expr": {
                 "Literal": {
-                  "Value": "'01808cd02ce34c308d6c'"
+                  "Value": "'b3c4d5e6f7081920303b'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

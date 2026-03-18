@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["Portfolio","Currency Selection","Distribution Metric","sample_dummy_data","Header"]
+annotation PBI_QueryOrder = ["Portfolio","Currency Selection","Distribution Metric","sample_dummy_data","Header","Real Estate Initiatives"]
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
@@ -24,6 +24,7 @@ ref table prm_dimensions
 ref table Header
 ref table prm_quandrants
 ref table prm_metric
+ref table 'Real Estate Initiatives'
 
 ref cultureInfo en-AU
 

@@ -1,0 +1,117 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Initiatives_AR_Close",
+  "name": "ini_overview_ar_close_bk",
+  "options": {
+    "applyOnlyToTargetVisuals": true,
+    "targetVisualNames": [
+      "ini_rtl_btn_on",
+      "ini_rtl_btn_off",
+      "ini_rtl_fp_group",
+      "ini_rtl_fp_bg",
+      "ini_rtl_fp_label",
+      "ini_rtl_fp_status",
+      "ini_rtl_fp_type",
+      "ini_rtl_fp_priority",
+      "ini_rtl_fp_country",
+      "ini_rtl_fp_continent"
+    ],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "b3c4d5e6f7081920303b",
+    "sections": {
+      "b3c4d5e6f7081920303b": {
+        "visualContainers": {
+          "ini_rtl_btn_on": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "ini_rtl_btn_off": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "ini_rtl_fp_bg": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "ini_rtl_fp_label": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "ini_rtl_fp_status": {
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {}
+            }
+          },
+          "ini_rtl_fp_type": {
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {}
+            }
+          },
+          "ini_rtl_fp_priority": {
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {}
+            }
+          },
+          "ini_rtl_fp_country": {
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {}
+            }
+          },
+          "ini_rtl_fp_continent": {
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {}
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "ini_rtl_fp_group": {
+            "isHidden": true
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
